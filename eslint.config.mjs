@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Vendor assets served as-is from staging, and generated/codegen files.
+    "public/**",
+    "src/legacy-content/**",
+    "scripts/**",
   ]),
 ]);
 

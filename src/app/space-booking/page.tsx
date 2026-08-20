@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import LegacyPage from "@/legacy/LegacyPage";
-import { meta, html, scripts } from "@/legacy-content/default";
+import { meta, html, scripts } from "@/legacy-content/spaceBooking";
 
 export const metadata: Metadata = {
   title: meta.title,
@@ -8,6 +8,6 @@ export const metadata: Metadata = {
   keywords: meta.keywords
 };
 
-export default function HomePage() {
+export default function SpaceBookingPage() {
   return <LegacyPage html={html} scripts={scripts} />;
 }
