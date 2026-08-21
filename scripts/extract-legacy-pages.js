@@ -91,6 +91,31 @@ function activateSpaceBookingForm(html) {
     /(Note: <span class="star-mark">\*<\/span> Fields are mandatory<\/div>\s*<\/div>\s*<\/div>)(\s*)/,
     "$1\n</form>$2"
   );
+
+  // type="number" silently ignores maxlength/minlength in every browser, so the original
+  // "6-20 digits" constraint was never actually enforced. tel + inputmode="numeric" keeps
+  // the numeric keypad on mobile while making length limits (10 digits) real.
+  const beforeMobile = html;
+  html = html.replace(
+    'name="Mobile_No" type="number" class="form-control" id="Mobile_No" data-field="Mobile_No" placeholder="" required="required" autocomplete="off" data-validate="Mobile_No" maxlength="20" minlength="6" data-msg-required="Please enter your mobile no."',
+    'name="Mobile_No" type="tel" inputmode="numeric" pattern="[0-9]{10}" class="form-control" id="Mobile_No" data-field="Mobile_No" placeholder="" required="required" autocomplete="off" data-validate="Mobile_No" maxlength="10" minlength="10" data-msg-required="Please enter your mobile no." data-msg-pattern="Please enter a valid 10-digit mobile number"'
+  );
+  if (html === beforeMobile) {
+    throw new Error("Failed to upgrade Mobile_No field to type=tel — markup shape changed?");
+  }
+
+  // Staging's captcha markup is a frozen, non-functional DOM snapshot (a captured
+  // rendered iframe, not a live widget). Swap it for an empty container that
+  // RecaptchaWidget.tsx renders a real widget into once a site key is configured.
+  const beforeRecaptcha = html;
+  html = html.replace(
+    /<div id="g-recaptcha" class="g-recaptcha"[\s\S]*?<\/div>(?=\s*<label id="g-recaptcha-error")/,
+    '<div id="g-recaptcha-container"></div>'
+  );
+  if (html === beforeRecaptcha) {
+    throw new Error("Failed to replace the frozen g-recaptcha markup — markup shape changed?");
+  }
+
   return html;
 }
 

@@ -4,7 +4,10 @@ import { useEffect, useRef } from "react";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:4010/api";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const MOBILE_RE = /^[0-9]{6,20}$/;
+const MOBILE_RE = /^[0-9]{10}$/;
+const NAME_RE = /^[A-Za-z\s'-]{2,30}$/;
+const CITY_RE = /^[A-Za-z\s'-]{2,50}$/;
+const ORG_RE = /^.{2,30}$/;
 
 class ApiError extends Error {
   status: number;
@@ -80,8 +83,32 @@ function wireSpaceBookingForm() {
   const form = document.getElementById("spaceBookingForm") as HTMLFormElement | null;
   if (!form) return;
 
+  const firstNameInput = form.querySelector<HTMLInputElement>('[name="First_Name"]');
+  const lastNameInput = form.querySelector<HTMLInputElement>('[name="Last_Name"]');
+  const orgInput = form.querySelector<HTMLInputElement>('[name="Organisation"]');
   const emailInput = form.querySelector<HTMLInputElement>('[name="Email"]');
+  const cityInput = form.querySelector<HTMLInputElement>('[name="City"]');
   const mobileInput = form.querySelector<HTMLInputElement>('[name="Mobile_No"]');
+
+  // type="number" doesn't stop letters/symbols in every browser (Firefox especially),
+  // and doesn't enforce maxlength at all — strip anything non-numeric as the user types
+  // and hard-cap at 10 digits.
+  mobileInput?.addEventListener("input", () => {
+    mobileInput.value = mobileInput.value.replace(/[^0-9]/g, "").slice(0, 10);
+  });
+
+  const fieldCheck = (
+    input: HTMLInputElement | null | undefined,
+    val: string,
+    re: RegExp,
+    message: string
+  ) => {
+    if (re.test(val)) return true;
+    input?.setCustomValidity(message);
+    form.reportValidity();
+    input?.setCustomValidity("");
+    return false;
+  };
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -95,33 +122,45 @@ function wireSpaceBookingForm() {
     const value = (name: string) =>
       form.querySelector<HTMLInputElement | HTMLSelectElement>(`[name="${name}"]`)?.value.trim() ?? "";
 
+    const firstName = value("First_Name");
+    if (!fieldCheck(firstNameInput, firstName, NAME_RE, "Please enter a valid first name (letters only, 2-30 characters).")) return;
+
+    const lastName = value("Last_Name");
+    if (!fieldCheck(lastNameInput, lastName, NAME_RE, "Please enter a valid last name (letters only, 2-30 characters).")) return;
+
+    const organisation = value("Organisation");
+    if (!fieldCheck(orgInput, organisation, ORG_RE, "Organisation name must be 2-30 characters.")) return;
+
     const email = value("Email");
-    if (!EMAIL_RE.test(email)) {
-      emailInput?.setCustomValidity("Please enter a valid email address.");
-      form.reportValidity();
-      emailInput?.setCustomValidity("");
-      return;
-    }
+    if (!fieldCheck(emailInput, email, EMAIL_RE, "Please enter a valid email address.")) return;
+
+    const city = value("City");
+    if (!fieldCheck(cityInput, city, CITY_RE, "Please enter a valid city (letters only, 2-50 characters).")) return;
 
     const mobileNo = value("Mobile_No");
-    if (!MOBILE_RE.test(mobileNo)) {
-      mobileInput?.setCustomValidity("Please enter a valid mobile number (digits only, 6-20 digits).");
-      form.reportValidity();
-      mobileInput?.setCustomValidity("");
-      return;
+    if (!fieldCheck(mobileInput, mobileNo, MOBILE_RE, "Please enter a valid 10-digit mobile number.")) return;
+
+    let recaptchaToken = "";
+    if (window.grecaptcha && window.__recaptchaWidgetId !== undefined) {
+      recaptchaToken = window.grecaptcha.getResponse(window.__recaptchaWidgetId);
+      if (!recaptchaToken) {
+        setMsg(msgEl, "Please complete the captcha verification.", true);
+        return;
+      }
     }
 
     const payload = {
-      firstName: value("First_Name"),
-      lastName: value("Last_Name"),
-      organisation: value("Organisation"),
+      firstName,
+      lastName,
+      organisation,
       designation: value("Designation"),
       email,
       learnAboutExpo: value("Learn_About_Expo"),
-      city: value("City"),
+      city,
       country: value("Country"),
       mobileNo,
-      shellSpace: value("Shell_Space")
+      shellSpace: value("Shell_Space"),
+      recaptchaToken
     };
 
     const submitBtn = document.getElementById("btnRegistration") as HTMLInputElement | null;
@@ -134,6 +173,9 @@ function wireSpaceBookingForm() {
       })
       .catch((err: ApiError) => {
         setMsg(msgEl, err.message, true);
+        if (window.grecaptcha && window.__recaptchaWidgetId !== undefined) {
+          window.grecaptcha.reset(window.__recaptchaWidgetId);
+        }
       })
       .finally(() => {
         if (submitBtn) submitBtn.disabled = false;

@@ -53,6 +53,33 @@ whatever origin this app runs on (`.env.example` there already lists
 `localhost:3010`, matching `npm run dev`/`npm start` here which both bind
 to port `3010`).
 
+## reCAPTCHA (space-booking form)
+
+Google reCAPTCHA doesn't accept bare IP addresses as a registered domain — only real
+domains (`localhost`/`127.0.0.1` are allowed for local dev only). To enable it:
+
+1. Create a key at https://www.google.com/recaptcha/admin (reCAPTCHA v2 "I'm not a
+   robot" checkbox is what this integrates with).
+2. Register domains: `localhost` for local dev, and for the UAT server register
+   `103-149-199-137.nip.io` (nip.io resolves to that IP, satisfying the domain
+   requirement without owning a real domain). **Once set, the site must be visited as
+   `http://103-149-199-137.nip.io:3010/`** — the bare-IP URL will fail the widget's
+   domain check.
+3. Put the **site key** in `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` — `.env.local` for local
+   dev, `.env.production` for the UAT build (already committed with a blank value,
+   safe since site keys are public).
+4. Put the **secret key** in `backend/.env`'s `RECAPTCHA_SECRET_KEY` (on whichever
+   machine actually runs the backend — that file is gitignored, never deployed by git).
+5. If switching the UAT frontend to the nip.io hostname, add
+   `http://103-149-199-137.nip.io:3010` to `backend/.env`'s `CORS_ORIGIN` too.
+6. Rebuild the frontend (`npm run build`) — `NEXT_PUBLIC_*` values are inlined at
+   build time, not read at runtime.
+
+Until the site key is set, `RecaptchaWidget.tsx` simply doesn't render a widget and
+`SiteForms.tsx` doesn't require a token — submissions work normally without it. Same
+on the backend: `spaceBooking.js` skips verification entirely when
+`RECAPTCHA_SECRET_KEY` is unset.
+
 ## Re-running the port after staging changes
 
 ```
@@ -69,9 +96,9 @@ Re-copy any changed files under `staging/css`, `staging/images`, etc. into
 - `lightbox/`, `gallery-src/`, and `js/masonry.pkgd.min.js` are referenced
   but don't exist as files in `staging/` either — those features are
   already non-functional in staging.
-- The space-booking form's reCAPTCHA is a frozen, non-functional markup
-  snapshot in staging (no live `recaptcha/api.js` is loaded); preserved as-is
-  and not required by `SiteForms.tsx`'s validation.
+- Staging's reCAPTCHA markup was a frozen, non-functional captured-iframe
+  snapshot; `extract-legacy-pages.js` replaces it with a live widget (see the
+  "reCAPTCHA" section above).
 
 ## Development
 
