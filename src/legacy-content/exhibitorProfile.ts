@@ -5,7 +5,500 @@ export const meta = {
   "keywords": "Data Center India Expo 2027, Bharat Mandapam New Delhi"
 } as const;
 
-export const html = "\r\n\r\n\r\n<header class=\"fixed-top-band\">\r\n\r\n\t<nav class=\"navbar bg-body--tertiary \">\r\n\t\t<div class=\"container-xxl align-items-center\">\r\n\t\t\t\r\n\t\t\t<div class=\"col-xl-6 col-lg-5 col-md-4 col-8\">\r\n\t\t\t\r\n\t\t\t\t<div class=\"logo-box-main-top\">\r\n\t\t\t\t\t<div class=\"logo-box-ci\">\r\n\t\t\t\t\t\t<a class=\"navbar-brand\" href=\"\"><img src=\"/images/wellness-india-expo-logo.png\" alt=\"Wellness India Expo\"></a>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t\t\t\t\r\n\t\t\t</div>\r\n\t\t\t\r\n\t\t\t<div class=\"col-xl-6 col-lg-7 col-md-8 col-4 text-end\">\r\n\t\t\t\t<a href=\"\" class=\"home-book-btn top-btn-book ms-0 d-none d-md-inline-block\" target=\"_blank\">Book Your Space <i class=\"far fa-arrow-right btn-arrow-icon\"></i></a>\r\n\t\t\t\t<a href=\"\" class=\"home-book-btn top-btn-register ms-2 d-none d-md-inline-block\" target=\"_blank\">Register to Visit <i class=\"far fa-arrow-right btn-arrow-icon\"></i></a>\r\n\t\t\t\t\r\n\t\t\t\t<span class=\"navbar-toggler first-button ms-2\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n\t\t\t\t<span class=\"hamburgermenu-txt\">Menu</span> <div class=\"animated-icon1\"><span></span><span></span><span></span></div>\r\n\t\t\t\t</span>\r\n\t\t\t</div>\r\n\r\n\t\t</div>\r\n\t\t\r\n\t\t<div class=\"collapse navbar-collapse overlay align-items-center\" id=\"navbarSupportedContent\">\r\n\t\t\t<div class=\"menu-box-outer\">\r\n\t\t\t\t<div class=\"container-xxl\">\r\n\t\t\t\t\t<div class=\"row justify-content-between\">\r\n\t\t\t\t\t\t<div class=\"col-lg-2 col-md-4 col-sm-4 col-12 d-md-none d-block\">\r\n\t\t\t\t\t\t\t<div class=\"menu-heading-btn-main\">\r\n\t\t\t\t\t\t\t\t<a href=\"space-booking.aspx\" target=\"_blank\">Book for 2027 <i class=\"far fa-arrow-right btn-arrow-icon\"></i></a>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div class=\"menu-heading-btn-main\">\r\n\t\t\t\t\t\t\t\t<a href=\"https://www.mobileindiaexpo.com/travel-reimbursement-registration.aspx\">Travel Reimbursement <i class=\"far fa-arrow-right btn-arrow-icon\"></i></a>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"row justify-content-between\">\r\n\t\t\t\t\t\r\n\t\t\t\t\t\t<div class=\"col-lg-2 col-md-3 col-sm-4 col-12\">\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t<div class=\"menu-box-main\">\r\n\t\t\t\t\t\t\t\t<a href=\"#\" class=\"menu-heading nav-link abc\">Exhibition</a>\r\n\t\t\t<ul class=\"menu-ul-main nav flex-column\">\r\n\t\t\t\t<li class=\"nav-item\"><a href=\"exhibitor-profile.aspx\" class=\"nav-link\">Exhibitor Profile</a></li>\r\n\t\t\t\t<li class=\"nav-item\"><a href=\"https://www.convergenceindia.org/space-booking.aspx\" class=\"nav-link\" target=\"_blank\">Space Booking Form</a></li>\r\n\t\t\t\t\r\n\t\t\t\t\r\n\t\t\t\t<li class=\"nav-item\"><a href=\"https://www.convergenceindia.org/exhibitors-and-participants-convergence-india.aspx\" class=\"nav-link\" target=\"_blank\">List of Participants</a></li>\r\n\t\t\t\t<li class=\"nav-item\"><a href=\"exhibition-venue-and-dates.aspx\" class=\"nav-link\">Exhibition Venue & Dates</a></li>\r\n\t\t\t\t\t\t\t\r\n\t\t\t</ul>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t<div class=\"col-lg-2 col-md-3 col-sm-4 col-12\"> \r\n\t\t\t\t\t\t\t<div class=\"menu-box-main\">\r\n\t\t\t\t\t\t\t\t<a href=\"#\" class=\"menu-heading nav-link abc\">Visitor</a>\r\n\t\t\t\t\t\t\t\t\t<ul class=\"menu-ul-main nav flex-column\">\r\n\t\t\t\t\t\t\t\t\t\t<li class=\"nav-item\"><a href=\"visitor-profile.aspx\" class=\"nav-link\">Visitor Profile</a></li>\r\n\t\t\t\t\t\t\t\t\t\t<li class=\"nav-item\"><a href=\"https://www.convergenceindia.org/visitor-registration.aspx\" class=\"nav-link\" target=\"_blank\">Visitor Registration</a></li>\r\n\t\t\t\t\t\t\t\t\t\t<li class=\"nav-item\"><a href=\"https://www.mobileindiaexpo.com/hosted-buyers-registration.aspx\" class=\"nav-link\" target=\"_blank\">Hosted Buyer</a></li>\r\n\t\t\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t<div class=\"col-lg-2 col-md-3 col-sm-4 col-12\">\r\n\t\t\t\t\t\t\t<div class=\"menu-box-main\">\r\n\t\t\t\t\t\t\t\t<a href=\"#\" class=\"menu-heading nav-link abc\">Conference</a>\r\n\t\t\t<ul class=\"menu-ul-main nav flex-column\">\r\n\t\t\t\t<li class=\"nav-item\"><a href=\"https://www.convergenceindia.org/speaker-registration.aspx\" class=\"nav-link\">Speaker Registration</a></li>\r\n\t\t\t\t\r\n\t\t\t\t<li class=\"nav-item\"><a href=\"https://www.convergenceindia.org/conference-programme.aspx\" class=\"nav-link\" target=\"_blank\">Conference Programme</a></li>\r\n\t\t\t\t<li class=\"nav-item\"><a href=\"https://www.convergenceindia.org/speakers.aspx#speakers\" class=\"nav-link\" target=\"_blank\">Eminent Speakers</a></li>\r\n\t\t\t\t\r\n\t\t\t\t<li class=\"nav-item\"><a href=\"https://www.convergenceindia.org/sessions-video-library.aspx\" class=\"nav-link\" target=\"_blank\">Sessions Video Library</a></li>\r\n\t\t\t</ul>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t<div class=\"col-lg-2 col-md-3 col-sm-4 col-12\"> \r\n\t\t\t\t\t\t\t<div class=\"menu-box-main\">\r\n\t\t\t\t\t\t\t\t<a href=\"#\" class=\"menu-heading nav-link abc\">Special Events</a>\r\n\t\t\t\t\t\t\t\t<ul class=\"menu-ul-main nav flex-column\">\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<li class=\"nav-item\"><a href=\"https://www.convergenceindia.org/awards/\" class=\"nav-link\" target=\"_blank\">Convergence Awards</a></li>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t<div class=\"col-lg-2 col-md-3 col-sm-4 col-12\"> \r\n\t\t\t\t\t\t\t<div class=\"menu-box-main\">\r\n\t\t\t\t\t\t\t\t<a href=\"#\" class=\"menu-heading nav-link abc\">Endorsements</a>\r\n\t\t\t\t\t\t\t\t<ul class=\"menu-ul-main nav flex-column\">\r\n\t\t\t\t\t\t\t\t\t<li class=\"nav-item\"><a href=\"partners.aspx\" class=\"nav-link\">Partners </a></li>\r\n\t\t\t\t\t\t\t\t\t<li class=\"nav-item\"><a href=\"support.aspx\" class=\"nav-link\">Support</a></li>\r\n\t\t\t\t\t\t\t\t\t<li class=\"nav-item\"><a href=\"supporting-associations.aspx\" class=\"nav-link\">Supporting Associations</a></li>\r\n\t\t\t\t\t\t\t\t\t<li class=\"nav-item\"><a href=\"media-partners.aspx\" class=\"nav-link\">Media Partners </a></li>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t\r\n\t\t\t\t\t<div class=\"row justify-content-between\">\r\n\t\t\t\t\t\t<div class=\"col-lg-2 col-md-4 col-sm-4 col-12\">\r\n\t\t\t\t\t\t\t<div class=\"menu-heading-btn-main\">\r\n\t\t\t\t\t\t\t\t<a href=\"https://www.convergence-now.com/\" target=\"_blank\" class=\"d--flex justify--content-between\"><span>Industry News</span> <i class=\"far fa-arrow-right btn-arrow-icon\"></i></a>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"row justify-content-between\">\r\n\t\t\t\t\t\t<div class=\"col-lg-2 col-md-4 col-sm-4 col-12\">\r\n\t\t\t\t\t\t\t<div class=\"menu-heading-btn-main\">\r\n\t\t\t\t\t\t\t\t<a href=\"https://www.convergenceindia.org/expo-highlights/\" target=\"_blank\" class=\"d--flex justify--content-between\"><span>Expo Highlights</span> <i class=\"far fa-arrow-right btn-arrow-icon\"></i></a>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</nav>\r\n\r\n\t\t\t\t\t\t\r\n</header>\r\n\r\n\r\n<section class=\"section-padding-inner\">\r\n\t<div class=\"container-xxl\">\r\n\t\t<div class=\"row align-items-center\">\r\n\t\t\t<div class=\"col-md-6 order-2 order-md-1\">\r\n\t\t\t\t<div class=\"exhibitor-profile-left-heading\">Your fastest route to growth in Indian market</div>\t\r\n\t\t\t\t<div class=\"exhibitor-profile-left-para\">\r\n\t\t\t\t\t<div class=\"row align-items-center\">\r\n\t\t\t\t\t\t<div class=\"col-12\">\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t<div class=\"exhibitor-profile-col-para\">\r\n\t\t\t\t\t\t\tThe Security &amp; Surveillance Expo brings together leading manufacturers, technology providers, system integrators, distributors, and solution providers showcasing the latest innovations in physical security, surveillance, cybersecurity, fire &amp; safety, and smart security technologies.\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t\r\n\t\t\t\t\t<div class=\"row align-items-center\">\r\n\t\t\t\t\t\t<div class=\"col-12\">\r\n\t\t\t\t\t\t\t<div class=\"col-12\">\r\n\t\t\t\t\t\t\t\t\t<div class=\"row mb-4\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"col-sm-12\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"space-booking.aspx\" class=\"home-book-btn sectors-btn-book\">Book Your Space Now  <i class=\"far fa-arrow-right btn-arrow-icon\"></i></a>\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t\r\n\t\t\t<div class=\"col-md-6 order-1 order-md-2\">\r\n\t\t\t\t<div class=\"exhibitor-profile-top-img-box\">\r\n\t\t\t\t\t<img src=\"/images/exhibitor-profile-top-img.png\" alt=\"Exhibitor Profile Banner\">\t\t\t\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t \r\n\t\t</div>\r\n\t</div>\r\n</section>\r\n\r\n\r\n<section class=\"section-padding-inner\">\r\n\t<div class=\"container-xxl\">\r\n\t\t<div class=\"row\">\r\n\t\t\t<div class=\"col-md-12\">\r\n\t\t\t\t<div class=\"exhibitor-sub-heading-left\">Exhibitor Profile</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t\t\t\r\n\t\t<div class=\"row\">\r\n\t\t\t<div class=\"col-md-6\">\r\n\t\t\t\t<div class=\"exhibitor-col-outer-box\">\r\n\t\t\t\t\t<div class=\"exhibitor-profile-ul-para-main\"> \r\n\t\t\t\t\t\t<ul><li>Advanced Baggage Scanners</li>\r\n\t\t\t\t\t\t  <li>AI-Based Surveillance &amp; Computer Vision Developers</li>\r\n\t\t\t\t\t\t  <li>Anti-Theft &amp; EAS (Electronic Article Surveillance) Systems</li>\r\n\t\t\t\t\t\t  <li>Biometric &amp; Authentication Systems</li>\r\n\t\t\t\t\t\t  <li>CCTV &amp; IP Camera Manufacturers</li>\r\n\t\t\t\t\t\t  <li>Cloud Video Surveillance (VSaaS)</li>\r\n\t\t\t\t\t\t  <li>Command &amp; Control Centres (C4I Systems)</li>\r\n\t\t\t\t\t\t  <li>Digital &amp; Network Video Recorders (DVRs/NVRs)</li>\r\n\t\t\t\t\t\t  <li>Electronic, Smart &amp; Electromechanical Locks</li>\r\n\t\t\t\t\t\t  <li>Enterprise Storage Devices</li>\r\n\t\t\t\t\t\t  <li>Fiber Optic &amp; Cabling Infrastructure</li>\r\n\t\t\t\t\t\t  <li>GPS Tracking &amp; Telematics</li>\r\n\t\t\t\t\t\t  <li>Intruder Security Alarm Systems</li>\r\n\t\t\t\t\t\t  <li>IoT &amp; Home Automation Providers<br>\r\n\t\t\t\t\t      </li>\r\n\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t \r\n\t\t\t\t\t</div>\t\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t\r\n\t\t\t<div class=\"col-md-6\">\r\n\t\t\t\t<div class=\"exhibitor-col-outer-box\">\r\n\t\t\t\t\t\r\n\t\t\t\t\t<div class=\"exhibitor-profile-ul-para-main\"> \r\n\t\t\t\t\t\t<ul><li>Large-Scale Video Walls &amp; Display Solutions </li>\r\n\t\t\t\t\t\t  <li>Metal Detection &amp; Weapon Screening</li>\r\n\t\t\t\t\t\t  <li>Network Infrastructure &amp; POE Switches</li>\r\n\t\t\t\t\t\t  <li>Parking Automation &amp; Revenue Systems</li>\r\n\t\t\t\t\t\t  <li>Perimeter Intrusion Detection Systems (PIDS</li>\r\n\t\t\t\t\t\t  <li>Physical Access Control Systems (PACS)</li>\r\n\t\t\t\t\t\t  <li>Public Address (PA) &amp; Mass Notification Systems</li>\r\n\t\t\t\t\t\t  <li>Security Gates &amp; Traffic Boom Barriers</li>\r\n\t\t\t\t\t\t  <li>Security Software &amp; Forensic Analytics</li>\r\n\t\t\t\t\t\t  <li>Signal Processing &amp; Transmission (Encoders &amp; Decoders)</li>\r\n\t\t\t\t\t\t  <li>Threat &amp; Material Detection Solutions</li>\r\n\t\t\t\t\t\t  <li>UAVs and Tactical Drones</li>\r\n\t\t\t\t\t\t  <li>Video Management Software (VMS) Providers</li>\r\n\t\t\t\t\t\t  <li>Wireless Communication &amp; Industrial Networking<br>\r\n\t\t\t\t\t      </li>\r\n\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t</div>\t\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t\r\n\t\t</div>\r\n\t\t\r\n\t</div>\r\n</section>\r\n\r\n<section class=\"section-padding\">\r\n\t<div class=\"container-xxl\">\t\t\r\n\t\t<div class=\"row\">\r\n\t\t\t<div class=\"col-md-12\"> \r\n\t\t\t\t<div class=\"exhibitor-heading-left\"> For additional information, please contact:  </div>\t \r\n\t\t\t</div>\r\n\t\t</div>\t\r\n\t\t\r\n\t\t<div class=\"row\">\r\n\t\t\t<div class=\"col-md-12\">\r\n\t\t\t\t<div class=\"profile-pic-exhibitor-main\">\r\n\t\t\t\t\t<div class=\"pramit-kumar-profile-pic\"><img src=\"https://www.convergenceindia.org/images/pramit-kumar-profile-pic.jpg\" alt=\"Pramit Kumar\"></div>\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t\t<div class=\"profile-pic-exhibitor-details\">\r\n\t\t\t\t\t<div class=\"exhibitor-profile-name-heading\">Pramit Kumar <br>\r\n\t\t\t\t\t\t<span>Vice President</span>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"exhibitor-profile-position\">\r\n\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t<li><i class=\"fab fa-whatsapp profile-icon\"></i> +91 98110 78179</li>\r\n\t\t\t\t\t\t\t<li><i class=\"fal fa-envelope profile-icon\"></i> <a href=\"mailto:pramitk@eigroup.in\">pramitk@eigroup.in</a></li>\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t\r\n\t</div>\r\n</section>\r\n\r\n\r\n\r\n  \r\n<div class=\"clearfix\"></div>\r\n\r\n<footer>\r\n<div class=\"footer-section\">\r\n\t\r\n<div class=\"container-xxl\">\r\n    <div class=\"row\">\r\n\t\t<div class=\"col-xl-6 col-lg-6 col-md-6 col-12 mb-3\">\r\n\t\t\t<div class=\"row\">\r\n\t\t\t\t<div class=\"col-xl-5 col-lg-6 col-md-6 col-sm-6 col-12\">\r\n\t\t\t\t\t<div class=\"footer-logo-bottom\">Wellness India Expo</div>\r\n\t\t\t\t\t<div class=\"footer-logo-bottom-txt\">06-08 May 2027 <br> Bharat Mandapam, New Delhi</div>\r\n\t\t\t\t\t<div class=\"footer-bottom-btn-main\">\r\n\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t<li><a href=\"https://www.convergence-now.com/\" class=\"d-flex justify-content-between\" target=\"_blank\"><span>Industry News</span> <i class=\"far fa-arrow-right btn-arrow-icon\"></i></a></li>\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t<li><a href=\"contact-us.aspx\" class=\"d-flex justify-content-between\" target=\"_blank\"><span>Contact Us</span> <i class=\"far fa-arrow-right btn-arrow-icon\"></i></a></li>\r\n\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t\t\t\r\n\t\t\t\t\r\n\t\t\t\t<div class=\"col-xl-5 col-lg-5 col-md-6 col-sm-6 col-12 offset-xl-2 offset-lg-1\">\r\n\t\t\t\t\t<div class=\"footer-bottom-heading\">Let's Connect</div>\r\n\t\t\t\t\t<div class=\"footer-bottom-link\">\r\n\t\t\t\t\t\t<ul>\r\n\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t<strong>Sales & Sponsorship</strong><br>\r\n\t\t\t\t\t\t\t\t<a href=\"mailto:sales@eigroup.in\">sales@eigroup.in</a>\r\n\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t<strong>Conference & Speaker</strong><br>\r\n\t\t\t\t\t\t\t\t<a href=\"mailto:conferences@eigroup.in\">conferences@eigroup.in</a>\r\n\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t<strong>Visitor & Delegate</strong><br>\r\n\t\t\t\t\t\t\t\t<a href=\"mailto:connect@eigroup.in\">connect@eigroup.in</a>\r\n\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t<strong>Media & Marketing</strong><br>\r\n\t\t\t\t\t\t\t\t<a href=\"mailto:media@eigroup.in\">media@eigroup.in</a>\r\n\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t\r\n\t\t<div class=\"col-xl-6 col-lg-6 col-md-6 col-12 footer-left-border\">\r\n\t\t\t<div class=\"row justify-content-center\">\r\n\t\t\t\t<div class=\"col-4\">\r\n\t\t\t\t\t<div class=\"footer-logo-heading\">A Member of</div>\r\n\t\t\t\t\t<div class=\"footer-logo-box\"><img src=\"/images/UFI-Member-logo-2026.png\" alt=\"UFI Member logo\"></div>\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t\t<div class=\"col-4\">\r\n\t\t\t\t\t<div class=\"footer-logo-heading\">Communications Partner</div>\r\n\t\t\t\t\t<div class=\"footer-logo-box\"><img src=\"/images/communications-today-2026.png\" alt=\"Communications Today\"></div>\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t</div>\r\n\t\t\t<hr class=\"m-4\">\r\n\t\t\t<div class=\"row\">\r\n\t\t\t\t<div class=\"col-12\">\r\n\t\t\t\t\t<div class=\"footer-logo-heading\">Organisers</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"row justify-content-center\">\r\n\t\t\t\t<div class=\"col-lg-4 col-md-5 col-sm-6 col-6\">\r\n\t\t\t\t\t<div class=\"footer-logo-box\"><img src=\"/images/footer-event-organiger-2026.png\" alt=\"ITPO -India Trade Promotion Organisation (ITPO)\"></div>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"col-lg-4 col-md-5 col-sm-6 col-6\">\r\n\t\t\t\t\t<div class=\"footer-logo-box\"><img src=\"/images/footer-event-organiger-2026-1.png\" alt=\"Exhibitions India\"></div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n    </div>\r\n\r\n</div>\r\n</div>\r\n\r\n<div class=\"footer-section-bottom\">\r\n\t<div class=\"container-xxl\">\r\n\t\t<div class=\"row\">\r\n\t\t<div class=\"col-12\">\r\n\t\t\t<div class=\"footer-copyright\">Copyright © 2026 All rights reserved. Exhibitions India Group.</div>\r\n\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n\r\n</footer>\r\n\t\r\n\r\n\r\n\r\n\r\n<link rel=\"stylesheet\" href=\"/lightbox/css/lightbox.min.css\">\t\r\n\r\n\r\n\t\r\n\r\n\t\r\n\t\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n<style>\r\n    /* Disable scrolling when class 'no-scroll' is added to the body */\r\n    body.no-scroll {\r\n      overflow: hidden;\r\n    }\r\n</style>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n<style>\r\n\r\n.fixed-top-band {/*position: fixed; top: 0; right: 0; left: 0; z-index: 1030; background-color:transparent;*/}\r\n\r\n.footer-section{/*padding:120px 0 70px 0;*/}\r\n</style>\r\n\r\n<style>\r\n\r\n.popup-box-content{background-color:transparent; border: 0; margin: 20px;}\r\n.popup-box-content .modal-header{border-bottom:0; padding: 0;}\r\n.popup-box-content .modal-header img{margin-left: auto; margin-bottom: -15px; margin-right: -15px; z-index: 1;}\r\n.popup-box-content .modal-body{padding:0; text-align:center;}\r\n.popup-box-content .modal-body img{max-width:100%;}\r\n\r\n/* Hide initially */\r\n.banner-box-image-main,\r\n.banner-txt-main {\r\n    opacity: 0;\r\n}\r\n\r\n/* Animate when carousel item is active */\r\n.carousel-item.active .banner-box-image-main {\r\n    animation: slideInLeft 1s ease forwards;\r\n}\r\n\r\n.carousel-item.active .banner-txt-main {\r\n    animation: slideInUp 1s ease 0.4s forwards;\r\n}\r\n\r\n/* Left Slide */\r\n@keyframes slideInLeft {\r\n    from {\r\n        opacity: 0;\r\n        transform: translateX(-80px);\r\n    }\r\n    to {\r\n        opacity: 1;\r\n        transform: translateX(0);\r\n    }\r\n}\r\n\r\n/* Bottom Slide */\r\n@keyframes slideInUp {\r\n    from {\r\n        opacity: 0;\r\n        transform: translateY(60px);\r\n    }\r\n    to {\r\n        opacity: 1;\r\n        transform: translateY(0);\r\n    }\r\n}\t\r\n</style>\r\n\r\n<style>\r\n\r\n.smart-living-popup-onload{position: absolute;\r\n  display: block;\r\n  top: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n  background: #000;}\r\n</style>\r\n\r\n\r\n\r\n\r\n\r\n\r\n";
+export const html = `
+
+
+<header class="fixed-top-band">
+
+	<nav class="navbar bg-body--tertiary ">
+		<div class="container-xxl align-items-center">
+			
+			<div class="col-xl-6 col-lg-5 col-md-4 col-8">
+			
+				<div class="logo-box-main-top">
+					<div class="logo-box-ci">
+						<a class="navbar-brand" href=""><img src="/images/wellness-india-expo-logo.png" alt="Wellness India Expo"></a>
+					</div>
+				</div>
+						
+			</div>
+			
+			<div class="col-xl-6 col-lg-7 col-md-8 col-4 text-end">
+				<a href="" class="home-book-btn top-btn-book ms-0 d-none d-md-inline-block" target="_blank">Book Your Space <i class="far fa-arrow-right btn-arrow-icon"></i></a>
+				<a href="" class="home-book-btn top-btn-register ms-2 d-none d-md-inline-block" target="_blank">Register to Visit <i class="far fa-arrow-right btn-arrow-icon"></i></a>
+				
+				<span class="navbar-toggler first-button ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="hamburgermenu-txt">Menu</span> <div class="animated-icon1"><span></span><span></span><span></span></div>
+				</span>
+			</div>
+
+		</div>
+		
+		<div class="collapse navbar-collapse overlay align-items-center" id="navbarSupportedContent">
+			<div class="menu-box-outer">
+				<div class="container-xxl">
+					<div class="row justify-content-between">
+						<div class="col-lg-2 col-md-4 col-sm-4 col-12 d-md-none d-block">
+							<div class="menu-heading-btn-main">
+								<a href="space-booking.aspx" target="_blank">Book for 2027 <i class="far fa-arrow-right btn-arrow-icon"></i></a>
+							</div>
+							<div class="menu-heading-btn-main">
+								<a href="https://www.mobileindiaexpo.com/travel-reimbursement-registration.aspx">Travel Reimbursement <i class="far fa-arrow-right btn-arrow-icon"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="row justify-content-between">
+					
+						<div class="col-lg-2 col-md-3 col-sm-4 col-12">
+							
+							<div class="menu-box-main">
+								<a href="#" class="menu-heading nav-link abc">Exhibition</a>
+			<ul class="menu-ul-main nav flex-column">
+				<li class="nav-item"><a href="exhibitor-profile.aspx" class="nav-link">Exhibitor Profile</a></li>
+				<li class="nav-item"><a href="https://www.convergenceindia.org/space-booking.aspx" class="nav-link" target="_blank">Space Booking Form</a></li>
+				
+				
+				<li class="nav-item"><a href="https://www.convergenceindia.org/exhibitors-and-participants-convergence-india.aspx" class="nav-link" target="_blank">List of Participants</a></li>
+				<li class="nav-item"><a href="exhibition-venue-and-dates.aspx" class="nav-link">Exhibition Venue & Dates</a></li>
+							
+			</ul>
+							</div>
+						</div>
+						
+						<div class="col-lg-2 col-md-3 col-sm-4 col-12"> 
+							<div class="menu-box-main">
+								<a href="#" class="menu-heading nav-link abc">Visitor</a>
+									<ul class="menu-ul-main nav flex-column">
+										<li class="nav-item"><a href="visitor-profile.aspx" class="nav-link">Visitor Profile</a></li>
+										<li class="nav-item"><a href="https://www.convergenceindia.org/visitor-registration.aspx" class="nav-link" target="_blank">Visitor Registration</a></li>
+										<li class="nav-item"><a href="https://www.mobileindiaexpo.com/hosted-buyers-registration.aspx" class="nav-link" target="_blank">Hosted Buyer</a></li>
+									</ul>
+							</div>
+						</div>
+						
+						<div class="col-lg-2 col-md-3 col-sm-4 col-12">
+							<div class="menu-box-main">
+								<a href="#" class="menu-heading nav-link abc">Conference</a>
+			<ul class="menu-ul-main nav flex-column">
+				<li class="nav-item"><a href="https://www.convergenceindia.org/speaker-registration.aspx" class="nav-link">Speaker Registration</a></li>
+				
+				<li class="nav-item"><a href="https://www.convergenceindia.org/conference-programme.aspx" class="nav-link" target="_blank">Conference Programme</a></li>
+				<li class="nav-item"><a href="https://www.convergenceindia.org/speakers.aspx#speakers" class="nav-link" target="_blank">Eminent Speakers</a></li>
+				
+				<li class="nav-item"><a href="https://www.convergenceindia.org/sessions-video-library.aspx" class="nav-link" target="_blank">Sessions Video Library</a></li>
+			</ul>
+							</div>
+						</div>
+						
+						<div class="col-lg-2 col-md-3 col-sm-4 col-12"> 
+							<div class="menu-box-main">
+								<a href="#" class="menu-heading nav-link abc">Special Events</a>
+								<ul class="menu-ul-main nav flex-column">
+									
+									<li class="nav-item"><a href="https://www.convergenceindia.org/awards/" class="nav-link" target="_blank">Convergence Awards</a></li>
+									
+								</ul>
+							</div>
+						</div>
+						
+						
+						
+						<div class="col-lg-2 col-md-3 col-sm-4 col-12"> 
+							<div class="menu-box-main">
+								<a href="#" class="menu-heading nav-link abc">Endorsements</a>
+								<ul class="menu-ul-main nav flex-column">
+									<li class="nav-item"><a href="partners.aspx" class="nav-link">Partners </a></li>
+									<li class="nav-item"><a href="support.aspx" class="nav-link">Support</a></li>
+									<li class="nav-item"><a href="supporting-associations.aspx" class="nav-link">Supporting Associations</a></li>
+									<li class="nav-item"><a href="media-partners.aspx" class="nav-link">Media Partners </a></li>
+									
+								</ul>
+							</div>
+						</div>
+						
+					</div>
+					
+					<div class="row justify-content-between">
+						<div class="col-lg-2 col-md-4 col-sm-4 col-12">
+							<div class="menu-heading-btn-main">
+								<a href="https://www.convergence-now.com/" target="_blank" class="d--flex justify--content-between"><span>Industry News</span> <i class="far fa-arrow-right btn-arrow-icon"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="row justify-content-between">
+						<div class="col-lg-2 col-md-4 col-sm-4 col-12">
+							<div class="menu-heading-btn-main">
+								<a href="https://www.convergenceindia.org/expo-highlights/" target="_blank" class="d--flex justify--content-between"><span>Expo Highlights</span> <i class="far fa-arrow-right btn-arrow-icon"></i></a>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</nav>
+
+						
+</header>
+
+
+<section class="section-padding-inner">
+	<div class="container-xxl">
+		<div class="row align-items-center">
+			<div class="col-md-6 order-2 order-md-1">
+				<div class="exhibitor-profile-left-heading">Your fastest route to growth in Indian market</div>	
+				<div class="exhibitor-profile-left-para">
+					<div class="row align-items-center">
+						<div class="col-12">
+							
+							<div class="exhibitor-profile-col-para">
+							The Security &amp; Surveillance Expo brings together leading manufacturers, technology providers, system integrators, distributors, and solution providers showcasing the latest innovations in physical security, surveillance, cybersecurity, fire &amp; safety, and smart security technologies.
+							</div>
+						</div>
+						
+					</div>
+					
+					<div class="row align-items-center">
+						<div class="col-12">
+							<div class="col-12">
+									<div class="row mb-4">
+										<div class="col-sm-12">
+										<a href="space-booking.aspx" class="home-book-btn sectors-btn-book">Book Your Space Now  <i class="far fa-arrow-right btn-arrow-icon"></i></a>
+										
+										</div>
+									</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-md-6 order-1 order-md-2">
+				<div class="exhibitor-profile-top-img-box">
+					<img src="/images/exhibitor-profile-top-img.png" alt="Exhibitor Profile Banner">			
+				</div>
+			</div>
+			 
+		</div>
+	</div>
+</section>
+
+
+<section class="section-padding-inner">
+	<div class="container-xxl">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="exhibitor-sub-heading-left">Exhibitor Profile</div>
+			</div>
+		</div>
+				
+		<div class="row">
+			<div class="col-md-6">
+				<div class="exhibitor-col-outer-box">
+					<div class="exhibitor-profile-ul-para-main"> 
+						<ul><li>Advanced Baggage Scanners</li>
+						  <li>AI-Based Surveillance &amp; Computer Vision Developers</li>
+						  <li>Anti-Theft &amp; EAS (Electronic Article Surveillance) Systems</li>
+						  <li>Biometric &amp; Authentication Systems</li>
+						  <li>CCTV &amp; IP Camera Manufacturers</li>
+						  <li>Cloud Video Surveillance (VSaaS)</li>
+						  <li>Command &amp; Control Centres (C4I Systems)</li>
+						  <li>Digital &amp; Network Video Recorders (DVRs/NVRs)</li>
+						  <li>Electronic, Smart &amp; Electromechanical Locks</li>
+						  <li>Enterprise Storage Devices</li>
+						  <li>Fiber Optic &amp; Cabling Infrastructure</li>
+						  <li>GPS Tracking &amp; Telematics</li>
+						  <li>Intruder Security Alarm Systems</li>
+						  <li>IoT &amp; Home Automation Providers<br>
+					      </li>
+						</ul>
+					 
+					</div>	
+				</div>
+			</div>
+			
+			<div class="col-md-6">
+				<div class="exhibitor-col-outer-box">
+					
+					<div class="exhibitor-profile-ul-para-main"> 
+						<ul><li>Large-Scale Video Walls &amp; Display Solutions </li>
+						  <li>Metal Detection &amp; Weapon Screening</li>
+						  <li>Network Infrastructure &amp; POE Switches</li>
+						  <li>Parking Automation &amp; Revenue Systems</li>
+						  <li>Perimeter Intrusion Detection Systems (PIDS</li>
+						  <li>Physical Access Control Systems (PACS)</li>
+						  <li>Public Address (PA) &amp; Mass Notification Systems</li>
+						  <li>Security Gates &amp; Traffic Boom Barriers</li>
+						  <li>Security Software &amp; Forensic Analytics</li>
+						  <li>Signal Processing &amp; Transmission (Encoders &amp; Decoders)</li>
+						  <li>Threat &amp; Material Detection Solutions</li>
+						  <li>UAVs and Tactical Drones</li>
+						  <li>Video Management Software (VMS) Providers</li>
+						  <li>Wireless Communication &amp; Industrial Networking<br>
+					      </li>
+						</ul>
+					</div>	
+				</div>
+			</div>
+			
+		</div>
+		
+	</div>
+</section>
+
+<section class="section-padding">
+	<div class="container-xxl">		
+		<div class="row">
+			<div class="col-md-12"> 
+				<div class="exhibitor-heading-left"> For additional information, please contact:  </div>	 
+			</div>
+		</div>	
+		
+		<div class="row">
+			<div class="col-md-12">
+				<div class="profile-pic-exhibitor-main">
+					<div class="pramit-kumar-profile-pic"><img src="https://www.convergenceindia.org/images/pramit-kumar-profile-pic.jpg" alt="Pramit Kumar"></div>
+				</div>
+				
+				<div class="profile-pic-exhibitor-details">
+					<div class="exhibitor-profile-name-heading">Pramit Kumar <br>
+						<span>Vice President</span>
+					</div>
+					<div class="exhibitor-profile-position">
+						<ul>
+							<li><i class="fab fa-whatsapp profile-icon"></i> +91 98110 78179</li>
+							<li><i class="fal fa-envelope profile-icon"></i> <a href="mailto:pramitk@eigroup.in">pramitk@eigroup.in</a></li>
+							
+						</ul>
+					</div>
+				</div>
+		
+			</div>
+		</div>
+		
+	</div>
+</section>
+
+
+
+  
+<div class="clearfix"></div>
+
+<footer>
+<div class="footer-section">
+	
+<div class="container-xxl">
+    <div class="row">
+		<div class="col-xl-6 col-lg-6 col-md-6 col-12 mb-3">
+			<div class="row">
+				<div class="col-xl-5 col-lg-6 col-md-6 col-sm-6 col-12">
+					<div class="footer-logo-bottom">Wellness India Expo</div>
+					<div class="footer-logo-bottom-txt">06-08 May 2027 <br> Bharat Mandapam, New Delhi</div>
+					<div class="footer-bottom-btn-main">
+						<ul>
+						
+							<li><a href="https://www.convergence-now.com/" class="d-flex justify-content-between" target="_blank"><span>Industry News</span> <i class="far fa-arrow-right btn-arrow-icon"></i></a></li>
+							
+							
+							
+							
+							<li><a href="contact-us.aspx" class="d-flex justify-content-between" target="_blank"><span>Contact Us</span> <i class="far fa-arrow-right btn-arrow-icon"></i></a></li>
+						</ul>
+					</div>
+				</div>
+					
+				
+				<div class="col-xl-5 col-lg-5 col-md-6 col-sm-6 col-12 offset-xl-2 offset-lg-1">
+					<div class="footer-bottom-heading">Let's Connect</div>
+					<div class="footer-bottom-link">
+						<ul>
+							<li>
+								<strong>Sales & Sponsorship</strong><br>
+								<a href="mailto:sales@eigroup.in">sales@eigroup.in</a>
+							</li>
+							<li>
+								<strong>Conference & Speaker</strong><br>
+								<a href="mailto:conferences@eigroup.in">conferences@eigroup.in</a>
+							</li>
+							<li>
+								<strong>Visitor & Delegate</strong><br>
+								<a href="mailto:connect@eigroup.in">connect@eigroup.in</a>
+							</li>
+							<li>
+								<strong>Media & Marketing</strong><br>
+								<a href="mailto:media@eigroup.in">media@eigroup.in</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		<div class="col-xl-6 col-lg-6 col-md-6 col-12 footer-left-border">
+			<div class="row justify-content-center">
+				<div class="col-4">
+					<div class="footer-logo-heading">A Member of</div>
+					<div class="footer-logo-box"><img src="/images/UFI-Member-logo-2026.png" alt="UFI Member logo"></div>
+				</div>
+				
+				<div class="col-4">
+					<div class="footer-logo-heading">Communications Partner</div>
+					<div class="footer-logo-box"><img src="/images/communications-today-2026.png" alt="Communications Today"></div>
+				</div>
+				
+			</div>
+			<hr class="m-4">
+			<div class="row">
+				<div class="col-12">
+					<div class="footer-logo-heading">Organisers</div>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-lg-4 col-md-5 col-sm-6 col-6">
+					<div class="footer-logo-box"><img src="/images/footer-event-organiger-2026.png" alt="ITPO -India Trade Promotion Organisation (ITPO)"></div>
+				</div>
+				<div class="col-lg-4 col-md-5 col-sm-6 col-6">
+					<div class="footer-logo-box"><img src="/images/footer-event-organiger-2026-1.png" alt="Exhibitions India"></div>
+				</div>
+			</div>
+		</div>
+    </div>
+
+</div>
+</div>
+
+<div class="footer-section-bottom">
+	<div class="container-xxl">
+		<div class="row">
+		<div class="col-12">
+			<div class="footer-copyright">Copyright © 2026 All rights reserved. Exhibitions India Group.</div>
+		</div>
+		</div>
+	</div>
+</div>
+
+</footer>
+	
+
+
+
+
+<link rel="stylesheet" href="/lightbox/css/lightbox.min.css">	
+
+
+	
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+    /* Disable scrolling when class 'no-scroll' is added to the body */
+    body.no-scroll {
+      overflow: hidden;
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+
+.fixed-top-band {/*position: fixed; top: 0; right: 0; left: 0; z-index: 1030; background-color:transparent;*/}
+
+.footer-section{/*padding:120px 0 70px 0;*/}
+</style>
+
+<style>
+
+.popup-box-content{background-color:transparent; border: 0; margin: 20px;}
+.popup-box-content .modal-header{border-bottom:0; padding: 0;}
+.popup-box-content .modal-header img{margin-left: auto; margin-bottom: -15px; margin-right: -15px; z-index: 1;}
+.popup-box-content .modal-body{padding:0; text-align:center;}
+.popup-box-content .modal-body img{max-width:100%;}
+
+/* Hide initially */
+.banner-box-image-main,
+.banner-txt-main {
+    opacity: 0;
+}
+
+/* Animate when carousel item is active */
+.carousel-item.active .banner-box-image-main {
+    animation: slideInLeft 1s ease forwards;
+}
+
+.carousel-item.active .banner-txt-main {
+    animation: slideInUp 1s ease 0.4s forwards;
+}
+
+/* Left Slide */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-80px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Bottom Slide */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}	
+</style>
+
+<style>
+
+.smart-living-popup-onload{position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;}
+</style>
+
+
+
+
+
+
+`;
 
 export const scripts = [
   {

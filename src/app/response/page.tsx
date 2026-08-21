@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
-import LegacyPage from "@/legacy/LegacyPage";
+import Header from "@/components/legacy/Header";
+import Footer from "@/components/legacy/Footer";
+import LegacyHtml from "@/legacy/LegacyHtml";
+import LegacyScripts from "@/legacy/LegacyScripts";
 import { meta, html, scripts } from "@/legacy-content/response";
 
 export const metadata: Metadata = {
@@ -9,5 +12,12 @@ export const metadata: Metadata = {
 };
 
 export default function ResponsePage() {
-  return <LegacyPage html={html} scripts={scripts} />;
+  return (
+    <>
+      <Header />
+      <LegacyHtml html={html} />
+      <Footer />
+      <LegacyScripts scripts={scripts} />
+    </>
+  );
 }

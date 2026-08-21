@@ -1,4 +1,5 @@
 import SiteForms from "@/components/SiteForms";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
@@ -49,6 +50,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         {children}
         <SiteForms />
+        <GoogleAnalytics />
       </body>
     </html>
   );

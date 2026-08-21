@@ -3,15 +3,7 @@
 import { useEffect, useRef } from "react";
 import { runLegacyScripts, type LegacyScript } from "./runLegacyScripts";
 
-export type { LegacyScript };
-
-export default function LegacyPage({
-  html,
-  scripts
-}: {
-  html: string;
-  scripts: readonly LegacyScript[];
-}) {
+export default function LegacyScripts({ scripts }: { scripts: readonly LegacyScript[] }) {
   const hasRun = useRef(false);
 
   useEffect(() => {
@@ -20,5 +12,5 @@ export default function LegacyPage({
     runLegacyScripts(scripts);
   }, [scripts]);
 
-  return <div dangerouslySetInnerHTML={{ __html: html }} suppressHydrationWarning />;
+  return null;
 }
