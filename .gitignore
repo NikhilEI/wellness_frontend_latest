@@ -32,6 +32,9 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# .env.production holds only public, non-secret NEXT_PUBLIC_* values — safe to commit
+# so a git-pull + rebuild on a server picks up the right API URL automatically.
+!.env.production
 
 # vercel
 .vercel
