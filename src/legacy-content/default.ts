@@ -247,7 +247,7 @@ Join us and discover the latest innovations, meet the brands and businesses lead
 						<div class="dimension-wellness-txt-main">
 							<div class="dimension-wellness-heading">Digital Health, AI & Personalised Care</div>
 							<div class="dimension-wellness-para">
-								Wearables, AI-driven diagnostics, Remote patient monitoring, Telehealth platforms, Health apps, Clinical AI, Smart sensors, Connected healthcare devices, Health data platforms, Digital therapeutics, Precision medicine solutions.
+								Wearables, AI-driven diagnostics, remote patient monitoring, telehealth platforms, health apps, clinical AI, smart sensors, connected healthcare devices, health data platforms, digital therapeutics, and precision medicine solutions.
 							</div>
 						</div>				
 					</div>
@@ -378,8 +378,7 @@ Join us and discover the latest innovations, meet the brands and businesses lead
 							<div class="hosted-red-col-ul-main">
 								<div class="hosted-buyer-icon-box"><img src="/images/icon/distribution-trade-icon-home.png" alt="Distribution & Trade"></div>
 								<div class="hosted-buyer-icon-txt-box">
-									<strong>Distribution & Trade</strong><br>
-									Distributors, importers, exporters, buying houses and international sourcing teams.
+									<strong>Distributors, importers, exporters, international sourcing teams and corporate wellness buyers.
 								</div>
 							</div>
 						</div>
@@ -389,7 +388,7 @@ Join us and discover the latest innovations, meet the brands and businesses lead
 								<div class="hosted-buyer-icon-box"><img src="/images/icon/investment-ecosystem-icon-home.png" alt="Investment Ecosystem"></div>
 								<div class="hosted-buyer-icon-txt-box">
 									<strong>Investment Ecosystem</strong><br>
-									Venture capital firms, consumer investors, family offices, growth-stage funding platforms and strategic investors.
+									Venture capital firms, incubators, accelerators, growth-stage funding platforms, strategic investors and facilitators.
 								</div>
 							</div>
 						</div>
