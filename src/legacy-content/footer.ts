@@ -8,7 +8,7 @@ export const html = `<footer>
 			<div class="row">
 				<div class="col-xl-5 col-lg-6 col-md-6 col-sm-6 col-12">
 					<div class="footer-logo-bottom">Wellness India Expo</div>
-					<div class="footer-logo-bottom-txt">06-08 May 2027 <br> Bharat Mandapam, New Delhi</div>
+					<div class="footer-logo-bottom-txt">06-08 May, 2027 <br> Bharat Mandapam, New Delhi</div>
 					<div class="footer-bottom-btn-main">
 						<ul>
 							

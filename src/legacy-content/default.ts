@@ -352,7 +352,7 @@ Join us and discover the latest innovations, meet the brands and businesses lead
 				</div>
 			</div>
 			<div class="col-xxl-8 col-xl-7 col-lg-6 col-md-12 col-12">
-				<div class="world-say-heading-home mt-3 mb-0" style="opacity: 1; transform: translateY(0px); transition: opacity 0.7s, transform 0.7s;">Who You Will Meet</div>
+				<div class="world-say-heading-home mt-3 mb-0" style="opacity: 1; transform: translateY(0px); transition: opacity 0.7s, transform 0.7s;">Who Will You Meet?</div>
 				<div class="hosted-buyer-para-home">
 					<p>
 						Wellness India Expo connects brands directly with the ecosystem that can help them grow.
@@ -547,7 +547,7 @@ Join us and discover the latest innovations, meet the brands and businesses lead
 					<div class="accordion-item faq-item">
 						<h2 class="accordion-header" id="flush-headingOne">
 							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-								What is Wellness India Expo 
+								What is Wellness India Expo? 
 							</button>
 						</h2>
 						<div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
