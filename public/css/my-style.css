@@ -485,7 +485,7 @@ background: linear-gradient(90deg, rgba(187, 10, 107, 1) 50%, rgba(252, 25, 107,
   box-shadow: 0 0px 10px rgba(0,0,0,0.1); transition: all 0.3s ease;
 }
 .faq-accordion-box .accordion-button{font-size:22px; font-weight:600;}
-.faq-accordion-box .accordion-body{font-size:17px; padding-top: 0;}
+.faq-accordion-box .accordion-body{font-size:17px; font-weight:500; padding-top: 0;}
 .faq-accordion-box .accordion-button:not(.collapsed) {color:#000000; background-color:#ffffff;
   box-shadow: rgb(222, 226, 230) 0px 0px 0px 0px inset;
 }
@@ -521,13 +521,13 @@ background: linear-gradient(90deg, rgba(3, 29, 124, 1) 0%, rgba(28, 90, 249, 1) 
 .footer-logo-heading{width: 100%; height: auto; float: left; color:#ffffff; font-size:25px; line-height: 1; text-align:center; font-weight:600; margin-bottom: 10px;}
 .footer-logo-box{width: 100%; height: auto; float: left; text-align:center;}
 .footer-logo-box img{max-width: 100%;}
-.footer-left-border{border-left:1px solid #6674c2;}
-.footer-left-border hr{border-top-color: #6674c2; opacity: 1;}
+.footer-left-border{border-left:1px solid #ffffff;}
+.footer-left-border hr{border-top-color: #ffffff; opacity: 1;}
 .footer-section-bottom{background:#010c2e;}
 .footer-copyright{font-size:13px; color:#ffffff; padding:5px 0; text-align:center;}
 
 .footer-logo-box .newsletter-form {position:relative; max-width:655px; margin:23px auto 0; z-index:999;}
-.footer-logo-box .newsletter-form input {width:100%;height:72px; padding:18px 135px 17px 30px; font-weight:400; font-style:italic; border:0 none; border-radius:35px; outline:none; background-color:#fff; color:#000000; font-size:1.125rem; line-height:1;}
+.footer-logo-box .newsletter-form input {width:100%;height:72px; padding:18px 135px 17px 30px; font-weight:400; font-style:italic; border:0 none; border-radius:35px; outline:none; background-color:#fff; color:#1107ff; font-size:1.125rem; line-height:1;}
 .footer-logo-box .newsletter-form button {font-weight:500; font-style:normal; /*width:116px; height:36px;*/ border-radius:30px; background-color:#001a82; color:#fff; font-size:.975rem; line-height:1; position:absolute; right:4px; bottom:4px; display:inline-block; margin:0; padding:24px 25px; border:0; outline:none; text-decoration:none; cursor:pointer; transition:background-color .3s cubic-bezier(.165,.84,.44,1);
 }
 .footer-logo-box .newsletter-form button:hover{background-color:#ec3192; color:#fff;}
