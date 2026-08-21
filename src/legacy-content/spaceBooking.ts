@@ -375,8 +375,8 @@ export const html = `
 							</div>
 							<div class="exhibitor-profile-position">
 								<ul>
-									<li><i class="fab fa-whatsapp profile-icon"></i> +91 98110 78179</li>
-									<li><i class="fal fa-envelope profile-icon"></i> <a href="mailto:pramitk@eigroup.in">pramitk@eigroup.in</a></li>
+									<li><i class="fab fa-whatsapp profile-icon"></i> +91 8826798171</li>
+									<li><i class="fal fa-envelope profile-icon"></i> <a href="mailto:princes@eigroup.in">princes@eigroup.in</a></li>
 									
 									
 								</ul>
