@@ -47,10 +47,11 @@ for setup/migration):
 `src/components/SiteForms.tsx` (mounted once, globally, from the root layout)
 finds these forms by id, validates, `POST`s JSON to
 `NEXT_PUBLIC_API_BASE_URL` (see `.env.local`, defaults to
-`http://localhost:4000/api`), and redirects to `/response-newsletter` or
+`http://localhost:4010/api`), and redirects to `/response-newsletter` or
 `/response` on success. Make sure the backend's `CORS_ORIGIN` includes
 whatever origin this app runs on (`.env.example` there already lists
-`localhost:3000`/`:3100`).
+`localhost:3010`, matching `npm run dev`/`npm start` here which both bind
+to port `3010`).
 
 ## Re-running the port after staging changes
 
