@@ -95,7 +95,7 @@ Join us and discover the latest innovations, meet the brands and businesses lead
 				</div>
 				
 				<div class="home-book-space-btn" data-aos="fade-up">
-					<a href="https://wellnessindiaexpo.com/pdf/Wellness-India-2027-Expo-Brochure.pdf" target="_blank" class="home-book-btn home-speakers-btn mb-sm-0 mb-3">Download Brochure<i class="far fa-arrow-right btn-arrow-icon"></i></a>
+					<a href="#" onclick="window.openBrochureModal(); return false;" class="home-book-btn home-speakers-btn mb-sm-0 mb-3">Download Brochure<i class="far fa-arrow-right btn-arrow-icon"></i></a>
 					
 				</div>
 			</div>
