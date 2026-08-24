@@ -448,7 +448,7 @@ Join us and discover the latest innovations, meet the brands and businesses lead
 		<div class="col-xl-8 col-lg-10 col-md-12 col-12">
 			<div class="home-heading-center-white mb-3" data-aos="fade-up" data-aos-duration="1000">Signature Experiences</div>
 			<div class="home-para-center-white">
-				The moments and zones that make Wellness India Expo more than a
+				The moments and zones that make Wellness India Expo more than an exhibition floor.
 			</div>
 		</div>
 	</div>
