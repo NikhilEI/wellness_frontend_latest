@@ -64,7 +64,7 @@ export const html = `<footer>
 			<hr class="m-4">
 			<div class="row">
 				<div class="col-12">
-					<div class="footer-logo-heading">Organisers</div>
+					<div class="footer-logo-heading">Organiser</div>
 				</div>
 			</div>
 			<div class="row justify-content-center">
