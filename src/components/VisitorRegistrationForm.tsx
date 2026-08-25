@@ -330,7 +330,7 @@ export default function VisitorRegistrationForm() {
         </p>
         <div className={styles.regIdBox}>{registrationId || "WIE-XXXXXXXX"}</div>
         <p className={styles.successText}>Please keep this registration ID for future reference.</p>
-        <Link href="/" className={styles.backHomeBtn}>
+        <Link href="/" className="download-brochure-btn leading-voices-btn">
           Back to Home
         </Link>
       </div>
@@ -338,8 +338,8 @@ export default function VisitorRegistrationForm() {
   }
 
   return (
-    <div className={styles.formWrap}>
-      <form noValidate onSubmit={handleSubmit}>
+    <div className="space-booking-form-box-main">
+      <form id="visitorRegistrationForm" noValidate onSubmit={handleSubmit}>
         {apiError && (
           <div className={styles.apiError} role="alert">
             {apiError}
@@ -348,428 +348,404 @@ export default function VisitorRegistrationForm() {
 
         <h3 className={styles.sectionTitle}>Personal Information</h3>
         <div className="row">
-          <div className="col-md-4 col-12">
-            <div className={styles.field}>
-              <label className={styles.label} htmlFor="title">
-                Title <span className={styles.starMark}>*</span>
-              </label>
-              <select
-                id="title"
-                className={`${styles.select} ${errors.title ? styles.inputError : ""}`}
-                value={form.title}
-                onChange={(e) => setField("title", e.target.value)}
-                aria-describedby={errors.title ? "title-error" : undefined}
-                aria-invalid={Boolean(errors.title)}
-              >
-                <option value="">Select</option>
-                {titles.map((t) => (
-                  <option key={t} value={t}>
-                    {t}
-                  </option>
-                ))}
-              </select>
-              {errors.title && (
-                <span id="title-error" className={styles.errorText}>
-                  {errors.title}
-                </span>
-              )}
-            </div>
+          <div className="col-md-4 mb-4">
+            <label className="form-label" htmlFor="title">
+              Title <span className="star-mark">*</span>
+            </label>
+            <select
+              id="title"
+              className={`form-control form-select ${errors.title ? "is-invalid" : ""}`}
+              value={form.title}
+              onChange={(e) => setField("title", e.target.value)}
+              aria-describedby={errors.title ? "title-error" : undefined}
+              aria-invalid={Boolean(errors.title)}
+            >
+              <option value="">Select</option>
+              {titles.map((t) => (
+                <option key={t} value={t}>
+                  {t}
+                </option>
+              ))}
+            </select>
+            {errors.title && (
+              <div id="title-error" className="invalid-feedback d-block">
+                {errors.title}
+              </div>
+            )}
           </div>
-          <div className="col-md-4 col-12">
-            <div className={styles.field}>
-              <label className={styles.label} htmlFor="firstName">
-                First Name <span className={styles.starMark}>*</span>
-              </label>
-              <input
-                id="firstName"
-                type="text"
-                maxLength={100}
-                className={`${styles.input} ${errors.firstName ? styles.inputError : ""}`}
-                value={form.firstName}
-                onChange={(e) => setField("firstName", e.target.value)}
-                aria-describedby={errors.firstName ? "firstName-error" : undefined}
-                aria-invalid={Boolean(errors.firstName)}
-              />
-              {errors.firstName && (
-                <span id="firstName-error" className={styles.errorText}>
-                  {errors.firstName}
-                </span>
-              )}
-            </div>
+          <div className="col-md-4 mb-4">
+            <label className="form-label" htmlFor="firstName">
+              First Name <span className="star-mark">*</span>
+            </label>
+            <input
+              id="firstName"
+              type="text"
+              maxLength={100}
+              className={`form-control ${errors.firstName ? "is-invalid" : ""}`}
+              value={form.firstName}
+              onChange={(e) => setField("firstName", e.target.value)}
+              aria-describedby={errors.firstName ? "firstName-error" : undefined}
+              aria-invalid={Boolean(errors.firstName)}
+            />
+            {errors.firstName && (
+              <div id="firstName-error" className="invalid-feedback d-block">
+                {errors.firstName}
+              </div>
+            )}
           </div>
-          <div className="col-md-4 col-12">
-            <div className={styles.field}>
-              <label className={styles.label} htmlFor="lastName">
-                Last Name <span className={styles.starMark}>*</span>
-              </label>
-              <input
-                id="lastName"
-                type="text"
-                maxLength={100}
-                className={`${styles.input} ${errors.lastName ? styles.inputError : ""}`}
-                value={form.lastName}
-                onChange={(e) => setField("lastName", e.target.value)}
-                aria-describedby={errors.lastName ? "lastName-error" : undefined}
-                aria-invalid={Boolean(errors.lastName)}
-              />
-              {errors.lastName && (
-                <span id="lastName-error" className={styles.errorText}>
-                  {errors.lastName}
-                </span>
-              )}
-            </div>
+          <div className="col-md-4 mb-4">
+            <label className="form-label" htmlFor="lastName">
+              Last Name <span className="star-mark">*</span>
+            </label>
+            <input
+              id="lastName"
+              type="text"
+              maxLength={100}
+              className={`form-control ${errors.lastName ? "is-invalid" : ""}`}
+              value={form.lastName}
+              onChange={(e) => setField("lastName", e.target.value)}
+              aria-describedby={errors.lastName ? "lastName-error" : undefined}
+              aria-invalid={Boolean(errors.lastName)}
+            />
+            {errors.lastName && (
+              <div id="lastName-error" className="invalid-feedback d-block">
+                {errors.lastName}
+              </div>
+            )}
           </div>
         </div>
 
         <h3 className={styles.sectionTitle}>Professional Information</h3>
         <div className="row">
-          <div className="col-md-6 col-12">
-            <div className={styles.field}>
-              <label className={styles.label} htmlFor="organisation">
-                Organisation
-              </label>
-              <input
-                id="organisation"
-                type="text"
-                maxLength={150}
-                className={`${styles.input} ${errors.organisation ? styles.inputError : ""}`}
-                value={form.organisation}
-                onChange={(e) => setField("organisation", e.target.value)}
-              />
-              {errors.organisation && <span className={styles.errorText}>{errors.organisation}</span>}
-            </div>
+          <div className="col-md-6 mb-4">
+            <label className="form-label" htmlFor="organisation">
+              Company / Organisation Name
+            </label>
+            <input
+              id="organisation"
+              type="text"
+              maxLength={150}
+              className={`form-control ${errors.organisation ? "is-invalid" : ""}`}
+              value={form.organisation}
+              onChange={(e) => setField("organisation", e.target.value)}
+            />
+            {errors.organisation && <div className="invalid-feedback d-block">{errors.organisation}</div>}
           </div>
-          <div className="col-md-6 col-12">
-            <div className={styles.field}>
-              <label className={styles.label} htmlFor="designation">
-                Designation <span className={styles.starMark}>*</span>
-              </label>
-              <select
-                id="designation"
-                className={`${styles.select} ${errors.designation ? styles.inputError : ""}`}
-                value={form.designation}
-                onChange={(e) => setField("designation", e.target.value)}
-                aria-describedby={errors.designation ? "designation-error" : undefined}
-                aria-invalid={Boolean(errors.designation)}
-              >
-                <option value="">Select Designation</option>
-                {designations.map((d) => (
-                  <option key={d} value={d}>
-                    {d}
-                  </option>
-                ))}
-              </select>
-              {errors.designation && (
-                <span id="designation-error" className={styles.errorText}>
-                  {errors.designation}
-                </span>
-              )}
-              {form.designation === "Student" && (
-                <div className={styles.infoBanner} role="status">
-                  {eventEligibility.studentMessage}
-                </div>
-              )}
-            </div>
+          <div className="col-md-6 mb-4">
+            <label className="form-label" htmlFor="designation">
+              Designation <span className="star-mark">*</span>
+            </label>
+            <select
+              id="designation"
+              className={`form-control form-select ${errors.designation ? "is-invalid" : ""}`}
+              value={form.designation}
+              onChange={(e) => setField("designation", e.target.value)}
+              aria-describedby={errors.designation ? "designation-error" : undefined}
+              aria-invalid={Boolean(errors.designation)}
+            >
+              <option value="">Select Designation</option>
+              {designations.map((d) => (
+                <option key={d} value={d}>
+                  {d}
+                </option>
+              ))}
+            </select>
+            {errors.designation && (
+              <div id="designation-error" className="invalid-feedback d-block">
+                {errors.designation}
+              </div>
+            )}
+            {form.designation === "Student" && (
+              <div className={styles.infoBanner} role="status">
+                {eventEligibility.studentMessage}
+              </div>
+            )}
           </div>
         </div>
         <div className="row">
-          <div className="col-md-6 col-12">
-            <div className={styles.field}>
-              <label className={styles.label} htmlFor="department">
-                Department
-              </label>
-              <input
-                id="department"
-                type="text"
-                className={styles.input}
-                value={form.department}
-                onChange={(e) => setField("department", e.target.value)}
-                placeholder="e.g. IT, Marketing, Sales"
-              />
-            </div>
+          <div className="col-md-6 mb-4">
+            <label className="form-label" htmlFor="department">
+              Department
+            </label>
+            <input
+              id="department"
+              type="text"
+              className="form-control"
+              value={form.department}
+              onChange={(e) => setField("department", e.target.value)}
+              placeholder="e.g. IT, Marketing, Sales"
+            />
           </div>
         </div>
 
         <h3 className={styles.sectionTitle}>Location Information</h3>
         <div className="row">
-          <div className="col-md-6 col-12">
-            <div className={styles.field}>
-              <label className={styles.label} htmlFor="country">
-                Country <span className={styles.starMark}>*</span>
-              </label>
+          <div className="col-md-6 mb-4">
+            <label className="form-label" htmlFor="country">
+              Country <span className="star-mark">*</span>
+            </label>
+            <select
+              id="country"
+              className={`form-control form-select ${errors.country ? "is-invalid" : ""}`}
+              value={form.country}
+              onChange={(e) => handleCountryChange(e.target.value)}
+              aria-describedby={errors.country ? "country-error" : undefined}
+              aria-invalid={Boolean(errors.country)}
+            >
+              <option value="">Choose a Country</option>
+              {countries.map((c) => (
+                <option key={c.code} value={c.name}>
+                  {c.name} ({c.dialCode})
+                </option>
+              ))}
+            </select>
+            {errors.country && (
+              <div id="country-error" className="invalid-feedback d-block">
+                {errors.country}
+              </div>
+            )}
+          </div>
+          <div className="col-md-6 mb-4">
+            <label className="form-label" htmlFor="state">
+              State <span className="star-mark">*</span>
+            </label>
+            {stateOptions.length > 0 ? (
               <select
-                id="country"
-                className={`${styles.select} ${errors.country ? styles.inputError : ""}`}
-                value={form.country}
-                onChange={(e) => handleCountryChange(e.target.value)}
-                aria-describedby={errors.country ? "country-error" : undefined}
-                aria-invalid={Boolean(errors.country)}
+                id="state"
+                className={`form-control form-select ${errors.state ? "is-invalid" : ""}`}
+                value={form.state}
+                onChange={(e) => setField("state", e.target.value)}
+                aria-describedby={errors.state ? "state-error" : undefined}
+                aria-invalid={Boolean(errors.state)}
               >
-                <option value="">Choose a Country</option>
-                {countries.map((c) => (
-                  <option key={c.code} value={c.name}>
-                    {c.name} ({c.dialCode})
+                <option value="">Select State</option>
+                {stateOptions.map((s) => (
+                  <option key={s.code} value={s.name}>
+                    {s.name}
                   </option>
                 ))}
               </select>
-              {errors.country && (
-                <span id="country-error" className={styles.errorText}>
-                  {errors.country}
-                </span>
-              )}
-            </div>
-          </div>
-          <div className="col-md-6 col-12">
-            <div className={styles.field}>
-              <label className={styles.label} htmlFor="state">
-                State <span className={styles.starMark}>*</span>
-              </label>
-              {stateOptions.length > 0 ? (
-                <select
-                  id="state"
-                  className={`${styles.select} ${errors.state ? styles.inputError : ""}`}
-                  value={form.state}
-                  onChange={(e) => setField("state", e.target.value)}
-                  aria-describedby={errors.state ? "state-error" : undefined}
-                  aria-invalid={Boolean(errors.state)}
-                >
-                  <option value="">Select State</option>
-                  {stateOptions.map((s) => (
-                    <option key={s.code} value={s.name}>
-                      {s.name}
-                    </option>
-                  ))}
-                </select>
-              ) : (
-                <input
-                  id="state"
-                  type="text"
-                  maxLength={100}
-                  className={`${styles.input} ${errors.state ? styles.inputError : ""}`}
-                  value={form.state}
-                  onChange={(e) => setField("state", e.target.value)}
-                  placeholder={form.country ? "Enter your state / province" : "Select a country first"}
-                  disabled={!form.country}
-                  aria-describedby={errors.state ? "state-error" : undefined}
-                  aria-invalid={Boolean(errors.state)}
-                />
-              )}
-              {errors.state && (
-                <span id="state-error" className={styles.errorText}>
-                  {errors.state}
-                </span>
-              )}
-            </div>
+            ) : (
+              <input
+                id="state"
+                type="text"
+                maxLength={100}
+                className={`form-control ${errors.state ? "is-invalid" : ""}`}
+                value={form.state}
+                onChange={(e) => setField("state", e.target.value)}
+                placeholder={form.country ? "Enter your state / province" : "Select a country first"}
+                disabled={!form.country}
+                aria-describedby={errors.state ? "state-error" : undefined}
+                aria-invalid={Boolean(errors.state)}
+              />
+            )}
+            {errors.state && (
+              <div id="state-error" className="invalid-feedback d-block">
+                {errors.state}
+              </div>
+            )}
           </div>
         </div>
         <div className="row">
-          <div className="col-md-6 col-12">
-            <div className={styles.field}>
-              <label className={styles.label} htmlFor="city">
-                City <span className={styles.starMark}>*</span>
-              </label>
-              <input
-                id="city"
-                type="text"
-                maxLength={100}
-                className={`${styles.input} ${errors.city ? styles.inputError : ""}`}
-                value={form.city}
-                onChange={(e) => setField("city", e.target.value)}
-                aria-describedby={errors.city ? "city-error" : undefined}
-                aria-invalid={Boolean(errors.city)}
-              />
-              {errors.city && (
-                <span id="city-error" className={styles.errorText}>
-                  {errors.city}
-                </span>
-              )}
-            </div>
+          <div className="col-md-6 mb-4">
+            <label className="form-label" htmlFor="city">
+              City <span className="star-mark">*</span>
+            </label>
+            <input
+              id="city"
+              type="text"
+              maxLength={100}
+              className={`form-control ${errors.city ? "is-invalid" : ""}`}
+              value={form.city}
+              onChange={(e) => setField("city", e.target.value)}
+              aria-describedby={errors.city ? "city-error" : undefined}
+              aria-invalid={Boolean(errors.city)}
+            />
+            {errors.city && (
+              <div id="city-error" className="invalid-feedback d-block">
+                {errors.city}
+              </div>
+            )}
           </div>
         </div>
 
         <h3 className={styles.sectionTitle}>Contact Information &amp; Verification</h3>
         <div className="row">
-          <div className="col-md-6 col-12">
-            <div className={styles.field}>
-              <label className={styles.label} htmlFor="mobile">
-                Mobile Number <span className={styles.starMark}>*</span>
-              </label>
-              <div className={styles.mobileRow}>
-                <span className={styles.dialCode}>{form.countryCode || "—"}</span>
-                <input
-                  id="mobile"
-                  type="tel"
-                  inputMode="numeric"
-                  className={`${styles.input} ${errors.mobile ? styles.inputError : ""}`}
-                  value={form.mobile}
-                  onChange={(e) => handleMobileChange(e.target.value)}
-                  disabled={!form.country}
-                  placeholder={form.country ? "" : "Select a country first"}
-                  aria-describedby={errors.mobile ? "mobile-error" : undefined}
-                  aria-invalid={Boolean(errors.mobile)}
-                />
+          <div className="col-md-6 mb-4">
+            <label className="form-label" htmlFor="mobile">
+              Mobile Number <span className="star-mark">*</span>
+            </label>
+            <div className={styles.mobileRow}>
+              <span className={styles.dialCode}>{form.countryCode || "—"}</span>
+              <input
+                id="mobile"
+                type="tel"
+                inputMode="numeric"
+                className={`form-control ${errors.mobile ? "is-invalid" : ""}`}
+                value={form.mobile}
+                onChange={(e) => handleMobileChange(e.target.value)}
+                disabled={!form.country}
+                placeholder={form.country ? "" : "Select a country first"}
+                aria-describedby={errors.mobile ? "mobile-error" : undefined}
+                aria-invalid={Boolean(errors.mobile)}
+              />
+            </div>
+            {errors.mobile && (
+              <div id="mobile-error" className="invalid-feedback d-block">
+                {errors.mobile}
               </div>
-              {errors.mobile && (
-                <span id="mobile-error" className={styles.errorText}>
-                  {errors.mobile}
-                </span>
-              )}
+            )}
 
-              <div className={styles.otpBlock}>
-                <div className={styles.otpActionsRow}>
-                  {otp.mobile.verified ? (
-                    <span className={styles.verifiedBadge}>Mobile number verified</span>
-                  ) : (
-                    <button
-                      type="button"
-                      className={styles.btnSecondary}
-                      disabled={otp.mobile.sending || !form.country || !form.mobile}
-                      onClick={() => sendOtp("mobile")}
-                    >
-                      {otp.mobile.sending ? "Sending OTP..." : otp.mobile.sent ? "Resend OTP" : "Send OTP"}
-                    </button>
-                  )}
-                </div>
-                {otp.mobile.info && !otp.mobile.verified && <p className={styles.otpInfo}>{otp.mobile.info}</p>}
-                {otp.mobile.error && <p className={styles.otpError}>{otp.mobile.error}</p>}
-                {otp.mobile.sent && !otp.mobile.verified && (
-                  <div className={styles.otpCodeRow}>
-                    <input
-                      type="text"
-                      inputMode="numeric"
-                      maxLength={6}
-                      className={styles.otpInput}
-                      placeholder="OTP"
-                      value={otp.mobile.code}
-                      onChange={(e) =>
-                        setOtp((prev) => ({
-                          ...prev,
-                          mobile: { ...prev.mobile, code: e.target.value.replace(/[^0-9]/g, "").slice(0, 6) }
-                        }))
-                      }
-                    />
-                    <button
-                      type="button"
-                      className={styles.btnSecondary}
-                      disabled={otp.mobile.verifying || otp.mobile.code.length < 4}
-                      onClick={() => verifyOtp("mobile")}
-                    >
-                      {otp.mobile.verifying ? "Verifying OTP..." : "Verify OTP"}
-                    </button>
-                  </div>
+            <div className={styles.otpBlock}>
+              <div className={styles.otpActionsRow}>
+                {otp.mobile.verified ? (
+                  <span className={styles.verifiedBadge}>Mobile number verified</span>
+                ) : (
+                  <button
+                    type="button"
+                    className={styles.btnSecondary}
+                    disabled={otp.mobile.sending || !form.country || !form.mobile}
+                    onClick={() => sendOtp("mobile")}
+                  >
+                    {otp.mobile.sending ? "Sending OTP..." : otp.mobile.sent ? "Resend OTP" : "Send OTP"}
+                  </button>
                 )}
               </div>
+              {otp.mobile.info && !otp.mobile.verified && <p className={styles.otpInfo}>{otp.mobile.info}</p>}
+              {otp.mobile.error && <p className={styles.otpError}>{otp.mobile.error}</p>}
+              {otp.mobile.sent && !otp.mobile.verified && (
+                <div className={styles.otpCodeRow}>
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    maxLength={6}
+                    className={styles.otpInput}
+                    placeholder="OTP"
+                    value={otp.mobile.code}
+                    onChange={(e) =>
+                      setOtp((prev) => ({
+                        ...prev,
+                        mobile: { ...prev.mobile, code: e.target.value.replace(/[^0-9]/g, "").slice(0, 6) }
+                      }))
+                    }
+                  />
+                  <button
+                    type="button"
+                    className={styles.btnSecondary}
+                    disabled={otp.mobile.verifying || otp.mobile.code.length < 4}
+                    onClick={() => verifyOtp("mobile")}
+                  >
+                    {otp.mobile.verifying ? "Verifying OTP..." : "Verify OTP"}
+                  </button>
+                </div>
+              )}
             </div>
           </div>
 
-          <div className="col-md-6 col-12">
-            <div className={styles.field}>
-              <label className={styles.label} htmlFor="email">
-                E-Mail Id <span className={styles.starMark}>*</span>
-              </label>
-              <input
-                id="email"
-                type="email"
-                className={`${styles.input} ${errors.email ? styles.inputError : ""}`}
-                value={form.email}
-                onChange={(e) => handleEmailChange(e.target.value)}
-                aria-describedby={errors.email ? "email-error" : undefined}
-                aria-invalid={Boolean(errors.email)}
-              />
-              {errors.email && (
-                <span id="email-error" className={styles.errorText}>
-                  {errors.email}
-                </span>
-              )}
+          <div className="col-md-6 mb-4">
+            <label className="form-label" htmlFor="email">
+              Official E-Mail Id <span className="star-mark">*</span>
+            </label>
+            <input
+              id="email"
+              type="email"
+              className={`form-control ${errors.email ? "is-invalid" : ""}`}
+              value={form.email}
+              onChange={(e) => handleEmailChange(e.target.value)}
+              aria-describedby={errors.email ? "email-error" : undefined}
+              aria-invalid={Boolean(errors.email)}
+            />
+            {errors.email && (
+              <div id="email-error" className="invalid-feedback d-block">
+                {errors.email}
+              </div>
+            )}
 
-              <div className={styles.otpBlock}>
-                <div className={styles.otpActionsRow}>
-                  {otp.email.verified ? (
-                    <span className={styles.verifiedBadge}>Email verified</span>
-                  ) : (
-                    <button
-                      type="button"
-                      className={styles.btnSecondary}
-                      disabled={otp.email.sending || !form.email}
-                      onClick={() => sendOtp("email")}
-                    >
-                      {otp.email.sending ? "Sending OTP..." : otp.email.sent ? "Resend OTP" : "Send OTP"}
-                    </button>
-                  )}
-                </div>
-                {otp.email.info && !otp.email.verified && <p className={styles.otpInfo}>{otp.email.info}</p>}
-                {otp.email.error && <p className={styles.otpError}>{otp.email.error}</p>}
-                {otp.email.sent && !otp.email.verified && (
-                  <div className={styles.otpCodeRow}>
-                    <input
-                      type="text"
-                      inputMode="numeric"
-                      maxLength={6}
-                      className={styles.otpInput}
-                      placeholder="OTP"
-                      value={otp.email.code}
-                      onChange={(e) =>
-                        setOtp((prev) => ({
-                          ...prev,
-                          email: { ...prev.email, code: e.target.value.replace(/[^0-9]/g, "").slice(0, 6) }
-                        }))
-                      }
-                    />
-                    <button
-                      type="button"
-                      className={styles.btnSecondary}
-                      disabled={otp.email.verifying || otp.email.code.length < 4}
-                      onClick={() => verifyOtp("email")}
-                    >
-                      {otp.email.verifying ? "Verifying OTP..." : "Verify OTP"}
-                    </button>
-                  </div>
+            <div className={styles.otpBlock}>
+              <div className={styles.otpActionsRow}>
+                {otp.email.verified ? (
+                  <span className={styles.verifiedBadge}>Email verified</span>
+                ) : (
+                  <button
+                    type="button"
+                    className={styles.btnSecondary}
+                    disabled={otp.email.sending || !form.email}
+                    onClick={() => sendOtp("email")}
+                  >
+                    {otp.email.sending ? "Sending OTP..." : otp.email.sent ? "Resend OTP" : "Send OTP"}
+                  </button>
                 )}
               </div>
+              {otp.email.info && !otp.email.verified && <p className={styles.otpInfo}>{otp.email.info}</p>}
+              {otp.email.error && <p className={styles.otpError}>{otp.email.error}</p>}
+              {otp.email.sent && !otp.email.verified && (
+                <div className={styles.otpCodeRow}>
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    maxLength={6}
+                    className={styles.otpInput}
+                    placeholder="OTP"
+                    value={otp.email.code}
+                    onChange={(e) =>
+                      setOtp((prev) => ({
+                        ...prev,
+                        email: { ...prev.email, code: e.target.value.replace(/[^0-9]/g, "").slice(0, 6) }
+                      }))
+                    }
+                  />
+                  <button
+                    type="button"
+                    className={styles.btnSecondary}
+                    disabled={otp.email.verifying || otp.email.code.length < 4}
+                    onClick={() => verifyOtp("email")}
+                  >
+                    {otp.email.verifying ? "Verifying OTP..." : "Verify OTP"}
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>
         <p className={styles.helpText}>Verify either your mobile number or email address to continue.</p>
         {errors.otp && (
-          <span className={styles.errorText} role="alert">
+          <div className="invalid-feedback d-block" role="alert">
             {errors.otp}
-          </span>
+          </div>
         )}
 
         <h3 className={styles.sectionTitle}>Visit Information</h3>
         <div className="row">
-          <div className="col-md-6 col-12">
-            <div className={styles.field}>
-              <label className={styles.label} htmlFor="visitObjective">
-                Objective of your visit? <span className={styles.starMark}>*</span>
-              </label>
-              <select
-                id="visitObjective"
-                className={`${styles.select} ${errors.visitObjective ? styles.inputError : ""}`}
-                value={form.visitObjective}
-                onChange={(e) => setField("visitObjective", e.target.value)}
-                aria-describedby={errors.visitObjective ? "visitObjective-error" : undefined}
-                aria-invalid={Boolean(errors.visitObjective)}
-              >
-                <option value="">Select an option</option>
-                {visitObjectives.map((o) => (
-                  <option key={o} value={o}>
-                    {o}
-                  </option>
-                ))}
-              </select>
-              {errors.visitObjective && (
-                <span id="visitObjective-error" className={styles.errorText}>
-                  {errors.visitObjective}
-                </span>
-              )}
-            </div>
+          <div className="col-md-6 mb-4">
+            <label className="form-label" htmlFor="visitObjective">
+              How did you hear about the expo? <span className="star-mark">*</span>
+            </label>
+            <select
+              id="visitObjective"
+              className={`form-control form-select ${errors.visitObjective ? "is-invalid" : ""}`}
+              value={form.visitObjective}
+              onChange={(e) => setField("visitObjective", e.target.value)}
+              aria-describedby={errors.visitObjective ? "visitObjective-error" : undefined}
+              aria-invalid={Boolean(errors.visitObjective)}
+            >
+              <option value="">Select an option</option>
+              {visitObjectives.map((o) => (
+                <option key={o} value={o}>
+                  {o}
+                </option>
+              ))}
+            </select>
+            {errors.visitObjective && (
+              <div id="visitObjective-error" className="invalid-feedback d-block">
+                {errors.visitObjective}
+              </div>
+            )}
           </div>
         </div>
 
-        <div className={styles.field}>
-          <label className={styles.label} id="productInterests-label">
-            Please specify your product interest <span className={styles.starMark}>*</span>
+        <div className="mb-4">
+          <label className="form-label" id="productInterests-label">
+            Please specify your product interest <span className="star-mark">*</span>
           </label>
           <div className={styles.checkboxGrid} role="group" aria-labelledby="productInterests-label">
             {productInterestOptions.map((option) => (
@@ -784,62 +760,79 @@ export default function VisitorRegistrationForm() {
             ))}
           </div>
           {errors.productInterests && (
-            <span className={styles.errorText} role="alert">
+            <div className="invalid-feedback d-block" role="alert">
               {errors.productInterests}
-            </span>
+            </div>
           )}
         </div>
 
-        <h3 className={styles.sectionTitle}>Consent</h3>
-        <div className={styles.disclaimerBox}>
-          <strong>Disclaimer:</strong> Exhibitions India is committed to protecting and respecting your privacy, and
-          we will only use your personal information to administer your account and to provide the products and
-          services you requested from us. From time to time, we would like to contact you via SMS, Email &amp; other
-          modes of communications about our events and programs, as well as other content that may be of interest to
-          you. Please check the box to continue.
+        <div className="row mb-4">
+          <div className="col-sm-12">
+            <div className="disclaimer-col-txt">
+              <strong>Disclaimer</strong>
+              <br />
+              Exhibitions India is committed to protecting and respecting your privacy, and we will only use your
+              personal information to administer your account and to provide the products and services you
+              requested from us. From time to time, we would like to contact you via SMS, Email &amp; other modes of
+              communications about our events and programs, as well as other content that may be of interest to you.
+              Please check the box to continue.
+            </div>
+          </div>
         </div>
 
-        <div className={styles.consentRow}>
-          <input
-            id="termsAccepted"
-            type="checkbox"
-            checked={form.termsAccepted}
-            onChange={(e) => setField("termsAccepted", e.target.checked)}
-            aria-describedby={errors.termsAccepted ? "termsAccepted-error" : undefined}
-            aria-invalid={Boolean(errors.termsAccepted)}
-          />
-          <label htmlFor="termsAccepted">
-            I confirm that I am 18 years of age or older and have read and agree to the{" "}
-            <button type="button" className={styles.linkBtn} onClick={() => setTermsOpen(true)}>
-              Terms &amp; Conditions
+        <div className="row mb-4">
+          <div className="col-sm-12">
+            <div className="form-check">
+              <input
+                id="termsAccepted"
+                type="checkbox"
+                className="form-check-input"
+                checked={form.termsAccepted}
+                onChange={(e) => setField("termsAccepted", e.target.checked)}
+                aria-describedby={errors.termsAccepted ? "termsAccepted-error" : undefined}
+                aria-invalid={Boolean(errors.termsAccepted)}
+              />
+              <label className="form-check-label" htmlFor="termsAccepted">
+                I confirm that I am 18 years of age or older and have read and agree to the{" "}
+                <button type="button" className={styles.linkBtn} onClick={() => setTermsOpen(true)}>
+                  Terms &amp; Conditions
+                </button>
+                . <span className="star-mark">*</span>
+              </label>
+            </div>
+            {errors.termsAccepted && (
+              <div id="termsAccepted-error" className="invalid-feedback d-block" role="alert">
+                {errors.termsAccepted}
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className="row mb-4">
+          <div className="col-sm-12">
+            <div className="form-check">
+              <input
+                id="marketingConsent"
+                type="checkbox"
+                className="form-check-input"
+                checked={form.marketingConsent}
+                onChange={(e) => setField("marketingConsent", e.target.checked)}
+              />
+              <label className="form-check-label" htmlFor="marketingConsent">
+                I consent to receive marketing communications from EI Group about its events, products and services.
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div className="row mb-4">
+          <div className="col-sm-12">
+            <button type="submit" className="download-brochure-btn leading-voices-btn" disabled={status === "submitting"} id="btnVisitorRegistration">
+              {status === "submitting" ? "Submitting..." : "Register"}
             </button>
-            . <span className={styles.starMark}>*</span>
-          </label>
-        </div>
-        {errors.termsAccepted && (
-          <span id="termsAccepted-error" className={styles.errorText} role="alert">
-            {errors.termsAccepted}
-          </span>
-        )}
-
-        <div className={styles.consentRow}>
-          <input
-            id="marketingConsent"
-            type="checkbox"
-            checked={form.marketingConsent}
-            onChange={(e) => setField("marketingConsent", e.target.checked)}
-          />
-          <label htmlFor="marketingConsent">
-            I consent to receive marketing communications from EI Group about its events, products and services.
-          </label>
-        </div>
-
-        <div className={styles.submitRow}>
-          <button type="submit" className={styles.submitBtn} disabled={status === "submitting"}>
-            {status === "submitting" ? "Submitting..." : "Register"}
-          </button>
-          <div className={styles.mandatoryNote}>
-            Note: <span className={styles.starMark}>*</span> Fields are mandatory
+            <div className="form-text">
+              Note: <span className="star-mark">*</span> Fields are mandatory
+            </div>
           </div>
         </div>
       </form>
