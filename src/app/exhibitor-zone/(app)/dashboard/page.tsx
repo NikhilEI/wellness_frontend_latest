@@ -31,6 +31,11 @@ interface Pass {
   status: string;
 }
 
+interface MandatoryForm {
+  id: number;
+  status: "pending" | "in_progress" | "completed";
+}
+
 const QUICK_ACTIONS = [
   { href: "/exhibitor-zone/catalogue", icon: "bx-store", label: "Order Services", sub: "Browse equipment & fittings", bg: "var(--ez-primary-light)" },
   { href: "/exhibitor-zone/forms", icon: "bx-list-check", label: "Mandatory Forms", sub: "Compliance profiles & declarations", bg: "#e4f9d6" },
@@ -44,19 +49,22 @@ export default function ExhibitorDashboardPage() {
   const [submissions, setSubmissions] = useState<FormSubmission[]>([]);
   const [orders, setOrders] = useState<Order[]>([]);
   const [passesCount, setPassesCount] = useState(0);
+  const [mandatoryForms, setMandatoryForms] = useState<MandatoryForm[]>([]);
 
   useEffect(() => {
     Promise.all([
       api.get<{ mandatory: FormTemplate[]; additional: FormTemplate[] }>("/forms/templates").catch(() => ({ mandatory: [], additional: [] })),
       api.get<{ submissions: FormSubmission[] }>("/forms/submissions").catch(() => ({ submissions: [] })),
       api.get<{ orders: Order[] }>("/orders").catch(() => ({ orders: [] })),
-      api.get<{ passes: Pass[] }>("/passes").catch(() => ({ passes: [] }))
+      api.get<{ passes: Pass[] }>("/passes").catch(() => ({ passes: [] })),
+      api.get<{ forms: MandatoryForm[] }>("/mandatory-forms").catch(() => ({ forms: [] }))
     ])
-      .then(([templatesRes, submissionsRes, ordersRes, passesRes]) => {
+      .then(([templatesRes, submissionsRes, ordersRes, passesRes, mandatoryRes]) => {
         setTemplates(templatesRes.mandatory);
         setSubmissions(submissionsRes.submissions);
         setOrders(ordersRes.orders);
         setPassesCount(passesRes.passes.filter((p) => p.status === "issued" || p.status === "printed").length);
+        setMandatoryForms(mandatoryRes.forms);
       })
       .finally(() => setLoading(false));
   }, []);
@@ -75,8 +83,28 @@ export default function ExhibitorDashboardPage() {
   const incompleteCount = totalForms - completedForms;
   const hasAlert = totalForms > 0 && completedForms < totalForms;
 
+  const mandatoryCompletedCount = mandatoryForms.filter((f) => f.status === "completed").length;
+  const mandatoryPendingCount = mandatoryForms.length - mandatoryCompletedCount;
+  const hasMandatoryAlert = mandatoryForms.length > 0 && mandatoryPendingCount > 0;
+
   return (
     <>
+      {hasMandatoryAlert && (
+        <div className="alert alert-warning mb-3" role="alert" style={{ borderLeftWidth: "5px" }}>
+          <i className="bx bx-error" style={{ fontSize: "1.25rem" }} />
+          <div style={{ flex: 1 }}>
+            <span className="fw-600">Mandatory Forms:</span> You have completed{" "}
+            <strong>
+              {mandatoryCompletedCount} of {mandatoryForms.length}
+            </strong>{" "}
+            mandatory exhibitor onboarding forms. These must be completed before you can proceed to the next stage.
+          </div>
+          <Link href="/exhibitor-zone/mandatory-forms" className="btn btn-warning btn-sm">
+            Complete Forms
+          </Link>
+        </div>
+      )}
+
       {hasAlert && (
         <div className="alert alert-warning mb-3" role="alert" style={{ borderLeftWidth: "5px" }}>
           <i className="bx bx-error" style={{ fontSize: "1.25rem" }} />

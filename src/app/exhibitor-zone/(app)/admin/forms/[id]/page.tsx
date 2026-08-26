@@ -19,6 +19,59 @@ function toLabel(key: string) {
   return key.replace(/([A-Z])/g, " $1").replace(/^./, (c) => c.toUpperCase());
 }
 
+function isPlainObject(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function renderValue(value: unknown): React.ReactNode {
+  if (value === null || value === undefined || value === "") return "—";
+  if (typeof value === "boolean") return value ? "Yes" : "No";
+
+  if (Array.isArray(value)) {
+    if (value.length === 0) return "—";
+    if (isPlainObject(value[0])) {
+      const rowKeys = Object.keys(value[0] as Record<string, unknown>);
+      return (
+        <div className="table-wrapper">
+          <table className="table" style={{ margin: 0 }}>
+            <thead>
+              <tr>
+                {rowKeys.map((k) => (
+                  <th key={k}>{toLabel(k)}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {(value as Record<string, unknown>[]).map((row, i) => (
+                <tr key={i}>
+                  {rowKeys.map((k) => (
+                    <td key={k}>{renderValue(row[k])}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+    }
+    return value.map((v) => String(v)).join(", ");
+  }
+
+  if (isPlainObject(value)) {
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}>
+        {Object.entries(value).map(([k, v]) => (
+          <div key={k} className="text-xs">
+            <strong>{toLabel(k)}:</strong> {renderValue(v)}
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  return String(value);
+}
+
 export default function AdminFormReviewPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const router = useRouter();
@@ -67,16 +120,23 @@ export default function AdminFormReviewPage({ params }: { params: Promise<{ id: 
             </div>
             <div className="card-body">
               <div style={{ display: "flex", flexDirection: "column" }}>
-                {Object.entries(submission.data).map(([key, value]) => (
-                  <div key={key} className="d-flex" style={{ borderBottom: "1px solid var(--ez-divider)", padding: "0.625rem 0" }}>
-                    <span className="text-small text-muted" style={{ flex: "0 0 40%" }}>
-                      {toLabel(key)}
-                    </span>
-                    <span className="text-small" style={{ color: "var(--ez-dark)" }}>
-                      {String(value)}
-                    </span>
-                  </div>
-                ))}
+                {Object.entries(submission.data).map(([key, value]) => {
+                  const isComplex = Array.isArray(value) || isPlainObject(value);
+                  return (
+                    <div
+                      key={key}
+                      style={{ borderBottom: "1px solid var(--ez-divider)", padding: "0.625rem 0" }}
+                      className={isComplex ? undefined : "d-flex"}
+                    >
+                      <span className="text-small text-muted" style={isComplex ? { display: "block", marginBottom: "0.5rem" } : { flex: "0 0 40%" }}>
+                        {toLabel(key)}
+                      </span>
+                      <span className="text-small" style={{ color: "var(--ez-dark)" }}>
+                        {renderValue(value)}
+                      </span>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
