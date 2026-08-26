@@ -11,6 +11,7 @@ interface CatalogueItem {
   description: string | null;
   unit: string;
   price_inr: string;
+  price_usd: string | null;
   tax_rate_pct: string;
   min_order_qty: number;
   max_order_qty: number | null;
@@ -97,7 +98,12 @@ export default function CataloguePage() {
                         {item.description && <div className="text-xs text-muted">{item.description}</div>}
                       </td>
                       <td className="text-small">
-                        {formatCurrency(item.price_inr)} / {item.unit}
+                        <div>
+                          {formatCurrency(item.price_inr)} / {item.unit}
+                        </div>
+                        {item.price_usd && (
+                          <div className="text-xs text-muted">{formatCurrency(item.price_usd, "USD")}</div>
+                        )}
                       </td>
                       <td className="text-small">{item.tax_rate_pct}%</td>
                       <td style={{ width: 100 }}>

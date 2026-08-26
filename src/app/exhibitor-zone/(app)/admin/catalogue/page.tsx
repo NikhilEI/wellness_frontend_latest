@@ -17,6 +17,7 @@ interface Item {
   sku: string;
   name: string;
   price_inr: string;
+  price_usd: string | null;
   is_active: number;
 }
 
@@ -27,7 +28,7 @@ export default function AdminCataloguePage() {
   const [message, setMessage] = useState("");
 
   const [newCategory, setNewCategory] = useState({ name: "", slug: "" });
-  const [newItem, setNewItem] = useState({ categoryId: "", sku: "", name: "", priceInr: "", unit: "each" });
+  const [newItem, setNewItem] = useState({ categoryId: "", sku: "", name: "", priceInr: "", priceUsd: "", unit: "each" });
 
   function load() {
     api.get<{ categories: Category[] }>("/catalogue/categories").then((b) => setCategories(b.categories)).catch(() => {});
@@ -58,7 +59,7 @@ export default function AdminCataloguePage() {
     }
     try {
       await api.post("/catalogue/items", { ...newItem, categoryId: Number(newItem.categoryId) });
-      setNewItem({ categoryId: "", sku: "", name: "", priceInr: "", unit: "each" });
+      setNewItem({ categoryId: "", sku: "", name: "", priceInr: "", priceUsd: "", unit: "each" });
       setMessage("Item created.");
       load();
     } catch (err) {
@@ -79,7 +80,17 @@ export default function AdminCataloguePage() {
     { key: "category_name", label: "Category" },
     { key: "sku", label: "SKU" },
     { key: "name", label: "Name" },
-    { key: "price_inr", label: "Price", value: (i) => Number(i.price_inr), render: (i) => formatCurrency(i.price_inr) },
+    {
+      key: "price_inr",
+      label: "Price",
+      value: (i) => Number(i.price_inr),
+      render: (i) => (
+        <>
+          <div>{formatCurrency(i.price_inr)}</div>
+          {i.price_usd && <div className="text-xs text-muted">{formatCurrency(i.price_usd, "USD")}</div>}
+        </>
+      )
+    },
     {
       key: "is_active",
       label: "Active",
@@ -148,6 +159,10 @@ export default function AdminCataloguePage() {
                 <div className="form-group">
                   <label className="form-label">Price (INR)</label>
                   <input type="number" className="form-control" value={newItem.priceInr} onChange={(e) => setNewItem({ ...newItem, priceInr: e.target.value })} required />
+                </div>
+                <div className="form-group">
+                  <label className="form-label">Price (USD)</label>
+                  <input type="number" className="form-control" value={newItem.priceUsd} onChange={(e) => setNewItem({ ...newItem, priceUsd: e.target.value })} />
                 </div>
                 <div className="form-group">
                   <label className="form-label">Unit</label>

@@ -21,6 +21,10 @@ const EXHIBITOR_NAV: NavItem[] = [
   { label: "Documents", href: "/exhibitor-zone/documents", icon: "bx-folder" },
   { label: "Access" },
   { label: "My Passes", href: "/exhibitor-zone/passes", icon: "bx-id-card" },
+  { label: "Information List" },
+  { label: "Site Plan", href: "/exhibitor-zone/info/site-plan", icon: "bx-map-alt" },
+  { label: "Empanelled Contractors", href: "https://www.convergenceindia.org/empanelled-contractors.aspx", icon: "bx-hammer" },
+  { label: "Freight Forwarder", href: "https://www.convergenceindia.org/freight_forwarder.aspx", icon: "bx-truck" },
   { label: "Settings" },
   { label: "Account Settings", href: "/exhibitor-zone/account-settings", icon: "bx-cog" }
 ];
