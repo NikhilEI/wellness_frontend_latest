@@ -8,6 +8,7 @@ import StatusBadge from "../../../../_components/StatusBadge";
 
 interface Profile {
   id: number;
+  company_id: number;
   legal_name: string;
   display_name: string;
   company_type: string | null;
@@ -23,6 +24,32 @@ interface Profile {
   is_verified: number;
 }
 
+interface EditForm {
+  legalName: string;
+  displayName: string;
+  industryType: string;
+  website: string;
+  addressLine1: string;
+  city: string;
+  country: string;
+  email: string;
+  phone: string;
+}
+
+function toEditForm(profile: Profile): EditForm {
+  return {
+    legalName: profile.legal_name || "",
+    displayName: profile.display_name || "",
+    industryType: profile.industry_type || "",
+    website: profile.website || "",
+    addressLine1: profile.address_line1 || "",
+    city: profile.city || "",
+    country: profile.country || "",
+    email: profile.email || "",
+    phone: profile.phone || ""
+  };
+}
+
 interface Document {
   id: number;
   document_type: string;
@@ -35,8 +62,12 @@ export default function AdminCompanyDetailPage({ params }: { params: Promise<{ i
   const [profile, setProfile] = useState<Profile | null>(null);
   const [documents, setDocuments] = useState<Document[]>([]);
   const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
+  const [editing, setEditing] = useState(false);
+  const [editForm, setEditForm] = useState<EditForm | null>(null);
+  const [saving, setSaving] = useState(false);
 
-  useEffect(() => {
+  function load() {
     api
       .get<{ profile: Profile }>(`/exhibitors/${id}`)
       .then((body) => {
@@ -45,7 +76,49 @@ export default function AdminCompanyDetailPage({ params }: { params: Promise<{ i
       })
       .then((body) => setDocuments(body.documents))
       .catch((err) => setError(err instanceof ApiError ? err.message : "Failed to load company."));
-  }, [id]);
+  }
+
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  useEffect(load, [id]);
+
+  function startEditing() {
+    if (!profile) return;
+    setEditForm(toEditForm(profile));
+    setMessage("");
+    setError("");
+    setEditing(true);
+  }
+
+  function setField<K extends keyof EditForm>(key: K, value: EditForm[K]) {
+    setEditForm((prev) => (prev ? { ...prev, [key]: value } : prev));
+  }
+
+  async function handleSave() {
+    if (!profile || !editForm) return;
+    setSaving(true);
+    setError("");
+    setMessage("");
+    try {
+      await api.patch(`/exhibitors/companies/${profile.company_id}`, {
+        legalName: editForm.legalName,
+        displayName: editForm.displayName,
+        industryType: editForm.industryType || undefined,
+        website: editForm.website || undefined,
+        addressLine1: editForm.addressLine1,
+        city: editForm.city,
+        country: editForm.country,
+        email: editForm.email || undefined,
+        phone: editForm.phone || undefined
+      });
+      setMessage("Company details updated.");
+      setEditing(false);
+      load();
+    } catch (err) {
+      setError(err instanceof ApiError ? err.message : "Failed to save changes.");
+    } finally {
+      setSaving(false);
+    }
+  }
 
   return (
     <>
@@ -54,6 +127,7 @@ export default function AdminCompanyDetailPage({ params }: { params: Promise<{ i
         <p className="content-subtitle">Exhibitor company details and uploaded documents</p>
       </div>
 
+      {message && <div className="alert alert-success mb-3">{message}</div>}
       {error && <div className="alert alert-danger mb-3">{error}</div>}
 
       {profile && (
@@ -61,35 +135,99 @@ export default function AdminCompanyDetailPage({ params }: { params: Promise<{ i
           <div className="card">
             <div className="card-header">
               <span className="card-title">Company Details</span>
-              <StatusBadge status={profile.profile_status} />
-            </div>
-            <div className="card-body">
-              <div style={{ display: "flex", flexDirection: "column", gap: "0.875rem" }}>
-                {[
-                  ["Legal Name", profile.legal_name],
-                  ["Type", profile.company_type || "—"],
-                  ["Industry", profile.industry_type || "—"],
-                  ["Website", profile.website || "—"],
-                  ["Address", `${profile.address_line1}, ${profile.city}, ${profile.country}`],
-                  ["Email", profile.email || "—"],
-                  ["Phone", profile.phone || "—"]
-                ].map(([label, value]) => (
-                  <div key={label} className="d-flex justify-between" style={{ borderBottom: "1px solid var(--ez-divider)", paddingBottom: "0.875rem" }}>
-                    <span className="text-small text-muted">{label}</span>
-                    <span className="fw-600 text-small" style={{ color: "var(--ez-dark)", textAlign: "right" }}>
-                      {value}
-                    </span>
-                  </div>
-                ))}
-                {profile.rejection_reason && (
-                  <div className="d-flex justify-between">
-                    <span className="text-small text-muted">Rejection Reason</span>
-                    <span className="fw-600 text-small" style={{ color: "var(--ez-danger)", textAlign: "right" }}>
-                      {profile.rejection_reason}
-                    </span>
-                  </div>
+              <div className="d-flex align-center gap-2">
+                <StatusBadge status={profile.profile_status} />
+                {!editing && (
+                  <button type="button" className="btn btn-sm btn-outline-primary" onClick={startEditing}>
+                    Edit
+                  </button>
                 )}
               </div>
+            </div>
+            <div className="card-body">
+              {editing && editForm ? (
+                <>
+                  <div className="grid grid-2">
+                    <div className="form-group">
+                      <label className="form-label">Legal Name</label>
+                      <input className="form-control" value={editForm.legalName} onChange={(e) => setField("legalName", e.target.value)} />
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">Display Name</label>
+                      <input className="form-control" value={editForm.displayName} onChange={(e) => setField("displayName", e.target.value)} />
+                    </div>
+                  </div>
+                  <div className="grid grid-2">
+                    <div className="form-group">
+                      <label className="form-label">Industry</label>
+                      <input className="form-control" value={editForm.industryType} onChange={(e) => setField("industryType", e.target.value)} />
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">Website</label>
+                      <input className="form-control" value={editForm.website} onChange={(e) => setField("website", e.target.value)} placeholder="https://example.com" />
+                    </div>
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Address</label>
+                    <input className="form-control" value={editForm.addressLine1} onChange={(e) => setField("addressLine1", e.target.value)} />
+                  </div>
+                  <div className="grid grid-2">
+                    <div className="form-group">
+                      <label className="form-label">City</label>
+                      <input className="form-control" value={editForm.city} onChange={(e) => setField("city", e.target.value)} />
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">Country</label>
+                      <input className="form-control" value={editForm.country} onChange={(e) => setField("country", e.target.value)} />
+                    </div>
+                  </div>
+                  <div className="grid grid-2">
+                    <div className="form-group">
+                      <label className="form-label">Email</label>
+                      <input type="email" className="form-control" value={editForm.email} onChange={(e) => setField("email", e.target.value)} />
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">Phone</label>
+                      <input className="form-control" value={editForm.phone} onChange={(e) => setField("phone", e.target.value)} />
+                    </div>
+                  </div>
+                  <div className="d-flex justify-end gap-2" style={{ marginTop: "0.5rem" }}>
+                    <button type="button" className="btn btn-ghost btn-sm" onClick={() => setEditing(false)} disabled={saving}>
+                      Cancel
+                    </button>
+                    <button type="button" className="btn btn-primary btn-sm" onClick={handleSave} disabled={saving}>
+                      {saving ? "Saving..." : "Save Changes"}
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.875rem" }}>
+                  {[
+                    ["Legal Name", profile.legal_name],
+                    ["Type", profile.company_type || "—"],
+                    ["Industry", profile.industry_type || "—"],
+                    ["Website", profile.website || "—"],
+                    ["Address", `${profile.address_line1}, ${profile.city}, ${profile.country}`],
+                    ["Email", profile.email || "—"],
+                    ["Phone", profile.phone || "—"]
+                  ].map(([label, value]) => (
+                    <div key={label} className="d-flex justify-between" style={{ borderBottom: "1px solid var(--ez-divider)", paddingBottom: "0.875rem" }}>
+                      <span className="text-small text-muted">{label}</span>
+                      <span className="fw-600 text-small" style={{ color: "var(--ez-dark)", textAlign: "right" }}>
+                        {value}
+                      </span>
+                    </div>
+                  ))}
+                  {profile.rejection_reason && (
+                    <div className="d-flex justify-between">
+                      <span className="text-small text-muted">Rejection Reason</span>
+                      <span className="fw-600 text-small" style={{ color: "var(--ez-danger)", textAlign: "right" }}>
+                        {profile.rejection_reason}
+                      </span>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
 

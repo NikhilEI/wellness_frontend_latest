@@ -18,7 +18,7 @@ interface SidebarProps {
   isCollapsed?: boolean;
 }
 
-function NavLink({ item }: { item: NavItem }) {
+function NavLink({ item, onNavigate }: { item: NavItem; onNavigate: () => void }) {
   const pathname = usePathname();
   const isActive = item.href ? pathname === item.href || pathname.startsWith(`${item.href}/`) : false;
 
@@ -35,7 +35,7 @@ function NavLink({ item }: { item: NavItem }) {
   if (isExternal) {
     return (
       <li className="menu-item">
-        <a href={item.href} target="_blank" rel="noopener noreferrer" className="menu-link">
+        <a href={item.href} target="_blank" rel="noopener noreferrer" className="menu-link" onClick={onNavigate}>
           {item.icon && <i className={`menu-icon bx ${item.icon}`} />}
           <span style={{ display: "flex", alignItems: "center", gap: "0.25rem", width: "100%" }}>
             {item.label}
@@ -48,7 +48,7 @@ function NavLink({ item }: { item: NavItem }) {
 
   return (
     <li className={`menu-item ${isActive ? "active" : ""}`}>
-      <Link href={item.href} className={`menu-link ${isActive ? "active" : ""}`}>
+      <Link href={item.href} className={`menu-link ${isActive ? "active" : ""}`} onClick={onNavigate}>
         {item.icon && <i className={`menu-icon bx ${item.icon}`} />}
         <span>{item.label}</span>
         {item.badge !== undefined && Number(item.badge) > 0 && <span className="menu-badge">{item.badge}</span>}
@@ -71,7 +71,12 @@ export default function Sidebar({ items, appName = "Exhibitor Zone", isOpen, onC
 
       <aside className={`layout-menu ${isOpen ? "open" : ""} ${isCollapsed ? "collapsed" : ""}`} aria-label="Sidebar navigation">
         <div className="app-brand">
-          <Link href={items[1]?.href || "/exhibitor-zone"} className="app-brand-link" style={{ flexDirection: "column", alignItems: "flex-start", gap: "0.25rem" }}>
+          <Link
+            href={items[1]?.href || "/exhibitor-zone"}
+            className="app-brand-link"
+            onClick={onClose}
+            style={{ flexDirection: "column", alignItems: "flex-start", gap: "0.25rem" }}
+          >
             <img src="/images/wellness-india-expo-logo.png" alt="Wellness India Expo" className="app-brand-logo-img" />
             <span className="app-brand-text" style={{ fontSize: "0.6875rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em", color: "var(--ez-muted)" }}>
               {appName}
@@ -99,7 +104,7 @@ export default function Sidebar({ items, appName = "Exhibitor Zone", isOpen, onC
           <button
             onClick={onClose}
             className="btn btn-ghost btn-icon"
-            style={{ marginLeft: "auto", display: "none" }}
+            style={{ display: "none" }}
             aria-label="Close sidebar"
             id="sidebarCloseBtn"
           >
@@ -109,7 +114,7 @@ export default function Sidebar({ items, appName = "Exhibitor Zone", isOpen, onC
 
         <ul className="menu-inner py-1" role="menubar">
           {items.map((item, i) => (
-            <NavLink key={`${item.label}-${i}`} item={item} />
+            <NavLink key={`${item.label}-${i}`} item={item} onNavigate={onClose} />
           ))}
         </ul>
       </aside>

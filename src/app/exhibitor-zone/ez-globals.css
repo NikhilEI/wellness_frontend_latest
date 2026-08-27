@@ -160,6 +160,7 @@ button { cursor: pointer; font-family: inherit; }
   border-bottom: 1px solid var(--ez-divider);
   min-height:    var(--ez-navbar-height);
   flex-shrink:   0;
+  position:      relative;
 }
 
 .app-brand-link {
@@ -909,7 +910,15 @@ button { cursor: pointer; font-family: inherit; }
 @media (max-width: 1200px) {
   .layout-menu { position: fixed; left: 0; top: 0; bottom: 0; transform: translateX(-100%); transition: transform var(--ez-transition-slow); z-index: 1050; height: 100vh; }
   .layout-menu.open { transform: translateX(0); box-shadow: var(--ez-shadow-lg); }
-  .layout-menu #sidebarCloseBtn { display: flex !important; }
+  .layout-menu .app-brand-logo-img { max-width: 140px; width: auto; height: auto; }
+  .layout-menu #sidebarCloseBtn {
+    display:        flex !important;
+    position:       absolute;
+    top:            50%;
+    right:          1.25rem;
+    margin-left:    0;
+    transform:      translateY(-50%);
+  }
   .sidebar-overlay { display: block !important; }
   .navbar-toggle { display: flex; }
   .navbar-brand-mobile { display: flex; }

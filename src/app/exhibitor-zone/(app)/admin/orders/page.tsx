@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { api, ApiError } from "../../../_lib/apiClient";
 import { formatCurrency, formatDate } from "../../../_lib/format";
 import StatusBadge from "../../../_components/StatusBadge";
@@ -47,7 +48,15 @@ export default function AdminOrdersPage() {
   }
 
   const columns: DataTableColumn<Order>[] = [
-    { key: "order_number", label: "Order #" },
+    {
+      key: "order_number",
+      label: "Order #",
+      render: (o) => (
+        <Link href={`/exhibitor-zone/admin/orders/${o.id}`} className="fw-600">
+          {o.order_number}
+        </Link>
+      )
+    },
     { key: "company_name", label: "Company" },
     { key: "created_at", label: "Date", render: (o) => formatDate(o.created_at) },
     { key: "grand_total", label: "Total", value: (o) => Number(o.grand_total), render: (o) => formatCurrency(o.grand_total) },
