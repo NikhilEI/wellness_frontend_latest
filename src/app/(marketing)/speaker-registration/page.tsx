@@ -3,6 +3,7 @@ import Header from "@/components/legacy/Header";
 import Footer from "@/components/legacy/Footer";
 import RecaptchaWidget from "@/components/RecaptchaWidget";
 import SpeakerRegistrationForm from "@/components/SpeakerRegistrationForm";
+import AdditionalInfoContacts, { PRINCE_SINGH_CONTACT, PANKAJ_JAIN_CONTACT } from "@/components/AdditionalInfoContacts";
 import styles from "@/components/SpeakerRegistrationIntro.module.css";
 
 export const metadata: Metadata = {
@@ -51,6 +52,8 @@ export default function SpeakerRegistrationPage() {
                 </div>
 
                 <SpeakerRegistrationForm />
+
+                <AdditionalInfoContacts contacts={[PRINCE_SINGH_CONTACT, PANKAJ_JAIN_CONTACT]} />
               </div>
             </div>
           </div>

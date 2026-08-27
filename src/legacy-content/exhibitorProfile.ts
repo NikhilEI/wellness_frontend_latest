@@ -314,19 +314,19 @@ export const html = `
 						<ul>
 							<li>
 								<strong>Sales & Sponsorship</strong><br>
-								<a href="mailto:sales@eigroup.in">sales@eigroup.in</a>
+								<a href="mailto:sales@wellnessindiaexpo.com">sales@wellnessindiaexpo.com</a>
 							</li>
 							<li>
 								<strong>Conference & Speaker</strong><br>
-								<a href="mailto:conferences@eigroup.in">conferences@eigroup.in</a>
+								<a href="mailto:conferences@wellnessindiaexpo.com">conferences@wellnessindiaexpo.com</a>
 							</li>
 							<li>
 								<strong>Visitor & Delegate</strong><br>
-								<a href="mailto:connect@eigroup.in">connect@eigroup.in</a>
+								<a href="mailto:connect@wellnessindiaexpo.com">connect@wellnessindiaexpo.com</a>
 							</li>
 							<li>
 								<strong>Media & Marketing</strong><br>
-								<a href="mailto:media@eigroup.in">media@eigroup.in</a>
+								<a href="mailto:media@wellnessindiaexpo.com">media@wellnessindiaexpo.com</a>
 							</li>
 						</ul>
 					</div>

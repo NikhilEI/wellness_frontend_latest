@@ -3,6 +3,7 @@ import Header from "@/components/legacy/Header";
 import Footer from "@/components/legacy/Footer";
 import RecaptchaWidget from "@/components/RecaptchaWidget";
 import HostedBuyersRegistrationForm from "@/components/HostedBuyersRegistrationForm";
+import AdditionalInfoContacts, { PRINCE_SINGH_CONTACT, PANKAJ_JAIN_CONTACT } from "@/components/AdditionalInfoContacts";
 
 export const metadata: Metadata = {
   title: "Wellness India Expo 2027 - Hosted Buyer Programme",
@@ -46,6 +47,8 @@ export default function HostedBuyersRegistrationPage() {
                 </div>
 
                 <HostedBuyersRegistrationForm />
+
+                <AdditionalInfoContacts contacts={[PRINCE_SINGH_CONTACT, PANKAJ_JAIN_CONTACT]} />
               </div>
             </div>
           </div>

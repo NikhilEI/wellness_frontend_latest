@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Header from "@/components/legacy/Header";
 import Footer from "@/components/legacy/Footer";
 import VisitorRegistrationForm from "@/components/VisitorRegistrationForm";
+import AdditionalInfoContacts, { PRINCE_SINGH_CONTACT, PANKAJ_JAIN_CONTACT } from "@/components/AdditionalInfoContacts";
 
 export const metadata: Metadata = {
   title: "Wellness India Expo 2027 - Visitor Registration",
@@ -32,6 +33,8 @@ export default function VisitorRegistrationPage() {
                 </div>
 
                 <VisitorRegistrationForm />
+
+                <AdditionalInfoContacts contacts={[PRINCE_SINGH_CONTACT, PANKAJ_JAIN_CONTACT]} />
               </div>
             </div>
           </div>

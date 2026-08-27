@@ -364,7 +364,7 @@ export const html = `
 						</div>
 					</div>	
 					<div class="row">
-					<div class="col-md-12">
+					<div class="col-md-6">
 						<div class="profile-pic-exhibitor-main">
 							<div class="pramit-kumar-profile-pic"><img src="/images/prince-singh-profile-pic.jpg" alt="Prince Singh"></div>
 						</div>
@@ -377,8 +377,28 @@ export const html = `
 								<ul>
 									<li><i class="fab fa-whatsapp profile-icon"></i> +91 8826798171</li>
 									<li><i class="fal fa-envelope profile-icon"></i> <a href="mailto:princes@eigroup.in">princes@eigroup.in</a></li>
-									
-									
+
+
+								</ul>
+							</div>
+						</div>
+
+					</div>
+					<div class="col-md-6">
+						<div class="profile-pic-exhibitor-main">
+							<div class="pramit-kumar-profile-pic"><img src="/images/pankaj-jain.jpg.jpeg" alt="Pankaj Jain"></div>
+						</div>
+
+						<div class="profile-pic-exhibitor-details">
+							<div class="exhibitor-profile-name-heading">Pankaj Jain <br>
+								<span>Chief Growth Officer</span>
+							</div>
+							<div class="exhibitor-profile-position">
+								<ul>
+									<li><i class="fab fa-whatsapp profile-icon"></i> +91 9810172077</li>
+									<li><i class="fal fa-envelope profile-icon"></i> <a href="mailto:pankajj@eigroup.in">pankajj@eigroup.in</a></li>
+
+
 								</ul>
 							</div>
 						</div>
