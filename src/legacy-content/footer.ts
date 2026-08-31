@@ -6,7 +6,7 @@ export const html = `<footer>
     <div class="row">
 		<div class="col-xl-6 col-lg-6 col-md-6 col-12 mb-3">
 			<div class="row">
-				<div class="col-xl-5 col-lg-6 col-md-6 col-sm-6 col-12">
+				<div class="col-xl-5 col-lg-6 col-md-6 col-sm-6 col-12 pe-xl-5 pe-lg-4 pe-md-3">
 					<div class="footer-logo-bottom">Wellness India Expo</div>
 					<div class="footer-logo-bottom-txt">06-08 May, 2027 <br> Bharat Mandapam, New Delhi</div>
 					<div class="footer-bottom-btn-main">
@@ -19,8 +19,7 @@ export const html = `<footer>
 				</div>
 					
 				
-				<div class="col-xl-1 col-lg-0 col-md-0 col-sm-0 col-0 offset-xl-1 offset-lg--1 footer-left-border"></div>
-				<div class="col-xl-5 col-lg-5 col-md-6 col-sm-6 col-12 offset-xl--2 offset-lg--1 footer--left-border">
+				<div class="col-xl-7 col-lg-6 col-md-6 col-sm-6 col-12 offset-xl--2 offset-lg--1 footer-left-border ps-xl-5 ps-lg-4 ps-md-3">
 					<div class="footer-bottom-heading">Let's Connect</div>
 					<div class="footer-bottom-link">
 						<ul>
@@ -64,10 +63,13 @@ export const html = `<footer>
 			<hr class="m-4">
 			<div class="row">
 				<div class="col-12">
-					<div class="footer-logo-heading">Organiser</div>
+					<div class="footer-logo-heading">Organisers</div>
 				</div>
 			</div>
 			<div class="row justify-content-center">
+				<div class="col-lg-4 col-md-5 col-sm-6 col-6">
+					<div class="footer-logo-box"><img src="/images/footer-event-organiger-2026.png" alt="ITPO -India Trade Promotion Organisation (ITPO)"></div>
+				</div>
 				<div class="col-lg-4 col-md-5 col-sm-6 col-6">
 					<div class="footer-logo-box"><img src="/images/footer-event-organiger-2026-1.png" alt="Exhibitions India"></div>
 				</div>

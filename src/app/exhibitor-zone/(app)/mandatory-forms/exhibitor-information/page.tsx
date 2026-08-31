@@ -342,8 +342,9 @@ export default function ExhibitorInformationPage() {
                 <input
                   type="tel"
                   className="form-control"
+                  maxLength={10}
                   value={form.phoneNo}
-                  onChange={(e) => setField("phoneNo", e.target.value.replace(/[^0-9]/g, "").slice(0, 15))}
+                  onChange={(e) => setField("phoneNo", e.target.value.replace(/[^0-9]/g, "").slice(0, 10))}
                 />
               </div>
               <div className="form-group">
