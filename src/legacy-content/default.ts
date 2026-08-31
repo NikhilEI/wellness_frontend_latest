@@ -62,6 +62,10 @@ export const html = `
 		<div class="category-icon"><img src="/images/Longevity-icon-banner.png" alt="Longevity Icon"></div>
 		<div class="category-title">Longevity</div>
 	</div>
+	<div class="category-card card-blue-dark">
+		<div class="category-icon"><img src="images/Clean-Beauty-icon-banner.png" alt="Clean Beauty"></div>
+		<div class="category-title">Clean Beauty</div>
+	</div>
 
 	</div>
 </div>
@@ -303,7 +307,7 @@ Join us and discover the latest innovations, meet the brands and businesses lead
 						<div class="dimension-wellness-txt-main">
 							<div class="dimension-wellness-heading">Wellness Living & Environments</div>
 							<div class="dimension-wellness-para">
-								Wellness real estate, hospitality, retreats, workplace wellbeing, home wellness, air and water quality, sustainable products and healthy environments.
+								Wellness real estate, hospitality, retreats, wellness tourism, workplace wellbeing, home wellness, air and water quality, sustainable products and healthy environments.
 							</div>
 						</div>				
 					</div>
@@ -379,7 +383,7 @@ Join us and discover the latest innovations, meet the brands and businesses lead
 								<div class="hosted-buyer-icon-box"><img src="/images/icon/distribution-trade-icon-home.png" alt="Distribution & Trade"></div>
 								<div class="hosted-buyer-icon-txt-box">
 									<strong>Distribution & Trade</strong><br>
-									Distributors, importers, exporters, international sourcing teams and corporate wellness buyers.
+									Distributors, importers, exporters, international sourcing teams and corporate 'wellness' with 'gifting' buyers.
 								</div>
 							</div>
 						</div>
@@ -497,7 +501,7 @@ Join us and discover the latest innovations, meet the brands and businesses lead
 					<div class="signature-experiences-img-box">
 						<img src="/images/signature-experiences-img-4.jpg" alt="Signature Experiences">
 						<div class="signature-experiences-txt-main">
-							<h5 class="title">The Next 100</h5>
+							<h5 class="title">The Next 50</h5>
 							<span class="post">A benchmark for the next generation of wellness brands</span>
 						</div>
 					</div>

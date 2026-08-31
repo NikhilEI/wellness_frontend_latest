@@ -26,19 +26,19 @@ export const html = `<footer>
 						<ul>
 							<li>
 								<strong>Sales & Sponsorship</strong><br>
-								<a href="mailto:sales@wellnessindiaexpo.com">sales@wellnessindiaexpo.com</a>
+								<a href="mailto:sales@wellnessindiaexpo.com">sales@<wbr>wellnessindiaexpo.com</a>
 							</li>
 							<li>
 								<strong>Conference & Speaker</strong><br>
-								<a href="mailto:conferences@wellnessindiaexpo.com">conferences@wellnessindiaexpo.com</a>
+								<a href="mailto:conferences@wellnessindiaexpo.com">conferences@<wbr>wellnessindiaexpo.com</a>
 							</li>
 							<li>
 								<strong>Visitor & Delegate</strong><br>
-								<a href="mailto:connect@wellnessindiaexpo.com">connect@wellnessindiaexpo.com</a>
+								<a href="mailto:connect@wellnessindiaexpo.com">connect@<wbr>wellnessindiaexpo.com</a>
 							</li>
 							<li>
 								<strong>Media & Marketing</strong><br>
-								<a href="mailto:media@wellnessindiaexpo.com">media@wellnessindiaexpo.com</a>
+								<a href="mailto:media@wellnessindiaexpo.com">media@<wbr>wellnessindiaexpo.com</a>
 							</li>
 						</ul>
 					</div>
