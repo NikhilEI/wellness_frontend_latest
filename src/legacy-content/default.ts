@@ -383,7 +383,7 @@ Join us and discover the latest innovations, meet the brands and businesses lead
 								<div class="hosted-buyer-icon-box"><img src="/images/icon/distribution-trade-icon-home.png" alt="Distribution & Trade"></div>
 								<div class="hosted-buyer-icon-txt-box">
 									<strong>Distribution & Trade</strong><br>
-									Distributors, importers, exporters, international sourcing teams and corporate 'wellness' with 'gifting' buyers.
+									Distributors, importers, exporters, international sourcing teams and corporate gifting buyers.
 								</div>
 							</div>
 						</div>
