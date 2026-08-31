@@ -19,7 +19,7 @@ export const html = `
 			<div class="carousel-item active video-background--holder">
 		<div class="video-background-overlay"></div>
 				<video poster="/video-2026/video/home-banner-bg.jpg" playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop" class="d-none d-md-block">
-					<source src="/video-2026/video/wellnessindiaexpo-home-banner.mp4" type="video/mp4">
+					<source src="/video-2026/video/wellnessindiaexpo-home-banner-1.mp4" type="video/mp4">
 				</video>
 				
 				<video poster="/video-2026/video/home-banner-bg.jpg" playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop" class="d-md-none d-block">
