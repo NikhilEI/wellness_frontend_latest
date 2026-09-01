@@ -4,7 +4,7 @@ export const html = `<header class="fixed-top-band">
 	<nav class="navbar bg-body--tertiary ">
 		<div class="container-xxl align-items-center justify-content-center">
 			
-			<div class="col-xl-6 col-lg-5 col-md-4 col-10">
+			<div class="col-xl-6 col-lg-5 col-md-4 col-8">
 			
 				<div class="logo-box-main-top justify-content-center justify-content-md-start">
 					<div class="logo-box-ci">
@@ -14,8 +14,8 @@ export const html = `<header class="fixed-top-band">
 						
 			</div>
 			
-			<div class="col-xl-6 col-lg-7 col-md-8 col--4 text-end">
-				<a href="/space-booking" class="home-book-btn top-btn-book ms-0 d-none d-md-inline-block" target="_blank">Book Your Space <i class="far fa-arrow-right btn-arrow-icon"></i></a>
+			<div class="col-xl-6 col-lg-7 col-md-8 col-4 text-end">
+				<a href="/space-booking" class="home-book-btn top-btn-book ms-0 d-none d-md-inline-block" >Book Your Space <i class="far fa-arrow-right btn-arrow-icon"></i></a>
 				
 				
 				<span class="navbar-toggler first-button ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,16 +28,7 @@ export const html = `<header class="fixed-top-band">
 		<div class="collapse navbar-collapse overlay align-items-center" id="navbarSupportedContent">
 			<div class="menu-box-outer">
 				<div class="container-xxl">
-					<div class="row justify-content-between">
-						<div class="col-lg-2 col-md-4 col-sm-4 col-12 d-md-none d-block">
-							<div class="menu-heading-btn-main">
-								<a href="space-booking.aspx" target="_blank">Book for 2027 <i class="far fa-arrow-right btn-arrow-icon"></i></a>
-							</div>
-							<div class="menu-heading-btn-main">
-								<a href="https://www.mobileindiaexpo.com/travel-reimbursement-registration.aspx">Travel Reimbursement <i class="far fa-arrow-right btn-arrow-icon"></i></a>
-							</div>
-						</div>
-					</div>
+				
 					<div class="row justify-content-between">
 					
 						<div class="col-lg-2 col-md-3 col-sm-4 col-12">
@@ -46,11 +37,11 @@ export const html = `<header class="fixed-top-band">
 								<a href="#" class="menu-heading nav-link abc">Exhibition</a>
 			<ul class="menu-ul-main nav flex-column">
 				<li class="nav-item"><a href="exhibitor-profile.aspx" class="nav-link">Exhibitor Profile</a></li>
-				<li class="nav-item"><a href="https://www.convergenceindia.org/space-booking.aspx" class="nav-link" target="_blank">Space Booking Form</a></li>
+				<li class="nav-item"><a href="space-booking" class="nav-link">Space Booking Form</a></li>
 				
 				
 				<li class="nav-item"><a href="https://www.convergenceindia.org/exhibitors-and-participants-convergence-india.aspx" class="nav-link" target="_blank">List of Participants</a></li>
-				<li class="nav-item"><a href="exhibition-venue-and-dates.aspx" class="nav-link">Exhibition Venue & Dates</a></li>
+				<li class="nav-item"><a href="https://www.convergenceindia.org/exhibition-venue-and-dates.aspx" class="nav-link">Exhibition Venue & Dates</a></li>
 							
 			</ul>
 							</div>
@@ -60,9 +51,9 @@ export const html = `<header class="fixed-top-band">
 							<div class="menu-box-main">
 								<a href="#" class="menu-heading nav-link abc">Visitor</a>
 									<ul class="menu-ul-main nav flex-column">
-										<li class="nav-item"><a href="visitor-profile.aspx" class="nav-link">Visitor Profile</a></li>
-										<li class="nav-item"><a href="https://www.convergenceindia.org/visitor-registration.aspx" class="nav-link" target="_blank">Visitor Registration</a></li>
-										<li class="nav-item"><a href="https://www.mobileindiaexpo.com/hosted-buyers-registration.aspx" class="nav-link" target="_blank">Hosted Buyer</a></li>
+										<li class="nav-item"><a href="https://www.convergenceindia.org/visitor-profile.aspx" class="nav-link">Visitor Profile</a></li>
+										<li class="nav-item"><a href="/visitor-registration" class="nav-link" >Visitor Registration</a></li>
+										<li class="nav-item"><a href="/hosted-buyers-registration" class="nav-link" >Hosted Buyer</a></li>
 									</ul>
 							</div>
 						</div>
@@ -71,7 +62,7 @@ export const html = `<header class="fixed-top-band">
 							<div class="menu-box-main">
 								<a href="#" class="menu-heading nav-link abc">Conference</a>
 			<ul class="menu-ul-main nav flex-column">
-				<li class="nav-item"><a href="https://www.convergenceindia.org/speaker-registration.aspx" class="nav-link">Speaker Registration</a></li>
+				<li class="nav-item"><a href="/speaker-registration" class="nav-link">Speaker Registration</a></li>
 				
 				<li class="nav-item"><a href="https://www.convergenceindia.org/conference-programme.aspx" class="nav-link" target="_blank">Conference Programme</a></li>
 				<li class="nav-item"><a href="https://www.convergenceindia.org/speakers.aspx#speakers" class="nav-link" target="_blank">Eminent Speakers</a></li>
@@ -98,10 +89,10 @@ export const html = `<header class="fixed-top-band">
 							<div class="menu-box-main">
 								<a href="#" class="menu-heading nav-link abc">Endorsements</a>
 								<ul class="menu-ul-main nav flex-column">
-									<li class="nav-item"><a href="partners.aspx" class="nav-link">Partners </a></li>
-									<li class="nav-item"><a href="support.aspx" class="nav-link">Support</a></li>
-									<li class="nav-item"><a href="supporting-associations.aspx" class="nav-link">Supporting Associations</a></li>
-									<li class="nav-item"><a href="media-partners.aspx" class="nav-link">Media Partners </a></li>
+									<li class="nav-item"><a href="https://www.convergenceindia.org/partners.aspx" class="nav-link">Partners </a></li>
+									<li class="nav-item"><a href="https://www.convergenceindia.org/support.aspx" class="nav-link">Support</a></li>
+									<li class="nav-item"><a href="https://www.convergenceindia.org/supporting-associations.aspx" class="nav-link">Supporting Associations</a></li>
+									<li class="nav-item"><a href="https://www.convergenceindia.org/media-partners.aspx" class="nav-link">Media Partners </a></li>
 									
 								</ul>
 							</div>

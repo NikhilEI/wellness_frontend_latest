@@ -435,8 +435,7 @@ Join us and discover the latest innovations, meet the brands and businesses lead
 					</div>
 					
 					<div class="product-sectors-btn-row aos-init aos-animate" data-aos="fade-up">
-						
-						
+						<a href="/hosted-buyers-registration"  class="home-book-btn home-speakers-btn mb-sm-0 mb-3">Register Now  <i class="far fa-arrow-right btn-arrow-icon"></i></a>				
 					</div>
 					
 				</div>

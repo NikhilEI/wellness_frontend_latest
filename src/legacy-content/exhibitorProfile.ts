@@ -55,7 +55,7 @@ export const html = `
 								<a href="#" class="menu-heading nav-link abc">Exhibition</a>
 			<ul class="menu-ul-main nav flex-column">
 				<li class="nav-item"><a href="exhibitor-profile.aspx" class="nav-link">Exhibitor Profile</a></li>
-				<li class="nav-item"><a href="https://www.convergenceindia.org/space-booking.aspx" class="nav-link" target="_blank">Space Booking Form</a></li>
+				<li class="nav-item"><a href="/space-booking" class="nav-link" target="_blank">Space Booking Form</a></li>
 				
 				
 				<li class="nav-item"><a href="https://www.convergenceindia.org/exhibitors-and-participants-convergence-india.aspx" class="nav-link" target="_blank">List of Participants</a></li>
@@ -355,9 +355,6 @@ export const html = `
 				</div>
 			</div>
 			<div class="row justify-content-center">
-				<div class="col-lg-4 col-md-5 col-sm-6 col-6">
-					<div class="footer-logo-box"><img src="/images/footer-event-organiger-2026.png" alt="ITPO -India Trade Promotion Organisation (ITPO)"></div>
-				</div>
 				<div class="col-lg-4 col-md-5 col-sm-6 col-6">
 					<div class="footer-logo-box"><img src="/images/footer-event-organiger-2026-1.png" alt="Exhibitions India"></div>
 				</div>
