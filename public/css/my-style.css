@@ -526,6 +526,7 @@ background: linear-gradient(90deg, rgba(3, 29, 124, 1) 0%, rgba(28, 90, 249, 1) 
 .footer-logo-heading{width: 100%; height: auto; float: left; color:#ffffff; font-size:25px; line-height: 1; text-align:center; font-weight:600; margin-bottom: 10px;}
 .footer-logo-box{width: 100%; height: auto; float: left; text-align:center;}
 .footer-logo-box img{max-width: 100%;}
+.footer-organisers-logos{display:flex; align-items:center;}
 .footer-left-border{border-left:1px solid #6674c2;}
 .footer-left-border hr{border-top-color: #6674c2; opacity: 1;}
 .footer-section-bottom{background:#010c2e;}

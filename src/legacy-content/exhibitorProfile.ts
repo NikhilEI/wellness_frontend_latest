@@ -354,7 +354,7 @@ export const html = `
 					<div class="footer-logo-heading">Organiser</div>
 				</div>
 			</div>
-			<div class="row justify-content-center">
+			<div class="row justify-content-center footer-organisers-logos">
 				<div class="col-lg-4 col-md-5 col-sm-6 col-6">
 					<div class="footer-logo-box"><img src="/images/footer-event-organiger-2026.png" alt="ITPO -India Trade Promotion Organisation (ITPO)"></div>
 				</div>
