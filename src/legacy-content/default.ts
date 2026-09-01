@@ -23,7 +23,7 @@ export const html = `
 				</video>
 				
 				<video poster="/video-2026/video/home-banner-bg.jpg" playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop" class="d-md-none d-block">
-					<source src="/video-2026/video/wellnessindiaexpo-home-banner-mobile.mp4" type="video/mp4">
+					<source src="/video-2026/video/mobile_first_fold.mp4" type="video/mp4">
 				</video>
 				
 				<div class="carousel-caption">
