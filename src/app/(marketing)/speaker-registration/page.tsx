@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Header from "@/components/legacy/Header";
 import Footer from "@/components/legacy/Footer";
-import RecaptchaWidget from "@/components/RecaptchaWidget";
 import SpeakerRegistrationForm from "@/components/SpeakerRegistrationForm";
 import AdditionalInfoContacts, { PRINCE_SINGH_CONTACT, PANKAJ_JAIN_CONTACT } from "@/components/AdditionalInfoContacts";
 import styles from "@/components/SpeakerRegistrationIntro.module.css";
@@ -60,7 +59,6 @@ export default function SpeakerRegistrationPage() {
         </div>
       </section>
       <Footer />
-      <RecaptchaWidget />
     </>
   );
 }

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Header from "@/components/legacy/Header";
 import Footer from "@/components/legacy/Footer";
-import RecaptchaWidget from "@/components/RecaptchaWidget";
 import HostedBuyersRegistrationForm from "@/components/HostedBuyersRegistrationForm";
 import AdditionalInfoContacts, { PRINCE_SINGH_CONTACT, PANKAJ_JAIN_CONTACT } from "@/components/AdditionalInfoContacts";
 
@@ -55,7 +54,6 @@ export default function HostedBuyersRegistrationPage() {
         </div>
       </section>
       <Footer />
-      <RecaptchaWidget />
     </>
   );
 }

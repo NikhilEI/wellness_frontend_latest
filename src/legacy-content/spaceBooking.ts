@@ -332,16 +332,6 @@ export const html = `
 							
 						</div>
 						
-						<div class="row">
-							<div class="col-md-6 mb-4">
-								<div class="captcha-main">
-									<div id="g-recaptcha-container"></div>
-									
-									<label id="g-recaptcha-error" class="error" for="g-recaptcha">Please Select Captcha</label>
-
-								  </div>
-							</div>
-						</div>
 						<div class="row mb-4">
 							<div class="col-sm-12">
 								<div class="disclaimer-col-txt">

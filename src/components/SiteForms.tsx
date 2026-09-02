@@ -241,15 +241,6 @@ function wireSpaceBookingForm() {
       return;
     }
 
-    let recaptchaToken = "";
-    if (window.grecaptcha && window.__recaptchaWidgetId !== undefined) {
-      recaptchaToken = window.grecaptcha.getResponse(window.__recaptchaWidgetId);
-      if (!recaptchaToken) {
-        setMsg(msgEl, "Please complete the captcha verification.", true);
-        return;
-      }
-    }
-
     const payload = {
       firstName,
       lastName,
@@ -260,8 +251,7 @@ function wireSpaceBookingForm() {
       city,
       country: value("Country"),
       mobileNo,
-      shellSpace: value("Shell_Space"),
-      recaptchaToken
+      shellSpace: value("Shell_Space")
     };
 
     const submitBtn = document.getElementById("btnRegistration") as HTMLInputElement | null;
@@ -274,9 +264,6 @@ function wireSpaceBookingForm() {
       })
       .catch((err: ApiError) => {
         setMsg(msgEl, err.message, true);
-        if (window.grecaptcha && window.__recaptchaWidgetId !== undefined) {
-          window.grecaptcha.reset(window.__recaptchaWidgetId);
-        }
       })
       .finally(() => {
         if (submitBtn) submitBtn.disabled = false;

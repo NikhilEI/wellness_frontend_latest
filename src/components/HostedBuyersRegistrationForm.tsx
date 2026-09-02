@@ -128,15 +128,6 @@ export default function HostedBuyersRegistrationForm() {
       return;
     }
 
-    let recaptchaToken = "";
-    if (window.grecaptcha && window.__recaptchaWidgetId !== undefined) {
-      recaptchaToken = window.grecaptcha.getResponse(window.__recaptchaWidgetId);
-      if (!recaptchaToken) {
-        setApiError("Please complete the captcha verification.");
-        return;
-      }
-    }
-
     setStatus("submitting");
 
     try {
@@ -152,16 +143,12 @@ export default function HostedBuyersRegistrationForm() {
         outlets: form.outlets.trim(),
         companyTurnover: form.companyTurnover.trim(),
         companyProfile: form.companyProfile.trim(),
-        termsAccepted: form.termsAccepted,
-        recaptchaToken
+        termsAccepted: form.termsAccepted
       });
       window.location.href = "/response";
     } catch (err) {
       setStatus("idle");
       setApiError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
-      if (window.grecaptcha && window.__recaptchaWidgetId !== undefined) {
-        window.grecaptcha.reset(window.__recaptchaWidgetId);
-      }
     }
   }
 
@@ -375,13 +362,6 @@ export default function HostedBuyersRegistrationForm() {
           </div>
         </div>
 
-        <div className="row">
-          <div className="col-md-6 mb-4">
-            <div className="captcha-main">
-              <div id="g-recaptcha-container"></div>
-            </div>
-          </div>
-        </div>
 
         <div className="row mb-4">
           <div className="col-sm-12">

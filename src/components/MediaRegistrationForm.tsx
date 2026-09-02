@@ -116,15 +116,6 @@ export default function MediaRegistrationForm() {
       return;
     }
 
-    let recaptchaToken = "";
-    if (window.grecaptcha && window.__recaptchaWidgetId !== undefined) {
-      recaptchaToken = window.grecaptcha.getResponse(window.__recaptchaWidgetId);
-      if (!recaptchaToken) {
-        setApiError("Please complete the captcha verification.");
-        return;
-      }
-    }
-
     setSubmitting(true);
 
     try {
@@ -137,16 +128,12 @@ export default function MediaRegistrationForm() {
         city: form.city.trim(),
         country: form.country,
         mobile: form.mobile,
-        termsAccepted: form.termsAccepted,
-        recaptchaToken
+        termsAccepted: form.termsAccepted
       });
       router.push("/response");
     } catch (err) {
       setSubmitting(false);
       setApiError(err instanceof ApiError ? err.message : "Something went wrong. Please try again.");
-      if (window.grecaptcha && window.__recaptchaWidgetId !== undefined) {
-        window.grecaptcha.reset(window.__recaptchaWidgetId);
-      }
     }
   }
 
@@ -290,11 +277,6 @@ export default function MediaRegistrationForm() {
           </div>
         </div>
 
-        <div className="row mb-4">
-          <div className="col-md-6">
-            <div id="g-recaptcha-container"></div>
-          </div>
-        </div>
 
         <div className="row mb-4">
           <div className="col-sm-12">
