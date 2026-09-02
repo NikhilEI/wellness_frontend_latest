@@ -314,7 +314,7 @@ export const html = `
 								<div id="spaceBookingOtpBlock" class="otp-block-main">
 									<div class="otp-actions-row">
 										<button type="button" id="btnSendMobileOtp" class="otp-btn-secondary">Send OTP</button>
-										<span id="spaceBookingOtpVerifiedBadge" class="otp-verified-badge" style="display:none;">Mobile number verified</span>
+										<span id="spaceBookingOtpVerifiedBadge" class="otp-verified-badge" style="display:none;">Mobile number & email verified</span>
 									</div>
 									<p id="spaceBookingOtpInfo" class="otp-info-text" style="display:none;"></p>
 									<p id="spaceBookingOtpError" class="otp-error-text" style="display:none;"></p>

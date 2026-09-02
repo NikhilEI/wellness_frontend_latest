@@ -47,7 +47,8 @@ const initialOtpState: OtpState = {
 
 export type OtpIdentifier =
   | { channel: "mobile"; mobile: string; countryCode: string }
-  | { channel: "email"; email: string };
+  | { channel: "email"; email: string }
+  | { channel: "both"; mobile: string; countryCode: string; email: string };
 
 // Drives one OTP channel (a mobile number or an email address) against the shared
 // /api/otp/send + /api/otp/verify endpoints. Each form supplies its own identifier
@@ -67,11 +68,15 @@ export function useOtpVerification() {
     setState((prev) => ({ ...prev, sending: true, error: "" }));
     try {
       const body = await postJson(`${API_BASE}/otp/send`, identifier);
+      const info =
+        identifier.channel === "both"
+          ? body.message || "OTP sent successfully via Email and WhatsApp."
+          : `OTP sent. It's valid for ${Math.round((body.expiresInSeconds || 600) / 60)} minutes.`;
       setState((prev) => ({
         ...prev,
         sending: false,
         sent: true,
-        info: `OTP sent. It's valid for ${Math.round((body.expiresInSeconds || 600) / 60)} minutes.`
+        info
       }));
       return true;
     } catch (err) {

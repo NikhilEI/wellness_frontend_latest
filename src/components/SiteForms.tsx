@@ -137,6 +137,7 @@ function wireSpaceBookingForm() {
   }
 
   mobileInput?.addEventListener("input", resetOtpState);
+  emailInput?.addEventListener("input", resetOtpState);
 
   btnSendOtp?.addEventListener("click", () => {
     const mobileNo = mobileInput?.value.trim() ?? "";
@@ -147,14 +148,22 @@ function wireSpaceBookingForm() {
       return;
     }
 
+    const email = emailInput?.value.trim() ?? "";
+    if (!EMAIL_RE.test(email)) {
+      emailInput?.setCustomValidity("Please enter your email address first.");
+      form.reportValidity();
+      emailInput?.setCustomValidity("");
+      return;
+    }
+
     showOtpError("");
     btnSendOtp.disabled = true;
     btnSendOtp.textContent = "Sending OTP...";
 
-    postJson(`${API_BASE}/otp/send`, { channel: "mobile", mobile: mobileNo, countryCode: OTP_COUNTRY_CODE })
+    postJson(`${API_BASE}/otp/send`, { channel: "both", mobile: mobileNo, countryCode: OTP_COUNTRY_CODE, email })
       .then((body) => {
         if (otpCodeRow) otpCodeRow.style.display = "flex";
-        showOtpInfo(`OTP sent. It's valid for ${Math.round((body.expiresInSeconds || 600) / 60)} minutes.`);
+        showOtpInfo(body.message || "OTP sent successfully via Email and WhatsApp.");
         btnSendOtp.textContent = "Resend OTP";
       })
       .catch((err: ApiError) => {
@@ -168,6 +177,7 @@ function wireSpaceBookingForm() {
 
   btnVerifyOtp?.addEventListener("click", () => {
     const mobileNo = mobileInput?.value.trim() ?? "";
+    const email = emailInput?.value.trim() ?? "";
     const code = otpInput?.value.trim() ?? "";
     if (!code) return;
 
@@ -175,7 +185,7 @@ function wireSpaceBookingForm() {
     btnVerifyOtp.disabled = true;
     btnVerifyOtp.textContent = "Verifying OTP...";
 
-    postJson(`${API_BASE}/otp/verify`, { channel: "mobile", mobile: mobileNo, countryCode: OTP_COUNTRY_CODE, otp: code })
+    postJson(`${API_BASE}/otp/verify`, { channel: "both", mobile: mobileNo, countryCode: OTP_COUNTRY_CODE, email, otp: code })
       .then(() => {
         mobileOtpVerified = true;
         if (otpCodeRow) otpCodeRow.style.display = "none";

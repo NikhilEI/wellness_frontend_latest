@@ -130,12 +130,21 @@ export default function BrochureDownloadModal() {
     if (mobileOtp.state.sent) mobileOtp.reset();
   }
 
+  function handleEmailChange(value: string) {
+    setField("email", value);
+    if (mobileOtp.state.sent) mobileOtp.reset();
+  }
+
   function sendMobileOtp() {
     if (!form.countryCode || !MOBILE_RE.test(form.mobile)) {
       setErrors((prev) => ({ ...prev, mobile: "Please enter a valid 10-digit mobile number." }));
       return;
     }
-    mobileOtp.send({ channel: "mobile", mobile: form.mobile, countryCode: form.countryCode });
+    if (!EMAIL_RE.test(form.email.trim())) {
+      setErrors((prev) => ({ ...prev, email: "Please enter your email address first." }));
+      return;
+    }
+    mobileOtp.send({ channel: "both", mobile: form.mobile, countryCode: form.countryCode, email: form.email.trim().toLowerCase() });
   }
 
   function validate(): Record<string, string> {
@@ -331,7 +340,7 @@ export default function BrochureDownloadModal() {
                     type="email"
                     className={`${styles.input} ${errors.email ? styles.inputError : ""}`}
                     value={form.email}
-                    onChange={(e) => setField("email", e.target.value)}
+                    onChange={(e) => handleEmailChange(e.target.value)}
                     aria-invalid={Boolean(errors.email)}
                   />
                   {errors.email && <span className={styles.errorText}>{errors.email}</span>}
@@ -379,11 +388,14 @@ export default function BrochureDownloadModal() {
                   {errors.mobile && <span className={styles.errorText}>{errors.mobile}</span>}
                   <OtpVerificationField
                     otp={mobileOtp.state}
-                    verifiedLabel="Mobile number verified"
-                    sendDisabled={!form.countryCode || !form.mobile}
+                    verifiedLabel="Mobile number & email verified"
+                    sendDisabled={!form.countryCode || !form.mobile || !form.email}
                     onSend={sendMobileOtp}
                     onVerify={() =>
-                      mobileOtp.verify({ channel: "mobile", mobile: form.mobile, countryCode: form.countryCode }, mobileOtp.state.code)
+                      mobileOtp.verify(
+                        { channel: "both", mobile: form.mobile, countryCode: form.countryCode, email: form.email.trim().toLowerCase() },
+                        mobileOtp.state.code
+                      )
                     }
                     onCodeChange={mobileOtp.setCode}
                   />

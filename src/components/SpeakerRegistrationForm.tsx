@@ -92,12 +92,21 @@ export default function SpeakerRegistrationForm() {
     if (mobileOtp.state.sent) mobileOtp.reset();
   }
 
+  function handleEmailChange(value: string) {
+    setField("email", value);
+    if (mobileOtp.state.sent) mobileOtp.reset();
+  }
+
   function sendMobileOtp() {
     if (!MOBILE_RE.test(form.mobile)) {
       setErrors((prev) => ({ ...prev, mobile: "Please enter a valid 10-digit mobile number." }));
       return;
     }
-    mobileOtp.send({ channel: "mobile", mobile: form.mobile, countryCode: OTP_COUNTRY_CODE });
+    if (!EMAIL_RE.test(form.email.trim())) {
+      setErrors((prev) => ({ ...prev, email: "Please enter your email address first." }));
+      return;
+    }
+    mobileOtp.send({ channel: "both", mobile: form.mobile, countryCode: OTP_COUNTRY_CODE, email: form.email.trim().toLowerCase() });
   }
 
   function validate(): Record<string, string> {
@@ -251,7 +260,7 @@ export default function SpeakerRegistrationForm() {
               type="email"
               className={`form-control ${errors.email ? "is-invalid" : ""}`}
               value={form.email}
-              onChange={(e) => setField("email", e.target.value)}
+              onChange={(e) => handleEmailChange(e.target.value)}
             />
             {errors.email && <div className="invalid-feedback d-block">{errors.email}</div>}
           </div>
@@ -274,11 +283,14 @@ export default function SpeakerRegistrationForm() {
             {errors.mobile && <div className="invalid-feedback d-block">{errors.mobile}</div>}
             <OtpVerificationField
               otp={mobileOtp.state}
-              verifiedLabel="Mobile number verified"
-              sendDisabled={!form.mobile}
+              verifiedLabel="Mobile number & email verified"
+              sendDisabled={!form.mobile || !form.email}
               onSend={sendMobileOtp}
               onVerify={() =>
-                mobileOtp.verify({ channel: "mobile", mobile: form.mobile, countryCode: OTP_COUNTRY_CODE }, mobileOtp.state.code)
+                mobileOtp.verify(
+                  { channel: "both", mobile: form.mobile, countryCode: OTP_COUNTRY_CODE, email: form.email.trim().toLowerCase() },
+                  mobileOtp.state.code
+                )
               }
               onCodeChange={mobileOtp.setCode}
             />
