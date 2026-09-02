@@ -3,12 +3,16 @@
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { countries } from "@/data/countries";
+import OtpVerificationField from "./OtpVerificationField";
+import { useOtpVerification } from "@/hooks/useOtpVerification";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:4010/api";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MOBILE_RE = /^[0-9]{10}$/;
 const NAME_RE = /^[A-Za-z\s'-]{2,50}$/;
 const CITY_RE = /^[A-Za-z\s'-]{2,100}$/;
+// This form only collects a 10-digit Indian mobile number (no country-code selector).
+const OTP_COUNTRY_CODE = "+91";
 
 interface FormState {
   mediaName: string;
@@ -61,6 +65,7 @@ export default function MediaRegistrationForm() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [apiError, setApiError] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const mobileOtp = useOtpVerification();
 
   function setField<K extends keyof FormState>(key: K, value: FormState[K]) {
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -70,6 +75,19 @@ export default function MediaRegistrationForm() {
       delete next[key];
       return next;
     });
+  }
+
+  function handleMobileChange(value: string) {
+    setField("mobile", value.replace(/[^0-9]/g, "").slice(0, 10));
+    if (mobileOtp.state.sent) mobileOtp.reset();
+  }
+
+  function sendMobileOtp() {
+    if (!MOBILE_RE.test(form.mobile)) {
+      setErrors((prev) => ({ ...prev, mobile: "Please enter a valid 10-digit mobile number." }));
+      return;
+    }
+    mobileOtp.send({ channel: "mobile", mobile: form.mobile, countryCode: OTP_COUNTRY_CODE });
   }
 
   function validate(): Record<string, string> {
@@ -83,6 +101,7 @@ export default function MediaRegistrationForm() {
     if (!form.country) next.country = "Please select a country.";
     if (!MOBILE_RE.test(form.mobile)) next.mobile = "Please enter a valid 10-digit mobile number.";
     if (!form.termsAccepted) next.termsAccepted = "Please accept the Terms and Conditions.";
+    if (!mobileOtp.state.verified) next.otp = "Please verify your mobile number via OTP before submitting.";
 
     return next;
   }
@@ -250,9 +269,24 @@ export default function MediaRegistrationForm() {
               maxLength={10}
               className={`form-control ${errors.mobile ? "is-invalid" : ""}`}
               value={form.mobile}
-              onChange={(e) => setField("mobile", e.target.value.replace(/[^0-9]/g, "").slice(0, 10))}
+              onChange={(e) => handleMobileChange(e.target.value)}
             />
             {errors.mobile && <div className="invalid-feedback d-block">{errors.mobile}</div>}
+            <OtpVerificationField
+              otp={mobileOtp.state}
+              verifiedLabel="Mobile number verified"
+              sendDisabled={!form.mobile}
+              onSend={sendMobileOtp}
+              onVerify={() =>
+                mobileOtp.verify({ channel: "mobile", mobile: form.mobile, countryCode: OTP_COUNTRY_CODE }, mobileOtp.state.code)
+              }
+              onCodeChange={mobileOtp.setCode}
+            />
+            {errors.otp && (
+              <div className="invalid-feedback d-block" role="alert">
+                {errors.otp}
+              </div>
+            )}
           </div>
         </div>
 

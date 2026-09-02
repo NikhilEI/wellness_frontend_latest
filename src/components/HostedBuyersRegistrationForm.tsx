@@ -2,6 +2,8 @@
 
 import { useState, type FormEvent } from "react";
 import styles from "./VisitorRegistrationForm.module.css";
+import OtpVerificationField from "./OtpVerificationField";
+import { useOtpVerification } from "@/hooks/useOtpVerification";
 import { countryNames } from "@/data/countryNames";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:4010/api";
@@ -11,6 +13,8 @@ const NAME_RE = /^[A-Za-z\s'-]{2,100}$/;
 const CITY_RE = /^[A-Za-z\s'-]{2,100}$/;
 const WEBSITE_RE = /^[^\s]+\.[a-zA-Z]{2,}([^\s]*)?$/;
 const COMPANY_PROFILE_MAX_LENGTH = 400;
+// This form only collects a 10-digit Indian mobile number (no country-code selector).
+const OTP_COUNTRY_CODE = "+91";
 
 interface FormState {
   fullName: string;
@@ -68,6 +72,7 @@ export default function HostedBuyersRegistrationForm() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<"idle" | "submitting">("idle");
   const [apiError, setApiError] = useState("");
+  const mobileOtp = useOtpVerification();
 
   function setField<K extends keyof FormState>(key: K, value: FormState[K]) {
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -81,6 +86,15 @@ export default function HostedBuyersRegistrationForm() {
 
   function handleMobileChange(value: string) {
     setField("mobile", value.replace(/[^0-9]/g, "").slice(0, 10));
+    if (mobileOtp.state.sent) mobileOtp.reset();
+  }
+
+  function sendMobileOtp() {
+    if (!MOBILE_RE.test(form.mobile)) {
+      setErrors((prev) => ({ ...prev, mobile: "Please enter a valid 10-digit mobile number." }));
+      return;
+    }
+    mobileOtp.send({ channel: "mobile", mobile: form.mobile, countryCode: OTP_COUNTRY_CODE });
   }
 
   function validate(): Record<string, string> {
@@ -100,6 +114,7 @@ export default function HostedBuyersRegistrationForm() {
       next.companyProfile = `Company Profile must be ${COMPANY_PROFILE_MAX_LENGTH} characters or fewer.`;
     }
     if (!form.termsAccepted) next.termsAccepted = "Please accept the Terms and Conditions.";
+    if (!mobileOtp.state.verified) next.otp = "Please verify your mobile number via OTP before submitting.";
     return next;
   }
 
@@ -237,6 +252,21 @@ export default function HostedBuyersRegistrationForm() {
               onChange={(e) => handleMobileChange(e.target.value)}
             />
             {errors.mobile && <div className="invalid-feedback d-block">{errors.mobile}</div>}
+            <OtpVerificationField
+              otp={mobileOtp.state}
+              verifiedLabel="Mobile number verified"
+              sendDisabled={!form.mobile}
+              onSend={sendMobileOtp}
+              onVerify={() =>
+                mobileOtp.verify({ channel: "mobile", mobile: form.mobile, countryCode: OTP_COUNTRY_CODE }, mobileOtp.state.code)
+              }
+              onCodeChange={mobileOtp.setCode}
+            />
+            {errors.otp && (
+              <div className="invalid-feedback d-block" role="alert">
+                {errors.otp}
+              </div>
+            )}
           </div>
           <div className="col-md-6 mb-4">
             <label className="form-label" htmlFor="city">

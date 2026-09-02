@@ -527,6 +527,19 @@ background: linear-gradient(90deg, rgba(3, 29, 124, 1) 0%, rgba(28, 90, 249, 1) 
 .footer-logo-box{width: 100%; height: auto; float: left; text-align:center;}
 .footer-logo-box img{max-width: 100%;}
 .footer-organisers-logos{display:flex; align-items:center;}
+
+.otp-block-main{margin-top:14px; padding:16px; background:#fbfbfb; border:1px dashed #ccc; border-radius:8px;}
+.otp-actions-row{display:flex; flex-wrap:wrap; gap:10px; align-items:center;}
+.otp-code-row{display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:12px;}
+.otp-input-box{width:110px; letter-spacing:3px; font-size:15px; font-weight:600; text-align:center; padding:0.5rem 0.6rem; border:1px solid #ccc; border-radius:6px; background:#f9f9f9; color:#1a1a1a; transition:border-color 0.15s ease;}
+.otp-input-box:focus{outline:none; border-color:#fc196b; background:#fff;}
+.otp-btn-secondary{padding:7px 16px; border-radius:20px; color:#fc196b; background:#fff; border:1px solid #fc196b; font-size:13px; font-weight:600; cursor:pointer; transition:background-color 0.15s ease, color 0.15s ease;}
+.otp-btn-secondary:hover:not(:disabled){background:#fc196b; color:#fff;}
+.otp-btn-secondary:disabled{opacity:0.5; cursor:not-allowed;}
+.otp-verified-badge{color:#2e7d32; font-weight:700; font-size:14px;}
+.otp-verified-badge::before{content:"\2713 ";}
+.otp-info-text{font-size:13px; color:#555; margin:8px 0 0;}
+.otp-error-text{font-size:13px; color:#c0392b; font-weight:500; margin:4px 0 0;}
 .footer-left-border{border-left:1px solid #6674c2;}
 .footer-left-border hr{border-top-color: #6674c2; opacity: 1;}
 .footer-section-bottom{background:#010c2e;}

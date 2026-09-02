@@ -1,0 +1,85 @@
+.otpBlock {
+  margin-top: 14px;
+  padding: 16px;
+  background: #fbfbfb;
+  border: 1px dashed #ccc;
+  border-radius: 8px;
+}
+
+.otpActionsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.otpCodeRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.otpInput {
+  width: 110px;
+  letter-spacing: 3px;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #f9f9f9;
+  color: #1a1a1a;
+  transition: border-color 0.15s ease;
+}
+
+.otpInput:focus {
+  outline: none;
+  border-color: #fc196b;
+  background: #fff;
+}
+
+.btnSecondary {
+  padding: 7px 16px;
+  border-radius: 20px;
+  color: #fc196b;
+  background: #fff;
+  border: 1px solid #fc196b;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.btnSecondary:hover:not(:disabled) {
+  background: #fc196b;
+  color: #fff;
+}
+
+.btnSecondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.verifiedBadge {
+  color: #2e7d32;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.verifiedBadge::before {
+  content: "✓ ";
+}
+
+.otpInfo {
+  font-size: 13px;
+  color: #555;
+}
+
+.otpError {
+  font-size: 13px;
+  color: #c0392b;
+  font-weight: 500;
+}

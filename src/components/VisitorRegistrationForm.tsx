@@ -3,6 +3,8 @@
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import styles from "./VisitorRegistrationForm.module.css";
+import OtpVerificationField from "./OtpVerificationField";
+import { useOtpVerification } from "@/hooks/useOtpVerification";
 import { countries, findCountry } from "@/data/countries";
 import { statesForCountry } from "@/data/indiaStates";
 import {
@@ -16,8 +18,6 @@ import { eventEligibility } from "@/lib/eventEligibility";
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:4010/api";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const NAME_RE = /^[A-Za-z][A-Za-z\s'-]{1,99}$/;
-
-type OtpChannel = "mobile" | "email";
 
 interface FormState {
   title: string;
@@ -38,16 +38,6 @@ interface FormState {
   marketingConsent: boolean;
 }
 
-interface OtpChannelState {
-  sent: boolean;
-  code: string;
-  verified: boolean;
-  sending: boolean;
-  verifying: boolean;
-  error: string;
-  info: string;
-}
-
 const initialForm: FormState = {
   title: "",
   firstName: "",
@@ -65,16 +55,6 @@ const initialForm: FormState = {
   productInterests: [],
   termsAccepted: false,
   marketingConsent: false
-};
-
-const initialOtpChannel: OtpChannelState = {
-  sent: false,
-  code: "",
-  verified: false,
-  sending: false,
-  verifying: false,
-  error: "",
-  info: ""
 };
 
 class ApiError extends Error {
@@ -101,10 +81,8 @@ async function postJson(url: string, data: unknown) {
 export default function VisitorRegistrationForm() {
   const [form, setForm] = useState<FormState>(initialForm);
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [otp, setOtp] = useState<Record<OtpChannel, OtpChannelState>>({
-    mobile: { ...initialOtpChannel },
-    email: { ...initialOtpChannel }
-  });
+  const mobileOtp = useOtpVerification();
+  const emailOtp = useOtpVerification();
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
   const [apiError, setApiError] = useState("");
   const [registrationId, setRegistrationId] = useState("");
@@ -112,7 +90,7 @@ export default function VisitorRegistrationForm() {
 
   const selectedCountry = findCountry(form.country);
   const stateOptions = selectedCountry ? statesForCountry(selectedCountry.code) : [];
-  const isOtpVerified = otp.mobile.verified || otp.email.verified;
+  const isOtpVerified = mobileOtp.state.verified || emailOtp.state.verified;
 
   function setField<K extends keyof FormState>(key: K, value: FormState[K]) {
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -122,10 +100,6 @@ export default function VisitorRegistrationForm() {
       delete next[key];
       return next;
     });
-  }
-
-  function resetOtpChannel(channel: OtpChannel) {
-    setOtp((prev) => ({ ...prev, [channel]: { ...initialOtpChannel } }));
   }
 
   function handleCountryChange(name: string) {
@@ -148,12 +122,12 @@ export default function VisitorRegistrationForm() {
   function handleMobileChange(value: string) {
     const digits = value.replace(/[^0-9]/g, "").slice(0, selectedCountry?.phoneLength.max || 15);
     setField("mobile", digits);
-    if (otp.mobile.sent) resetOtpChannel("mobile");
+    if (mobileOtp.state.sent) mobileOtp.reset();
   }
 
   function handleEmailChange(value: string) {
     setField("email", value);
-    if (otp.email.sent) resetOtpChannel("email");
+    if (emailOtp.state.sent) emailOtp.reset();
   }
 
   function toggleProductInterest(option: string) {
@@ -174,65 +148,25 @@ export default function VisitorRegistrationForm() {
     });
   }
 
-  async function sendOtp(channel: OtpChannel) {
-    if (channel === "mobile") {
-      if (!selectedCountry) {
-        setErrors((prev) => ({ ...prev, country: "Please select a country first." }));
-        return;
-      }
-      const { min, max } = selectedCountry.phoneLength;
-      if (form.mobile.length < min || form.mobile.length > max) {
-        setErrors((prev) => ({ ...prev, mobile: "Please enter a valid mobile number." }));
-        return;
-      }
-    } else if (!EMAIL_RE.test(form.email.trim())) {
+  function sendMobileOtp() {
+    if (!selectedCountry) {
+      setErrors((prev) => ({ ...prev, country: "Please select a country first." }));
+      return;
+    }
+    const { min, max } = selectedCountry.phoneLength;
+    if (form.mobile.length < min || form.mobile.length > max) {
+      setErrors((prev) => ({ ...prev, mobile: "Please enter a valid mobile number." }));
+      return;
+    }
+    mobileOtp.send({ channel: "mobile", mobile: form.mobile, countryCode: form.countryCode });
+  }
+
+  function sendEmailOtp() {
+    if (!EMAIL_RE.test(form.email.trim())) {
       setErrors((prev) => ({ ...prev, email: "Please enter a valid email address." }));
       return;
     }
-
-    setOtp((prev) => ({ ...prev, [channel]: { ...prev[channel], sending: true, error: "" } }));
-
-    try {
-      const body = await postJson(`${API_BASE}/otp/send`, {
-        channel,
-        mobile: form.mobile,
-        countryCode: form.countryCode,
-        email: form.email.trim().toLowerCase()
-      });
-      setOtp((prev) => ({
-        ...prev,
-        [channel]: {
-          ...prev[channel],
-          sending: false,
-          sent: true,
-          info: `OTP sent. It's valid for ${Math.round((body.expiresInSeconds || 600) / 60)} minutes. (Demo mode — OTP is 1234 until the SMS/email gateway is live.)`
-        }
-      }));
-    } catch (err) {
-      const message = err instanceof ApiError ? err.message : "Could not send OTP. Please try again.";
-      setOtp((prev) => ({ ...prev, [channel]: { ...prev[channel], sending: false, error: message } }));
-    }
-  }
-
-  async function verifyOtp(channel: OtpChannel) {
-    setOtp((prev) => ({ ...prev, [channel]: { ...prev[channel], verifying: true, error: "" } }));
-
-    try {
-      await postJson(`${API_BASE}/otp/verify`, {
-        channel,
-        mobile: form.mobile,
-        countryCode: form.countryCode,
-        email: form.email.trim().toLowerCase(),
-        otp: otp[channel].code
-      });
-      setOtp((prev) => ({
-        ...prev,
-        [channel]: { ...prev[channel], verifying: false, verified: true, info: "Verified successfully.", error: "" }
-      }));
-    } catch (err) {
-      const message = err instanceof ApiError ? err.message : "Invalid or expired OTP.";
-      setOtp((prev) => ({ ...prev, [channel]: { ...prev[channel], verifying: false, error: message } }));
-    }
+    emailOtp.send({ channel: "email", email: form.email.trim().toLowerCase() });
   }
 
   function validate(): Record<string, string> {
@@ -596,50 +530,14 @@ export default function VisitorRegistrationForm() {
               </div>
             )}
 
-            <div className={styles.otpBlock}>
-              <div className={styles.otpActionsRow}>
-                {otp.mobile.verified ? (
-                  <span className={styles.verifiedBadge}>Mobile number verified</span>
-                ) : (
-                  <button
-                    type="button"
-                    className={styles.btnSecondary}
-                    disabled={otp.mobile.sending || !form.country || !form.mobile}
-                    onClick={() => sendOtp("mobile")}
-                  >
-                    {otp.mobile.sending ? "Sending OTP..." : otp.mobile.sent ? "Resend OTP" : "Send OTP"}
-                  </button>
-                )}
-              </div>
-              {otp.mobile.info && !otp.mobile.verified && <p className={styles.otpInfo}>{otp.mobile.info}</p>}
-              {otp.mobile.error && <p className={styles.otpError}>{otp.mobile.error}</p>}
-              {otp.mobile.sent && !otp.mobile.verified && (
-                <div className={styles.otpCodeRow}>
-                  <input
-                    type="text"
-                    inputMode="numeric"
-                    maxLength={6}
-                    className={styles.otpInput}
-                    placeholder="OTP"
-                    value={otp.mobile.code}
-                    onChange={(e) =>
-                      setOtp((prev) => ({
-                        ...prev,
-                        mobile: { ...prev.mobile, code: e.target.value.replace(/[^0-9]/g, "").slice(0, 6) }
-                      }))
-                    }
-                  />
-                  <button
-                    type="button"
-                    className={styles.btnSecondary}
-                    disabled={otp.mobile.verifying || otp.mobile.code.length < 4}
-                    onClick={() => verifyOtp("mobile")}
-                  >
-                    {otp.mobile.verifying ? "Verifying OTP..." : "Verify OTP"}
-                  </button>
-                </div>
-              )}
-            </div>
+            <OtpVerificationField
+              otp={mobileOtp.state}
+              verifiedLabel="Mobile number verified"
+              sendDisabled={!form.country || !form.mobile}
+              onSend={sendMobileOtp}
+              onVerify={() => mobileOtp.verify({ channel: "mobile", mobile: form.mobile, countryCode: form.countryCode }, mobileOtp.state.code)}
+              onCodeChange={mobileOtp.setCode}
+            />
           </div>
 
           <div className="col-md-6 mb-4">
@@ -661,50 +559,14 @@ export default function VisitorRegistrationForm() {
               </div>
             )}
 
-            <div className={styles.otpBlock}>
-              <div className={styles.otpActionsRow}>
-                {otp.email.verified ? (
-                  <span className={styles.verifiedBadge}>Email verified</span>
-                ) : (
-                  <button
-                    type="button"
-                    className={styles.btnSecondary}
-                    disabled={otp.email.sending || !form.email}
-                    onClick={() => sendOtp("email")}
-                  >
-                    {otp.email.sending ? "Sending OTP..." : otp.email.sent ? "Resend OTP" : "Send OTP"}
-                  </button>
-                )}
-              </div>
-              {otp.email.info && !otp.email.verified && <p className={styles.otpInfo}>{otp.email.info}</p>}
-              {otp.email.error && <p className={styles.otpError}>{otp.email.error}</p>}
-              {otp.email.sent && !otp.email.verified && (
-                <div className={styles.otpCodeRow}>
-                  <input
-                    type="text"
-                    inputMode="numeric"
-                    maxLength={6}
-                    className={styles.otpInput}
-                    placeholder="OTP"
-                    value={otp.email.code}
-                    onChange={(e) =>
-                      setOtp((prev) => ({
-                        ...prev,
-                        email: { ...prev.email, code: e.target.value.replace(/[^0-9]/g, "").slice(0, 6) }
-                      }))
-                    }
-                  />
-                  <button
-                    type="button"
-                    className={styles.btnSecondary}
-                    disabled={otp.email.verifying || otp.email.code.length < 4}
-                    onClick={() => verifyOtp("email")}
-                  >
-                    {otp.email.verifying ? "Verifying OTP..." : "Verify OTP"}
-                  </button>
-                </div>
-              )}
-            </div>
+            <OtpVerificationField
+              otp={emailOtp.state}
+              verifiedLabel="Email verified"
+              sendDisabled={!form.email}
+              onSend={sendEmailOtp}
+              onVerify={() => emailOtp.verify({ channel: "email", email: form.email.trim().toLowerCase() }, emailOtp.state.code)}
+              onCodeChange={emailOtp.setCode}
+            />
           </div>
         </div>
         <p className={styles.helpText}>Verify either your mobile number or email address to continue.</p>

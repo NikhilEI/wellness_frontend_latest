@@ -8,6 +8,8 @@ const MOBILE_RE = /^[0-9]{10}$/;
 const NAME_RE = /^[A-Za-z\s'-]{2,30}$/;
 const CITY_RE = /^[A-Za-z\s'-]{2,50}$/;
 const ORG_RE = /^.{2,30}$/;
+// This form only collects a 10-digit Indian mobile number (no country-code selector).
+const OTP_COUNTRY_CODE = "+91";
 
 class ApiError extends Error {
   status: number;
@@ -97,6 +99,100 @@ function wireSpaceBookingForm() {
     mobileInput.value = mobileInput.value.replace(/[^0-9]/g, "").slice(0, 10);
   });
 
+  const btnSendOtp = document.getElementById("btnSendMobileOtp") as HTMLButtonElement | null;
+  const btnVerifyOtp = document.getElementById("btnVerifyMobileOtp") as HTMLButtonElement | null;
+  const otpInput = document.getElementById("spaceBookingOtpInput") as HTMLInputElement | null;
+  const otpInfoEl = document.getElementById("spaceBookingOtpInfo");
+  const otpErrorEl = document.getElementById("spaceBookingOtpError");
+  const otpCodeRow = document.getElementById("spaceBookingOtpCodeRow");
+  const otpVerifiedBadge = document.getElementById("spaceBookingOtpVerifiedBadge");
+  let mobileOtpVerified = false;
+
+  function showOtpInfo(text: string) {
+    if (otpInfoEl) {
+      otpInfoEl.textContent = text;
+      otpInfoEl.style.display = text ? "block" : "none";
+    }
+  }
+
+  function showOtpError(text: string) {
+    if (otpErrorEl) {
+      otpErrorEl.textContent = text;
+      otpErrorEl.style.display = text ? "block" : "none";
+    }
+  }
+
+  function resetOtpState() {
+    mobileOtpVerified = false;
+    if (otpCodeRow) otpCodeRow.style.display = "none";
+    if (otpVerifiedBadge) otpVerifiedBadge.style.display = "none";
+    if (btnSendOtp) {
+      btnSendOtp.style.display = "inline-block";
+      btnSendOtp.textContent = "Send OTP";
+      btnSendOtp.disabled = false;
+    }
+    if (otpInput) otpInput.value = "";
+    showOtpInfo("");
+    showOtpError("");
+  }
+
+  mobileInput?.addEventListener("input", resetOtpState);
+
+  btnSendOtp?.addEventListener("click", () => {
+    const mobileNo = mobileInput?.value.trim() ?? "";
+    if (!MOBILE_RE.test(mobileNo)) {
+      mobileInput?.setCustomValidity("Please enter a valid 10-digit mobile number.");
+      form.reportValidity();
+      mobileInput?.setCustomValidity("");
+      return;
+    }
+
+    showOtpError("");
+    btnSendOtp.disabled = true;
+    btnSendOtp.textContent = "Sending OTP...";
+
+    postJson(`${API_BASE}/otp/send`, { channel: "mobile", mobile: mobileNo, countryCode: OTP_COUNTRY_CODE })
+      .then((body) => {
+        if (otpCodeRow) otpCodeRow.style.display = "flex";
+        showOtpInfo(`OTP sent. It's valid for ${Math.round((body.expiresInSeconds || 600) / 60)} minutes.`);
+        btnSendOtp.textContent = "Resend OTP";
+      })
+      .catch((err: ApiError) => {
+        showOtpError(err.message);
+        btnSendOtp.textContent = "Send OTP";
+      })
+      .finally(() => {
+        btnSendOtp.disabled = false;
+      });
+  });
+
+  btnVerifyOtp?.addEventListener("click", () => {
+    const mobileNo = mobileInput?.value.trim() ?? "";
+    const code = otpInput?.value.trim() ?? "";
+    if (!code) return;
+
+    showOtpError("");
+    btnVerifyOtp.disabled = true;
+    btnVerifyOtp.textContent = "Verifying OTP...";
+
+    postJson(`${API_BASE}/otp/verify`, { channel: "mobile", mobile: mobileNo, countryCode: OTP_COUNTRY_CODE, otp: code })
+      .then(() => {
+        mobileOtpVerified = true;
+        if (otpCodeRow) otpCodeRow.style.display = "none";
+        if (btnSendOtp) btnSendOtp.style.display = "none";
+        if (otpVerifiedBadge) otpVerifiedBadge.style.display = "inline";
+        showOtpInfo("");
+        showOtpError("");
+      })
+      .catch((err: ApiError) => {
+        showOtpError(err.message);
+      })
+      .finally(() => {
+        btnVerifyOtp.disabled = false;
+        btnVerifyOtp.textContent = "Verify OTP";
+      });
+  });
+
   const fieldCheck = (
     input: HTMLInputElement | null | undefined,
     val: string,
@@ -139,6 +235,11 @@ function wireSpaceBookingForm() {
 
     const mobileNo = value("Mobile_No");
     if (!fieldCheck(mobileInput, mobileNo, MOBILE_RE, "Please enter a valid 10-digit mobile number.")) return;
+
+    if (!mobileOtpVerified) {
+      setMsg(msgEl, "Please verify your mobile number via OTP before submitting.", true);
+      return;
+    }
 
     let recaptchaToken = "";
     if (window.grecaptcha && window.__recaptchaWidgetId !== undefined) {

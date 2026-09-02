@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import styles from "./BrochureDownloadModal.module.css";
+import OtpVerificationField from "./OtpVerificationField";
+import { useOtpVerification } from "@/hooks/useOtpVerification";
 import { countries, findCountry } from "@/data/countries";
 import { brochureInterestOptions } from "@/data/brochureFormOptions";
 
@@ -68,6 +70,7 @@ export default function BrochureDownloadModal() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
   const [apiError, setApiError] = useState("");
   const downloadRef = useRef<HTMLAnchorElement>(null);
+  const mobileOtp = useOtpVerification();
 
   useEffect(() => {
     window.openBrochureModal = () => setOpen(true);
@@ -101,6 +104,7 @@ export default function BrochureDownloadModal() {
     setErrors({});
     setStatus("idle");
     setApiError("");
+    mobileOtp.reset();
   }
 
   function setField<K extends keyof FormState>(key: K, value: FormState[K]) {
@@ -117,11 +121,21 @@ export default function BrochureDownloadModal() {
     const country = findCountry(name);
     setField("country", name);
     setForm((prev) => ({ ...prev, countryCode: country?.dialCode || "" }));
+    if (mobileOtp.state.sent) mobileOtp.reset();
   }
 
   function handleMobileChange(value: string) {
     const digits = value.replace(/[^0-9]/g, "").slice(0, 10);
     setField("mobile", digits);
+    if (mobileOtp.state.sent) mobileOtp.reset();
+  }
+
+  function sendMobileOtp() {
+    if (!form.countryCode || !MOBILE_RE.test(form.mobile)) {
+      setErrors((prev) => ({ ...prev, mobile: "Please enter a valid 10-digit mobile number." }));
+      return;
+    }
+    mobileOtp.send({ channel: "mobile", mobile: form.mobile, countryCode: form.countryCode });
   }
 
   function validate(): Record<string, string> {
@@ -141,6 +155,7 @@ export default function BrochureDownloadModal() {
     if (!form.countryCode || !MOBILE_RE.test(form.mobile)) {
       next.mobile = "Please enter a valid 10-digit mobile number.";
     }
+    if (!mobileOtp.state.verified) next.otp = "Please verify your mobile number via OTP before submitting.";
 
     return next;
   }
@@ -362,6 +377,17 @@ export default function BrochureDownloadModal() {
                   </div>
                   <p className={styles.helpText}>Enter 10 digits, no country code.</p>
                   {errors.mobile && <span className={styles.errorText}>{errors.mobile}</span>}
+                  <OtpVerificationField
+                    otp={mobileOtp.state}
+                    verifiedLabel="Mobile number verified"
+                    sendDisabled={!form.countryCode || !form.mobile}
+                    onSend={sendMobileOtp}
+                    onVerify={() =>
+                      mobileOtp.verify({ channel: "mobile", mobile: form.mobile, countryCode: form.countryCode }, mobileOtp.state.code)
+                    }
+                    onCodeChange={mobileOtp.setCode}
+                  />
+                  {errors.otp && <span className={styles.errorText}>{errors.otp}</span>}
                 </div>
 
                 <button type="submit" className={styles.submitBtn} disabled={status === "submitting"}>
