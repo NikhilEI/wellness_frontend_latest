@@ -15,7 +15,7 @@ export const html = `
 			
 			<div class="col-xl-6 col-lg-5 col-md-4 col-8">
 			
-				<div class="logo-box-main-top">
+				<div class="logo-box-main-top justify-content-center justify-content-md-start">
 					<div class="logo-box-ci">
 						<a class="navbar-brand" href=""><img src="/images/wellness-india-expo-logo.png" alt="Wellness India Expo"></a>
 					</div>

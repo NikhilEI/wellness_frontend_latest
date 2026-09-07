@@ -72,6 +72,11 @@ transition: 0.3s;
 .logo-box-sci{width: 143px; height: auto; flex: 0 0 auto; transition: width 1s; }
 }*/
 .navbar-brand img{max-width:100%;}
+@media (max-width: 767px) {
+    .navbar-brand img {
+        margin-left: 60px;
+    }
+}
 
 .menu-box-outer{width: 100%; height: auto; margin-top:100px;}
 .menu-box-main{width: 100%; height: auto; color:#fff; font-size:15px; margin-bottom: 30px;}
