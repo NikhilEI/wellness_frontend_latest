@@ -4,7 +4,7 @@ import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { countries } from "@/data/countries";
 import { titles } from "@/data/visitorRegistrationOptions";
-import OtpVerificationField from "./OtpVerificationField";
+import OtpVerificationField, { OtpSendButton } from "./OtpVerificationField";
 import { useOtpVerification } from "@/hooks/useOtpVerification";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:4010/api";
@@ -271,21 +271,22 @@ export default function SpeakerRegistrationForm() {
             <label className="form-label" htmlFor="mobile">
               Phone / Mobile <span className="star-mark">*</span>
             </label>
-            <input
-              id="mobile"
-              type="tel"
-              inputMode="numeric"
-              maxLength={10}
-              className={`form-control ${errors.mobile ? "is-invalid" : ""}`}
-              value={form.mobile}
-              onChange={(e) => handleMobileChange(e.target.value)}
-            />
+            <div className="position-relative">
+              <input
+                id="mobile"
+                type="tel"
+                inputMode="numeric"
+                maxLength={10}
+                style={{ paddingRight: 112 }}
+                className={`form-control ${errors.mobile ? "is-invalid" : ""}`}
+                value={form.mobile}
+                onChange={(e) => handleMobileChange(e.target.value)}
+              />
+              <OtpSendButton otp={mobileOtp.state} sendDisabled={!form.mobile || !form.email} onSend={sendMobileOtp} />
+            </div>
             {errors.mobile && <div className="invalid-feedback d-block">{errors.mobile}</div>}
             <OtpVerificationField
               otp={mobileOtp.state}
-              verifiedLabel="Mobile number & email verified"
-              sendDisabled={!form.mobile || !form.email}
-              onSend={sendMobileOtp}
               onVerify={() =>
                 mobileOtp.verify(
                   { channel: "both", mobile: form.mobile, countryCode: OTP_COUNTRY_CODE, email: form.email.trim().toLowerCase() },

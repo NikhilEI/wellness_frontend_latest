@@ -1,16 +1,61 @@
-.otpBlock {
-  margin-top: 14px;
-  padding: 16px;
-  background: #fbfbfb;
-  border: 1px dashed #ccc;
-  border-radius: 8px;
+.sendOtpBtn {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  line-height: 1;
+  padding: 7px 14px;
+  border-radius: 5px;
+  color: #fff;
+  background: #fc196b;
+  border: 1px solid #fc196b;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s ease, opacity 0.15s ease;
 }
 
-.otpActionsRow {
+.sendOtpBtn:hover:not(:disabled) {
+  background: #e0105c;
+}
+
+.sendOtpBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.verifiedBadgeInline {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
   align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  color: #2e7d32;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.verifiedBadgeInline::before {
+  content: "✓";
+}
+
+.otpBlock {
+  margin-top: 12px;
+  padding: 14px 16px;
+  background: #fff8fa;
+  border: 1px solid #ffd6e4;
+  border-radius: 10px;
+}
+
+.otpLabel {
+  flex-basis: 100%;
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a1a1a;
 }
 
 .otpCodeRow {
@@ -18,68 +63,58 @@
   flex-wrap: wrap;
   gap: 10px;
   align-items: center;
-  margin-top: 12px;
 }
 
 .otpInput {
-  width: 110px;
-  letter-spacing: 3px;
-  font-size: 15px;
+  width: 150px;
+  letter-spacing: 6px;
+  font-size: 18px;
   font-weight: 600;
   text-align: center;
-  padding: 0.5rem 0.6rem;
+  padding: 0.55rem 0.5rem;
   border: 1px solid #ccc;
   border-radius: 6px;
-  background: #f9f9f9;
+  background: #fff;
   color: #1a1a1a;
-  transition: border-color 0.15s ease;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .otpInput:focus {
   outline: none;
   border-color: #fc196b;
-  background: #fff;
+  box-shadow: 0 0 0 3px rgba(252, 25, 107, 0.15);
 }
 
-.btnSecondary {
-  padding: 7px 16px;
+.btnVerify {
+  padding: 8px 20px;
   border-radius: 20px;
-  color: #fc196b;
-  background: #fff;
+  color: #fff;
+  background: #fc196b;
   border: 1px solid #fc196b;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  transition: background-color 0.15s ease, color 0.15s ease;
+  transition: background-color 0.15s ease, opacity 0.15s ease;
 }
 
-.btnSecondary:hover:not(:disabled) {
-  background: #fc196b;
-  color: #fff;
+.btnVerify:hover:not(:disabled) {
+  background: #e0105c;
 }
 
-.btnSecondary:disabled {
+.btnVerify:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-}
-
-.verifiedBadge {
-  color: #2e7d32;
-  font-weight: 700;
-  font-size: 14px;
-}
-
-.verifiedBadge::before {
-  content: "✓ ";
 }
 
 .otpInfo {
   font-size: 13px;
   color: #555;
+  margin: 0 0 10px;
 }
 
 .otpError {
   font-size: 13px;
   color: #c0392b;
   font-weight: 500;
+  margin: 0 0 10px;
 }

@@ -310,18 +310,17 @@ export const html = `
 						<div class="row">
 							<div class="col-md-6 mb-4">
 								<label class="form-label"> Mobile No. <span class="star-mark">*</span> </label>
-								<input name="Mobile_No" type="tel" inputmode="numeric" pattern="[0-9]{10}" class="form-control" id="Mobile_No" data-field="Mobile_No" placeholder="" required="required" autocomplete="off" data-validate="Mobile_No" maxlength="10" minlength="10" data-msg-required="Please enter your mobile no." data-msg-pattern="Please enter a valid 10-digit mobile number">
-								<div id="spaceBookingOtpBlock" class="otp-block-main">
-									<div class="otp-actions-row">
-										<button type="button" id="btnSendMobileOtp" class="otp-btn-secondary">Send OTP</button>
-										<span id="spaceBookingOtpVerifiedBadge" class="otp-verified-badge" style="display:none;">Mobile number & email verified</span>
-									</div>
-									<p id="spaceBookingOtpInfo" class="otp-info-text" style="display:none;"></p>
-									<p id="spaceBookingOtpError" class="otp-error-text" style="display:none;"></p>
-									<div id="spaceBookingOtpCodeRow" class="otp-code-row" style="display:none;">
-										<input type="text" inputmode="numeric" maxlength="6" id="spaceBookingOtpInput" class="otp-input-box" placeholder="OTP">
-										<button type="button" id="btnVerifyMobileOtp" class="otp-btn-secondary">Verify OTP</button>
-									</div>
+								<div class="otp-mobile-row">
+									<input name="Mobile_No" type="tel" inputmode="numeric" pattern="[0-9]{10}" class="form-control" id="Mobile_No" data-field="Mobile_No" placeholder="" required="required" autocomplete="off" data-validate="Mobile_No" maxlength="10" minlength="10" data-msg-required="Please enter your mobile no." data-msg-pattern="Please enter a valid 10-digit mobile number">
+									<button type="button" id="btnSendMobileOtp" class="otp-send-btn-inline">Send OTP</button>
+									<span id="spaceBookingOtpVerifiedBadge" class="otp-verified-badge-inline" style="display:none;">Verified</span>
+								</div>
+								<p id="spaceBookingOtpInfo" class="otp-info-text" style="display:none;"></p>
+								<p id="spaceBookingOtpError" class="otp-error-text" style="display:none;"></p>
+								<div id="spaceBookingOtpCodeRow" class="otp-code-row" style="display:none;">
+									<span class="otp-code-label">Enter OTP</span>
+									<input type="text" inputmode="numeric" maxlength="6" id="spaceBookingOtpInput" class="otp-input-box" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;">
+									<button type="button" id="btnVerifyMobileOtp" class="otp-btn-verify">Verify OTP</button>
 								</div>
 							</div>
 							<div class="col-md-6 mb-4">

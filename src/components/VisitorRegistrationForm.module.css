@@ -20,6 +20,7 @@
 .mobileRow {
   display: flex;
   gap: 10px;
+  position: relative;
 }
 
 .dialCode {
@@ -37,6 +38,7 @@
 
 .mobileRow :global(.form-control) {
   flex: 1 1 auto;
+  padding-right: 112px;
 }
 
 .otpBlock {

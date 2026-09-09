@@ -3,7 +3,7 @@
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import styles from "./VisitorRegistrationForm.module.css";
-import OtpVerificationField from "./OtpVerificationField";
+import OtpVerificationField, { OtpSendButton } from "./OtpVerificationField";
 import { useOtpVerification } from "@/hooks/useOtpVerification";
 import { countries, findCountry } from "@/data/countries";
 import { statesForCountry } from "@/data/indiaStates";
@@ -523,6 +523,11 @@ export default function VisitorRegistrationForm() {
                 aria-describedby={errors.mobile ? "mobile-error" : undefined}
                 aria-invalid={Boolean(errors.mobile)}
               />
+              <OtpSendButton
+                otp={mobileOtp.state}
+                sendDisabled={!form.country || !form.mobile}
+                onSend={sendMobileOtp}
+              />
             </div>
             {errors.mobile && (
               <div id="mobile-error" className="invalid-feedback d-block">
@@ -532,9 +537,6 @@ export default function VisitorRegistrationForm() {
 
             <OtpVerificationField
               otp={mobileOtp.state}
-              verifiedLabel="Mobile number verified"
-              sendDisabled={!form.country || !form.mobile}
-              onSend={sendMobileOtp}
               onVerify={() => mobileOtp.verify({ channel: "mobile", mobile: form.mobile, countryCode: form.countryCode }, mobileOtp.state.code)}
               onCodeChange={mobileOtp.setCode}
             />
@@ -544,15 +546,18 @@ export default function VisitorRegistrationForm() {
             <label className="form-label" htmlFor="email">
               Official E-Mail Id <span className="star-mark">*</span>
             </label>
-            <input
-              id="email"
-              type="email"
-              className={`form-control ${errors.email ? "is-invalid" : ""}`}
-              value={form.email}
-              onChange={(e) => handleEmailChange(e.target.value)}
-              aria-describedby={errors.email ? "email-error" : undefined}
-              aria-invalid={Boolean(errors.email)}
-            />
+            <div className={styles.mobileRow}>
+              <input
+                id="email"
+                type="email"
+                className={`form-control ${errors.email ? "is-invalid" : ""}`}
+                value={form.email}
+                onChange={(e) => handleEmailChange(e.target.value)}
+                aria-describedby={errors.email ? "email-error" : undefined}
+                aria-invalid={Boolean(errors.email)}
+              />
+              <OtpSendButton otp={emailOtp.state} sendDisabled={!form.email} onSend={sendEmailOtp} />
+            </div>
             {errors.email && (
               <div id="email-error" className="invalid-feedback d-block">
                 {errors.email}
@@ -561,9 +566,6 @@ export default function VisitorRegistrationForm() {
 
             <OtpVerificationField
               otp={emailOtp.state}
-              verifiedLabel="Email verified"
-              sendDisabled={!form.email}
-              onSend={sendEmailOtp}
               onVerify={() => emailOtp.verify({ channel: "email", email: form.email.trim().toLowerCase() }, emailOtp.state.code)}
               onCodeChange={emailOtp.setCode}
             />

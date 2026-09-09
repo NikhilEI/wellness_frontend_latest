@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import styles from "./VisitorRegistrationForm.module.css";
-import OtpVerificationField from "./OtpVerificationField";
+import OtpVerificationField, { OtpSendButton } from "./OtpVerificationField";
 import { useOtpVerification } from "@/hooks/useOtpVerification";
 import { countryNames } from "@/data/countryNames";
 
@@ -238,21 +238,22 @@ export default function HostedBuyersRegistrationForm() {
             <label className="form-label" htmlFor="mobile">
               Mobile No. <span className="star-mark">*</span>
             </label>
-            <input
-              id="mobile"
-              type="tel"
-              inputMode="numeric"
-              maxLength={10}
-              className={`form-control ${errors.mobile ? "is-invalid" : ""}`}
-              value={form.mobile}
-              onChange={(e) => handleMobileChange(e.target.value)}
-            />
+            <div className="position-relative">
+              <input
+                id="mobile"
+                type="tel"
+                inputMode="numeric"
+                maxLength={10}
+                style={{ paddingRight: 112 }}
+                className={`form-control ${errors.mobile ? "is-invalid" : ""}`}
+                value={form.mobile}
+                onChange={(e) => handleMobileChange(e.target.value)}
+              />
+              <OtpSendButton otp={mobileOtp.state} sendDisabled={!form.mobile || !form.email} onSend={sendMobileOtp} />
+            </div>
             {errors.mobile && <div className="invalid-feedback d-block">{errors.mobile}</div>}
             <OtpVerificationField
               otp={mobileOtp.state}
-              verifiedLabel="Mobile number & email verified"
-              sendDisabled={!form.mobile || !form.email}
-              onSend={sendMobileOtp}
               onVerify={() =>
                 mobileOtp.verify(
                   { channel: "both", mobile: form.mobile, countryCode: OTP_COUNTRY_CODE, email: form.email.trim().toLowerCase() },

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import styles from "./BrochureDownloadModal.module.css";
-import OtpVerificationField from "./OtpVerificationField";
+import OtpVerificationField, { OtpSendButton } from "./OtpVerificationField";
 import { useOtpVerification } from "@/hooks/useOtpVerification";
 import { countries, findCountry } from "@/data/countries";
 import { brochureInterestOptions } from "@/data/brochureFormOptions";
@@ -383,14 +383,16 @@ export default function BrochureDownloadModal() {
                       onChange={(e) => handleMobileChange(e.target.value)}
                       aria-invalid={Boolean(errors.mobile)}
                     />
+                    <OtpSendButton
+                      otp={mobileOtp.state}
+                      sendDisabled={!form.countryCode || !form.mobile || !form.email}
+                      onSend={sendMobileOtp}
+                    />
                   </div>
                   <p className={styles.helpText}>Enter 10 digits, no country code.</p>
                   {errors.mobile && <span className={styles.errorText}>{errors.mobile}</span>}
                   <OtpVerificationField
                     otp={mobileOtp.state}
-                    verifiedLabel="Mobile number & email verified"
-                    sendDisabled={!form.countryCode || !form.mobile || !form.email}
-                    onSend={sendMobileOtp}
                     onVerify={() =>
                       mobileOtp.verify(
                         { channel: "both", mobile: form.mobile, countryCode: form.countryCode, email: form.email.trim().toLowerCase() },

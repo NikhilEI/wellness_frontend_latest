@@ -124,6 +124,7 @@
 .mobileRow {
   display: flex;
   gap: 10px;
+  position: relative;
 }
 
 .dialCode {
@@ -141,6 +142,7 @@
 
 .mobileRow .input {
   flex: 1 1 auto;
+  padding-right: 112px;
 }
 
 .apiError {

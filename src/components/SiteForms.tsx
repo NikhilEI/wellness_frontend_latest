@@ -108,6 +108,36 @@ function wireSpaceBookingForm() {
   const otpVerifiedBadge = document.getElementById("spaceBookingOtpVerifiedBadge");
   let mobileOtpVerified = false;
 
+  // Mirrors the backend's default OTP_RESEND_COOLDOWN_SECONDS (see otpStore.js) so the
+  // button's countdown lines up with when a resend will actually be accepted.
+  const RESEND_COOLDOWN_SECONDS = 120;
+  let cooldownInterval: ReturnType<typeof setInterval> | null = null;
+
+  function clearResendCooldown() {
+    if (cooldownInterval) {
+      clearInterval(cooldownInterval);
+      cooldownInterval = null;
+    }
+  }
+
+  function startResendCooldown() {
+    clearResendCooldown();
+    let remaining = RESEND_COOLDOWN_SECONDS;
+    if (!btnSendOtp) return;
+    btnSendOtp.disabled = true;
+    btnSendOtp.textContent = `Resend ${remaining}s`;
+    cooldownInterval = setInterval(() => {
+      remaining -= 1;
+      if (remaining <= 0) {
+        clearResendCooldown();
+        btnSendOtp.disabled = false;
+        btnSendOtp.textContent = "Resend OTP";
+        return;
+      }
+      btnSendOtp.textContent = `Resend ${remaining}s`;
+    }, 1000);
+  }
+
   function showOtpInfo(text: string) {
     if (otpInfoEl) {
       otpInfoEl.textContent = text;
@@ -124,6 +154,7 @@ function wireSpaceBookingForm() {
 
   function resetOtpState() {
     mobileOtpVerified = false;
+    clearResendCooldown();
     if (otpCodeRow) otpCodeRow.style.display = "none";
     if (otpVerifiedBadge) otpVerifiedBadge.style.display = "none";
     if (btnSendOtp) {
@@ -164,13 +195,11 @@ function wireSpaceBookingForm() {
       .then((body) => {
         if (otpCodeRow) otpCodeRow.style.display = "flex";
         showOtpInfo(body.message || "OTP sent successfully via Email and WhatsApp.");
-        btnSendOtp.textContent = "Resend OTP";
+        startResendCooldown();
       })
       .catch((err: ApiError) => {
         showOtpError(err.message);
         btnSendOtp.textContent = "Send OTP";
-      })
-      .finally(() => {
         btnSendOtp.disabled = false;
       });
   });
@@ -188,6 +217,7 @@ function wireSpaceBookingForm() {
     postJson(`${API_BASE}/otp/verify`, { channel: "both", mobile: mobileNo, countryCode: OTP_COUNTRY_CODE, email, otp: code })
       .then(() => {
         mobileOtpVerified = true;
+        clearResendCooldown();
         if (otpCodeRow) otpCodeRow.style.display = "none";
         if (btnSendOtp) btnSendOtp.style.display = "none";
         if (otpVerifiedBadge) otpVerifiedBadge.style.display = "inline";

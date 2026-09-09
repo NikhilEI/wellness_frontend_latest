@@ -1,8 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:4010/api";
+
+// Mirrors the backend's default OTP_RESEND_COOLDOWN_SECONDS (see otpStore.js) so the
+// button's countdown lines up with when a resend will actually be accepted.
+const RESEND_COOLDOWN_SECONDS = 120;
 
 export class OtpApiError extends Error {
   status: number;
@@ -33,6 +37,7 @@ export interface OtpState {
   verifying: boolean;
   error: string;
   info: string;
+  resendCooldown: number;
 }
 
 const initialOtpState: OtpState = {
@@ -42,7 +47,8 @@ const initialOtpState: OtpState = {
   sending: false,
   verifying: false,
   error: "",
-  info: ""
+  info: "",
+  resendCooldown: 0
 };
 
 export type OtpIdentifier =
@@ -55,6 +61,16 @@ export type OtpIdentifier =
 // (built from its own form state) when calling send()/verify().
 export function useOtpVerification() {
   const [state, setState] = useState<OtpState>(initialOtpState);
+
+  // Ticks the resend countdown down to 0 once a second. Re-armed only when the
+  // cooldown transitions between zero and non-zero, not on every tick.
+  useEffect(() => {
+    if (state.resendCooldown <= 0) return undefined;
+    const id = setInterval(() => {
+      setState((prev) => ({ ...prev, resendCooldown: Math.max(0, prev.resendCooldown - 1) }));
+    }, 1000);
+    return () => clearInterval(id);
+  }, [state.resendCooldown > 0]);
 
   function reset() {
     setState(initialOtpState);
@@ -76,7 +92,8 @@ export function useOtpVerification() {
         ...prev,
         sending: false,
         sent: true,
-        info
+        info,
+        resendCooldown: RESEND_COOLDOWN_SECONDS
       }));
       return true;
     } catch (err) {
