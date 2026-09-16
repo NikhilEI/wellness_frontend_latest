@@ -568,7 +568,7 @@ Join us and discover the latest innovations, meet the brands and businesses lead
 						</h2>
 						<div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
 							<div class="accordion-body">
-								The expo will take place from 6<sup>th</sup> to 8<sup>th</sup> May 2027 at Bharat Mandapam, New Delhi.
+								The expo will take place from 27<sup>th</sup> to 29<sup>th</sup> May 2027 at Bharat Mandapam, New Delhi.
 							</div>
 						</div>
 					</div>

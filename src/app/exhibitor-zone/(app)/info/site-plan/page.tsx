@@ -150,7 +150,7 @@ export default function SitePlanPage() {
                   </h4>
                   <div className="text-xs text-muted d-flex" style={{ flexDirection: "column", gap: "0.4rem" }}>
                     <div>
-                      <strong>Dates:</strong> 06-08 May 2027 (Wednesday-Friday)
+                      <strong>Dates:</strong> 27-29 May 2027 (Thrusday-Saturday)
                     </div>
                     <div>
                       <strong>Venue:</strong> Bharat Mandapam, Pragati Maidan, New Delhi
