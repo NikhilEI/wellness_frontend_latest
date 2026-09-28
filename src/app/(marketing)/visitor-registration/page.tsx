@@ -25,9 +25,9 @@ export default function VisitorRegistrationPage() {
                 </div>
                 <div className="col-para-left mb-5">
                   <span className="heading-sub--para">
-                    Step into India&apos;s biggest technology expo. Connect with innovators, thought leaders and
-                    global brands showcasing emerging trends in 6G, AI &amp; Analytics, Future Mobility, Digital
-                    Economies, Cybersecurity, Fintech, Cloud &amp; Edge &amp; more. Entry allowed only for Business
+                    Step into India&apos;s most comprehensive wellness expo. Connect with innovators, thought leaders
+                    and global brands showcasing emerging trends in wellness, fitness, health span, digital health,
+                    longevity and clean beauty &amp; more. Entry allowed only for Business
                     Visitors above 18 years of age. Student entry is permitted only on Day 3 from 12:00 PM onward.
                   </span>
                 </div>

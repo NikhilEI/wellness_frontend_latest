@@ -3,7 +3,6 @@ import Header from "@/components/legacy/Header";
 import Footer from "@/components/legacy/Footer";
 import SpeakerRegistrationForm from "@/components/SpeakerRegistrationForm";
 import AdditionalInfoContacts, { PRINCE_SINGH_CONTACT, PANKAJ_JAIN_CONTACT } from "@/components/AdditionalInfoContacts";
-import styles from "@/components/SpeakerRegistrationIntro.module.css";
 
 export const metadata: Metadata = {
   title: "Wellness India Expo 2027 - Speaker Registration",
@@ -24,29 +23,14 @@ export default function SpeakerRegistrationPage() {
                 <div className="world-say-heading-home">
                   Speaker <span className="ai-bharat-expo">Registration</span>
                 </div>
-                <div className="col-para-left mb-5">
+                <div className="col-para-left mb-3">
                   <span className="heading-sub--para">
-                    Speaker Registrations are now open for your submissions to present when we meet again in person
-                    next year. Our Conference Committee is looking for content focussed on solutions to accelerate
-                    Nation Building. This unique event provides an opportunity to discuss and bring forth the most
-                    inspiring ideas to strengthen capacities, increase collaboration and share inspiration to support
-                    and improve the development of our nation.
+                    Speaker Registrations are now open for your submissions. Our Conference Committee is looking for
+                    content focussed on wellness, fitness, health span, digital health, longevity and clean beauty.
                   </span>
                 </div>
 
-                <h3 className={styles.criteriaHeading}>Selection Criteria</h3>
-                <ul className={styles.criteriaList}>
-                  <li>Strong alignment with the expo&apos;s core theme and focus areas</li>
-                  <li>Relevance to current and emerging industry trends and challenges</li>
-                </ul>
-
-                <h3 className={styles.criteriaHeading}>Guidelines</h3>
-                <ul className={styles.criteriaList}>
-                  <li>Speaker participation is subject to review and final approval by the Conference Committee</li>
-                  <li>Session formats include Panel Discussions, Fireside chat and keynote sessions</li>
-                </ul>
-
-                <div className="col-para-left mb-5" style={{ marginTop: 12 }}>
+                <div className="col-para-left mb-5">
                   Please submit your details in the form below and a member of our team will get in touch with you.
                 </div>
 
